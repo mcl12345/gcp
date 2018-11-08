@@ -1,5 +1,7 @@
 <?php
 
+
+
 include("connection_bdd.php");
 
 function print_LOGO_FORMSEARCH_MENU() {
@@ -75,7 +77,7 @@ function print_LOGO_FORMSEARCH_MENU() {
                 <li class="nav-item active">
                   <a class="nav-link" href="register.php">Register</a>
                 </li>
-                <li class="nav-item ">
+                <li class="nav-item">
                   <a class="nav-link" href="login.php">Login</a>
                 </li>
               </ul>
@@ -91,8 +93,6 @@ function print_LOGO_FORMSEARCH_MENU() {
 }
 
 function formulaire_register_HTML() {
-
-  echo "<a href='login.php'>Login</a>";
     echo "<form method='post' action='register.php'>
               <label for='username'>Username : </label><input id='username' name='username' type='text' required /><br />
               <label for='email'>Email : </label><input id='email' name='email' placeholder='joe@example.com' type='text' required /><br />
@@ -176,12 +176,11 @@ if( !empty($_POST["username"]) &&
 
       $pdo = null;
 }
+// On affiche le formulaire
 else {
-  // Affichage du logo , du formulaire de recherche et du menu
-  print_LOGO_FORMSEARCH_MENU();
-
-  // On affiche le formulaire d'enregistrement
-  formulaire_register_HTML();
+    // Affichage du logo , du formulaire de recherche et du menu
+    print_LOGO_FORMSEARCH_MENU();
+    formulaire_register_HTML();
 }
 
  ?>
