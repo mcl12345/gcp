@@ -1,5 +1,6 @@
 <?php
 
+<<<<<<< HEAD
 
 
 
@@ -80,6 +81,8 @@ echo '<html>
 </body>
 
 </html>';
+=======
+>>>>>>> e5d8a63e2fdbd737c47f1840d2ec2fb25bd08c50
 /**
 * Mettre le carousel , le menu , login /register , logo , le footer
 */

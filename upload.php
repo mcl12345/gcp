@@ -13,7 +13,11 @@ if(isset($_POST['titre']) && isset($_FILES['the_mp3']['name'])) {
   $fichier = basename($_FILES['the_mp3']['name']);
   $taille_maxi = 100000000; // 100 Mo
   $taille = filesize($_FILES['the_mp3']['tmp_name']); // Le fichier temporaire
+<<<<<<< HEAD
   $extensions = array('.mp3', '.wav', '.jpg', '.jpeg');
+=======
+  $extensions = array( '.jpg', '.jpeg', 'png');
+>>>>>>> e5d8a63e2fdbd737c47f1840d2ec2fb25bd08c50
   $extension = strrchr($_FILES['the_mp3']['name'], '.');
   //Début des vérifications de sécurité...
   if(!in_array($extension, $extensions)) //Si l'extension n'est pas dans le tableau
