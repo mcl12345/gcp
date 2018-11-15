@@ -1,12 +1,14 @@
 <?php
 
+
 include('logo_search_menu.php');
 
 /**
-* Les textes
+* Gallerie
 */
 
 echo '</div></body>
+
 </html>';
 
 ?>

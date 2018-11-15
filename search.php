@@ -24,7 +24,7 @@ function print_LOGO_FORMSEARCH_MENU() {
         <!-- LOGO -->
         <div class="col-lg-2">
           <div class="logo">
-            <img src="img/100px-Saint-Denis.jpg" />
+            <img src="img/logo-basilique-st-denis-250.png" />
           </div>
         </div><!-- /.col-lg-2 -->
         <!-- search -->
@@ -41,12 +41,12 @@ function print_LOGO_FORMSEARCH_MENU() {
       </div><!-- /.row -->
       <!-- end LOGO + FORM_SEARCH -->
 
-    <br /><br />
+    <br />
 
     <!-- MENU -->
     <div class="row">
         <div class="col-lg-4"></div>
-        <div class="col-lg-4">
+        <div class="col-lg-5">
           <div class="container">
           <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#"></a>
@@ -75,6 +75,9 @@ function print_LOGO_FORMSEARCH_MENU() {
                 </li>
                 <li class="nav-item ">
                   <a class="nav-link" href="login.php">Login</a>
+                </li>
+                <li class="nav-item ">
+                  <a class="nav-link" href="api.php">API</a>
                 </li>
               </ul>
             </div>

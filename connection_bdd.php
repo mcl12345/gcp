@@ -1,9 +1,15 @@
 <?php
 
-$db_host = '127.0.0.1';
+/*$db_host = 'localhost';
 $db_name   = 'basilique';
 $db_user = 'root';
 $db_password = '';
+$charset = 'utf8mb4';*/
+
+$db_host = 'localhost';
+$db_name   = 'basilique';
+$db_user = 'newuser';
+$db_password = 'password';
 $charset = 'utf8mb4';
 
 /*$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
