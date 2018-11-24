@@ -8,7 +8,7 @@ print_LOGO_FORMSEARCH_MENU();
 echo "<div class='row'>
           <div class='col-lg-4'></div>
           <div class='col-lg-4'>";
-echo "<h3>Validation : </h3>";
+echo "<h3>Validation Personnalité : </h3>";
 
 $is_non_valide = false;
 $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);

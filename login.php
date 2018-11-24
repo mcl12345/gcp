@@ -65,7 +65,7 @@ if( !empty($_POST["username"]) &&
                     <div class='col-lg-4'></div>
                     <div class='col-lg-4'>";
           echo "Vous êtes bien authentifié en tant que " . $my_username . " !";
-          echo '</div></div></div>';
+          echo '</div></div></div><br /><br />';
           echo footer();
           echo '</body>
           </html>';
@@ -76,7 +76,7 @@ if( !empty($_POST["username"]) &&
                 <div class='col-lg-4'>";
             echo "Mauvais password<br />";
             formulaire_login_HTML();
-            echo '</div></div></div>';
+            echo '</div></div></div><br /><br />';
             echo footer();
             echo '</body>
             </html>';
@@ -88,7 +88,7 @@ else if (isset($_COOKIE['the_username'])) {
             <div class='col-lg-4'></div>
             <div class='col-lg-4'>";
     echo "Bienvenue " . $_COOKIE["the_username"] . " !";
-    echo '</div></div></div>';
+    echo '</div></div></div><br /><br />';
     echo footer();
     echo '</body>
     </html>';

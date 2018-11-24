@@ -17,7 +17,7 @@ function footer() {
             </a>
           </li>
           <li class="list-inline-item">
-            <a class="btn-floating btn-tw mx-1" href="ttps://twitter.com/basiliquesdenis?lang=fr">
+            <a class="btn-floating btn-tw mx-1" href="https://twitter.com/basiliquesdenis?lang=fr">
               <i class="fa fa-twitter"><img src="img/footer_img/twitter.png" class="img-rounded"></i>
             </a>
           </li>

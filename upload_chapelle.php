@@ -15,23 +15,23 @@ function formulaire_upload() {
       echo "<form action='upload_chapelle.php' method='post' enctype='multipart/form-data'>
         <label class='label_formulaire' for='nom'>Nom : </label><input type='text' id='nom' name='nom' required /><br />
         <label class='label_formulaire' for='titre1'>Titre1 : </label><input type='text' id='titre1' name='titre1' /><br />
-        <label class='label_formulaire' for='description1'>Description 1 : </label><textarea placeholder='Description 1' id='description1' name='description1' ></textarea><br />
+        <label class='label_formulaire' for='description1'>Description 1 : </label><input placeholder='Description 1' id='description1' name='description1' /><br />
         <label class='label_formulaire' for='date1'>Date 1 : </label><input type='text' id='date1' name='date1' /><br />
         <label class='label_formulaire' for='composition1'>Composition 1 : </label><input type='text' id='composition1' name='composition1' /><br /><br />
         <label class='label_formulaire' for='titre2'>Titre 2 : </label><input type='text' id='titre2' name='titre2' /><br />
-        <label class='label_formulaire' for='description2'>Description 2 : </label><textarea placeholder='Description 2' id='description2' name='description2'></textarea><br />
+        <label class='label_formulaire' for='description2'>Description 2 : </label><input placeholder='Description 2' id='description2' name='description2' /><br />
         <label class='label_formulaire' for='date2'>Date 2 : </label><input type='text' id='date2' name='date2' /><br />
         <label class='label_formulaire' for='composition2'>Composition 2 : </label><input type='text' id='composition2' name='composition2' /><br /><br />
         <label class='label_formulaire' for='titre2'>Titre 3 : </label><input type='text' id='titre3' name='titre3' /><br />
-        <label class='label_formulaire' for='description3'>Description 3 : </label><textarea placeholder='Description 3' id='description3' name='description3' ></textarea><br />
+        <label class='label_formulaire' for='description3'>Description 3 : </label><input placeholder='Description 3' id='description3' name='description3' /><br />
         <label class='label_formulaire' for='date3'>Date 3 : </label><input type='text' id='date3' name='date3' /><br />
         <label class='label_formulaire' for='composition3'>Composition 3 : </label><input type='text' id='composition3' name='composition3' /><br /><br />
         <label class='label_formulaire' for='titre4'>Titre 4 : </label><input type='text' id='titre4' name='titre4' /><br />
-        <label class='label_formulaire' for='description4'>Description 4 : </label><textarea placeholder='Description 4' id='description4' name='description4' ></textarea><br />
+        <label class='label_formulaire' for='description4'>Description 4 : </label><input placeholder='Description 4' id='description4' name='description4' /><br />
         <label class='label_formulaire' for='date4'>Date 4 : </label><input type='text' id='date4' name='date4' /><br />
         <label class='label_formulaire' for='composition4'>Composition 4 : </label><input type='text' id='composition4' name='composition4' /><br /><br />
         <label class='label_formulaire' for='titre5'>Titre 5 : </label><input type='text' id='titre5' name='titre5' /><br />
-        <label class='label_formulaire' for='description5'>Description 5 : </label><textarea placeholder='Description 5' id='description4' name='description5' ></textarea><br />
+        <label class='label_formulaire' for='description5'>Description 5 : </label><input placeholder='Description 5' id='description4' name='description5' /><br />
         <label class='label_formulaire' for='date5'>Date 5 : </label><input type='text' id='date5' name='date5' /><br />
         <label class='label_formulaire' for='composition5'>Composition 5 : </label><input type='text' id='composition5' name='composition5' /><br />
         <input type='file' name='the_image' /> <br />
@@ -69,7 +69,7 @@ if( isset($_POST["nom"]) && isset($_POST["titre1"]) && isset($_POST["description
      $fichier = preg_replace('/([^.a-z0-9]+)/i', '-', $fichier);
      if(move_uploaded_file($_FILES['the_image']['tmp_name'], $dossier . $fichier)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
      {
-       $imageURL = $_SERVER['SERVER_NAME'] . substr($_SERVER['REQUEST_URI'], 0, strpos($_SERVER['REQUEST_URI'], "/", 2)) ."/". $dossier . $fichier;
+       $imageURL = "http://" . $_SERVER['SERVER_NAME'] . substr($_SERVER['REQUEST_URI'], 0, strpos($_SERVER['REQUEST_URI'], "/", 2)) ."/". $dossier . $fichier;
       try {
 
          $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);

@@ -17,13 +17,15 @@ $stmt->execute();
 echo '<form action="personnalite_modification.php" method="get">';
 while ($row = $stmt->fetch()) {
     echo "<input type='radio' name='id_personnalite' value='".$row["id"]."' />";
-    echo "nom : " . $row["nom"] . "<br />";
-    echo "fonction : " . $row["fonction"] . "<br />";
-    echo "date de naissance : " . $row["date_naissance"] . "<br />";
-    echo "date de décès : " . $row["date_deces"] . "<br />";
-    echo "conjoint : " . $row["conjoint"] . "<br />";
-    echo "type de gisant : " . $row["type_gisant"] . "<br />";
-    echo "date du dépôt du gisant : " . $row["date_depot_gisant"] . "<br /><br /><br />";
+    echo "<strong>nom : </strong>" . $row["nom"] . "<br />";
+    echo "<strong>fonction : </strong>" . $row["fonction"] . "<br />";
+    echo "<strong>date de naissance : </strong>" . $row["date_naissance"] . "<br />";
+    echo "<strong>date de décès : </strong>" . $row["date_deces"] . "<br />";
+    echo "<strong>conjoint : </strong>" . $row["conjoint"] . "<br />";
+    echo "<strong>type de gisant : </strong>" . $row["type_gisant"] . "<br />";
+    echo "<strong>date du dépôt du gisant : </strong>" . $row["date_depot_gisant"] . "<br />";
+    echo "<strong>image : </strong><img src='" . $row["imageURL"] . "' width='250px' height='250px' /><br />";
+    echo "<br /><br /><br />";
 }
 echo "<input value='Modifier' type='submit' />";
 echo "</form><br />";

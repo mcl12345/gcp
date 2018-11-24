@@ -12,14 +12,17 @@ echo '
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/index.css">
-  <link rel="stylesheet" href="css/footer.css"><!-- pour le footer ?? -->
-  <link rel="stylesheet" href="css/reset.css"><!-- pour la FAQ -->
-  <link rel="stylesheet" href="css/style.css"><!-- pour la FAQ -->
-  <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css"><!-- pour la FAQ -->
-  <script src="js/jquery-2.1.1.js"></script><!-- pour la FAQ -->
-  <script src="js/jquery.mobile.custom.min.js"></script><!-- pour la FAQ -->
-  <script src="js/main.js"></script><!-- pour la FAQ -->
-  <script src="js/modernizr.js"></script><!-- pour la FAQ -->
+  <link rel="stylesheet" href="css/footer.css"><!-- pour le footer ?? -->';
+  if(basename($_SERVER['PHP_SELF']) == "faq.php")  {
+      echo '<link rel="stylesheet" href="css/reset.css"><!-- pour la FAQ -->
+      <link rel="stylesheet" href="css/style.css"><!-- pour la FAQ -->
+      <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css"><!-- pour la FAQ -->
+      <script src="js/jquery-2.1.1.js"></script><!-- pour la FAQ -->
+      <script src="js/jquery.mobile.custom.min.js"></script><!-- pour la FAQ -->
+      <script src="js/main.js"></script><!-- pour la FAQ -->
+      <script src="js/modernizr.js"></script><!-- pour la FAQ -->';
+  }
+echo '
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
@@ -76,6 +79,13 @@ echo '
           echo '<li>';
         }
         echo '<a href="upload_chapelle.php">Upload de chapelles</a>
+        </li>';
+        if(basename($_SERVER['PHP_SELF']) == "chapelle_a_valider.php")  {
+          echo '<li class="active">';
+        } else {
+          echo '<li>';
+        }
+        echo '<a href="chapelle_a_valider.php">Chapelles à valider</a>
         </li>';
         if(basename($_SERVER['PHP_SELF']) == "upload_personnalite.php")  {
           echo '<li class="active">';
