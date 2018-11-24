@@ -2,6 +2,8 @@
 
 include("connection_bdd.php");
 include('logo_search_menu.php');
+include('footer.php');
+
 
 function formulaire_login_HTML() {
     echo "<form method='post' action='login.php'>
@@ -32,51 +34,75 @@ if( !empty($_POST["username"]) &&
             while ($row = $stmt->fetch()) {
               if($row['password_encoded'] == $my_password_encoded) {
                   $bool_verification_password = true;
+                  $my_id = $row['id'];
                   $my_email = $row['email'];
                   $my_role = $row['role'];
               }
             }
           }
       } catch(PDOException $e) {
+        print_LOGO_FORMSEARCH_MENU();
+        echo "<div class='row'>
+                  <div class='col-lg-4'></div>
+                  <div class='col-lg-4'>";
           echo $sql . "<br>" . $e->getMessage();
-          echo '</div></body>
+          echo '</div></div></div>';
+          echo footer();
+          echo '</body>
           </html>';
       }
 
       if( $bool_verification_password) {
           // Insertion COOKIES
+          setcookie("the_id", $my_id);
           setcookie("the_username", $my_username);
           setcookie("the_email", $my_email);
           setcookie("the_password_encoded", $my_password_encoded);
           setcookie("the_role", $my_role);
 
+          print_LOGO_FORMSEARCH_MENU();
+          echo "<div class='row'>
+                    <div class='col-lg-4'></div>
+                    <div class='col-lg-4'>";
           echo "Vous êtes bien authentifié en tant que " . $my_username . " !";
-          echo '</div></body>
+          echo '</div></div></div>';
+          echo footer();
+          echo '</body>
           </html>';
       } else {
+        print_LOGO_FORMSEARCH_MENU();
         echo "<div class='row'>
                 <div class='col-lg-4'></div>
                 <div class='col-lg-4'>";
             echo "Mauvais password<br />";
             formulaire_login_HTML();
-            echo '</div></div></div></body>
+            echo '</div></div></div>';
+            echo footer();
+            echo '</body>
             </html>';
       }
 }
 else if (isset($_COOKIE['the_username'])) {
-
+    print_LOGO_FORMSEARCH_MENU();
     echo "<div class='row'>
             <div class='col-lg-4'></div>
             <div class='col-lg-4'>";
     echo "Bienvenue " . $_COOKIE["the_username"] . " !";
-    echo '</div></div></div></body>
+    echo '</div></div></div>';
+    echo footer();
+    echo '</body>
     </html>';
 } else {
+    print_LOGO_FORMSEARCH_MENU();
     echo "<div class='row'>
             <div class='col-lg-4'></div>
             <div class='col-lg-4'>";
     formulaire_login_HTML();
-    echo '</div></div></div></body>
+    echo '</div></div></div><br /><br/>';
+
+    echo footer();
+
+    echo '</body>
     </html>';
 }
 

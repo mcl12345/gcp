@@ -38,6 +38,7 @@ if(isset($_POST['titre']) && isset($_FILES['the_image']['name'])) {
        $fichier = preg_replace('/([^.a-z0-9]+)/i', '-', $fichier);
        if(move_uploaded_file($_FILES['the_image']['tmp_name'], $dossier . $fichier)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
        {
+            print_LOGO_FORMSEARCH_MENU();
             echo "<div class='row'>
                  <div class='col-lg-4'></div>
                  <div class='col-lg-4'>";
@@ -47,6 +48,7 @@ if(isset($_POST['titre']) && isset($_FILES['the_image']['name'])) {
        }
        else //Sinon (la fonction renvoie FALSE).
        {
+            print_LOGO_FORMSEARCH_MENU();
             echo "<div class='row'>
                  <div class='col-lg-4'></div>
                  <div class='col-lg-4'>";
@@ -57,6 +59,7 @@ if(isset($_POST['titre']) && isset($_FILES['the_image']['name'])) {
   }
   else
   {
+      print_LOGO_FORMSEARCH_MENU();
       echo "<div class='row'>
             <div class='col-lg-4'></div>
             <div class='col-lg-4'>";
@@ -66,7 +69,7 @@ if(isset($_POST['titre']) && isset($_FILES['the_image']['name'])) {
   }
 }
 
-
+print_LOGO_FORMSEARCH_MENU();
 echo "<div class='row'>
         <div class='col-lg-4'></div>
         <div class='col-lg-4'>";

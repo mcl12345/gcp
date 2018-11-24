@@ -13,6 +13,7 @@ function formulaire_upload() {
 }
 
 if(isset($_POST['titre']) && isset($_POST['texte_upload'])) {
+  print_LOGO_FORMSEARCH_MENU();
   echo "<div class='row'>
           <div class='col-lg-4'></div>
           <div class='col-lg-4'>";
@@ -21,6 +22,7 @@ if(isset($_POST['titre']) && isset($_POST['texte_upload'])) {
     </html>';
 }
 
+print_LOGO_FORMSEARCH_MENU();
 echo "<div class='row'>
         <div class='col-lg-4'></div>
         <div class='col-lg-4'>";

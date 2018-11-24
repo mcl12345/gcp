@@ -1,9 +1,8 @@
 <?php
 
-
-
 include("connection_bdd.php");
 include('logo_search_menu.php');
+include('footer.php');
 
 function formulaire_register_HTML() {
     echo "<br />
@@ -22,7 +21,7 @@ function formulaire_register_HTML() {
                       </select><br /><br />
                       <label class='label_formulaire' for='token_admin'>Token admin : </label><input id='token_admin' name ='token_admin' type='text' placeholder='1234' /><br /><br />
                       <input type='submit' value='Envoyer' />
-                </form>";
+                </form><br /><br />";
 
 }
 
@@ -79,47 +78,61 @@ if( !empty($_POST["username"]) &&
                  $stmt->bindParam(':fonction', $my_fonction);
                  $stmt->execute();
 
-
+                 print_LOGO_FORMSEARCH_MENU();
                 echo "<div class='row'>
                            <div class='col-lg-4'></div>
                            <div class='col-lg-4'>";
                  echo "Enregistrement effectué avec succès !<br />";
-                 echo '</div></div></div></body>
+                 echo '</div></div></div>';
+                 echo footer();
+                 echo '</body>
                  </html>';
               }
               catch(PDOException $e) {
+                print_LOGO_FORMSEARCH_MENU();
                 echo "<div class='row'>
                            <div class='col-lg-4'></div>
                            <div class='col-lg-4'>";
                  echo "Enregistrement effectué avec succès !<br />";
                   echo $sql . "<br>" . $e->getMessage();
-                  echo '</div></div></div></body>
+                  echo '</div></div></div>';
+                  echo footer();
+                  echo '</body>
                   </html>';
               }
           }
           if ($bool_verification_email == false ) {
+            print_LOGO_FORMSEARCH_MENU();
             echo "<div class='row'>
                        <div class='col-lg-4'></div>
                        <div class='col-lg-4'>";
               echo "Ce compte avec cet email existe déjà.<br />";
-              echo '</div></div></div></body>
+              echo '</div></div></div>';
+              echo footer();
+              echo '</body>
               </html>';
           }
           if ($bool_verification_username == false ) {
+            print_LOGO_FORMSEARCH_MENU();
             echo "<div class='row'>
                        <div class='col-lg-4'></div>
                        <div class='col-lg-4'>";
               echo "Ce compte avec cet username existe déjà.<br />";
-              echo '</div></div></div></body>
+              echo '</div></div></div>';
+              echo footer();
+              echo '</body>
               </html>';
           }
       } else {
+        print_LOGO_FORMSEARCH_MENU();
         echo "<div class='row'>
                    <div class='col-lg-4'></div>
                    <div class='col-lg-4'>";
           echo "Le token est erroné !<br />";
           formulaire_register_HTML();
-          echo '</div></div></div></body>
+          echo '</div></div></div>';
+          echo footer();
+          echo '</body>
           </html>';
       }
 
@@ -127,11 +140,14 @@ if( !empty($_POST["username"]) &&
 }
 // On affiche le formulaire
 else {
+  print_LOGO_FORMSEARCH_MENU();
   echo "<div class='row'>
              <div class='col-lg-4'></div>
              <div class='col-lg-4'>";
     formulaire_register_HTML();
-    echo '</div></div></div></body>
+    echo '</div></div></div>';
+    echo footer();
+    echo '</body>
     </html>';
 }
 
