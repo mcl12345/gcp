@@ -41,7 +41,7 @@ if ($stmt->execute()) {
             echo "<strong>date5 : </strong>" . $row["date5"] . "<br />";
             echo "<strong>composition5 : </strong>" . $row["composition5"] . "<br />";
         }
-        echo "<strong>image : </strong><img src='" . $row["imageURL"] . "' width='250px' height='250px' /><br />";
+        echo "<strong>image : </strong><a target='_blank' href='".$row["imageURL"]."'><img src='" . $row["imageURL"] . "' width='250px' height='250px' /></a><br />";
         echo "<br /><br /><br />";
       }
    }

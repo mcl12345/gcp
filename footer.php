@@ -1,6 +1,6 @@
 <?php
 function footer() {
-
+  echo '</div>';
   return '<!-- Footer -->
   <footer class="page-footer font-small special-color-dark pt-4 bg-1", style="background-color: #303030; color: #ffffff;">
 

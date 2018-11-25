@@ -41,18 +41,66 @@ echo '
     }
     echo '
       <a href="index.php">Accueil</a></li>';
-      if(basename($_SERVER['PHP_SELF']) == "galerie.php")  {
+      if(basename($_SERVER['PHP_SELF']) == "personnalites.php")  {
           echo '<li class="active">';
       } else {
           echo '<li>';
       }
-      echo '<a href="galerie.php">Galerie</a></li>';
-      if(basename($_SERVER['PHP_SELF']) == "texts.php")  {
+      echo '<a href="personnalites.php">Personnalités</a></li>';
+      if(basename($_SERVER['PHP_SELF']) == "chapelles.php")  {
           echo '<li class="active">';
       } else {
           echo '<li>';
       }
-      echo '<a href="texts.php">Textes</a></li>';
+      echo '<a href="chapelles.php">Chapelles</a></li>';
+  if($_COOKIE["the_username"]) {
+    echo
+        '<li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Galerie
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">';
+      if(basename($_SERVER['PHP_SELF']) == "galerie_a_valider.php")  {
+          echo '<li class="active">';
+      } else {
+          echo '<li>';
+      }
+      echo '<a href="galerie_a_valider.php">Galerie à valider</a></li>';
+      if(basename($_SERVER['PHP_SELF']) == "galerie_a_visiter.php")  {
+          echo '<li class="active">';
+      } else {
+          echo '<li>';
+      }
+      echo '<a href="galerie_a_visiter.php">Galerie à visiter</a></li>';
+      if(basename($_SERVER['PHP_SELF']) == "galerie_360.php")  {
+          echo '<li class="active">';
+      } else {
+          echo '<li>';
+      }
+      echo '<a href="galerie_360.php">Galerie à 360°</a></li>';
+  echo '</ul>
+    </li>';
+  }
+  if($_COOKIE["the_username"]) {
+    echo
+          '<li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Textes
+            <span class="caret"></span></a>
+            <ul class="dropdown-menu">';
+      if(basename($_SERVER['PHP_SELF']) == "textes_a_valider.php")  {
+          echo '<li class="active">';
+      } else {
+          echo '<li>';
+      }
+      echo '<a href="textes_a_valider.php">Textes à valider</a></li>';
+      if(basename($_SERVER['PHP_SELF']) == "textes_a_lire.php")  {
+          echo '<li class="active">';
+      } else {
+          echo '<li>';
+      }
+      echo '<a href="textes_a_lire.php">Textes à lire</a></li>';
+  echo '</ul>
+    </li>';
+  }
       if(basename($_SERVER['PHP_SELF']) == "faq.php")  {
           echo '<li class="active">';
       } else {

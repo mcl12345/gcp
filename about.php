@@ -8,6 +8,9 @@ print_LOGO_FORMSEARCH_MENU();
 /**
 * A propos de nous
 */
+
+echo '</div>';
+
 echo footer();
 
 

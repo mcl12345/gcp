@@ -62,7 +62,7 @@ if(isset($_FILES['the_image']['name'])) {
                  <div class='col-lg-4'></div>
                  <div class='col-lg-4'>";
             echo 'Upload de l\'image effectué avec succès !';
-            echo '</div></div></div>';
+            echo '</div></div><br /><br /><br />';
             echo footer();
             echo '</body>
             </html>';
@@ -77,7 +77,7 @@ if(isset($_FILES['the_image']['name'])) {
                  <div class='col-lg-4'></div>
                  <div class='col-lg-4'>";
             echo 'Echec de l\'upload !';
-            echo '</div></div></div>';
+            echo '</div></div><br /><br /><br />';
             echo footer();
             echo '</body>
             </html>';
@@ -91,7 +91,7 @@ if(isset($_FILES['the_image']['name'])) {
             <div class='col-lg-4'></div>
             <div class='col-lg-4'>";
        echo $erreur;
-       echo '</div></div></div>';
+       echo '</div></div><br /><br /><br />';
        echo footer();
        echo '</body>
        </html>';
@@ -103,7 +103,7 @@ if(isset($_FILES['the_image']['name'])) {
             <div class='col-lg-4'></div>
             <div class='col-lg-4'>";
     formulaire_upload();
-    echo '</div></div></div>';
+    echo '</div></div><br /><br /><br />';
     echo footer();
     echo '</body>
     </html>';
