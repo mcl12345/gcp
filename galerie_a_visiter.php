@@ -20,6 +20,17 @@ while ($row = $stmt->fetch()) {
       if($row["imageURL"] != null) {
         echo "<strong>image : </strong><a target='_blank' href='".$row["imageURL"]."'><img src='" . $row["imageURL"] . "' width='250px' height='250px' /></a><br />";
       }
+      if($row["mot_cle1"] != null) { 
+      	echo "mot-clé 1 : " . $row["mot_cle1"] . "<br />";
+      }
+
+      if($row["mot_cle2"] != null) { 
+      	echo "mot-clé 2 : " . $row["mot_cle2"] . "<br />";
+      }
+
+      if($row["mot_cle3"] != null) { 
+      	echo "mot-clé 3 : " . $row["mot_cle3"] . "<br />";
+      }
       echo "<br /><br /><br />";
   }
 }

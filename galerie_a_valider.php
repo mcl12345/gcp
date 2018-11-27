@@ -22,6 +22,9 @@ while ($row = $stmt->fetch()) {
         echo "<input type='radio' name='id_image' value='".$row["id"]."' />";
         echo "Description : " . $row["description"] . "<br />";
         echo "image : <a target='_blank' href='".$row["imageURL"]."'><img width='250px' height='250px' src='".$row["imageURL"] . "'/></a><br />";
+        echo "mot-clé 1 : " . $row["mot_cle1"] . "<br />";
+        echo "mot-clé 2 : " . $row["mot_cle2"] . "<br />";
+        echo "mot-clé 3 : " . $row["mot_cle3"] . "<br />";
         echo "<br /><br /><br />";
     }
 }

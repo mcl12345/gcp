@@ -17,11 +17,11 @@ echo '<div class="container">
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
       <div class="item active">
-        <img src="img/Basilique1.jpg" alt="Basilique1" style="width:100%;">
+        <img src="img/Basilique1.png" alt="Basilique1" style="width:100%;">
       </div>
 
       <div class="item">
-        <img src="img/Basilique2.jpg" alt="Basilique2" style="width:100%;">
+        <img src="img/Basilique2.png" alt="Basilique2" style="width:100%;">
       </div>
 
       <div class="item">

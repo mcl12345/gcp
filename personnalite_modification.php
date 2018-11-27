@@ -21,13 +21,13 @@ if (isset($_GET["id_personnalite"])) {
   while ($row = $stmt->fetch()) {
         echo "<form action='personnalite_modification.php' method='post' >";
         echo "<input type='hidden' name='id_personnalite' value='".$row["id"]."' />";
-        echo "<label for='nom'>Nom : </label><input id='nom' name='nom'  value='" . $row["nom"] . "' /><br />";
-        echo "<label for='fonction'>Fonction : </label><input id='fonction' name='fonction' value='" . $row["fonction"] . "' /><br />";
-        echo "<label for='date_naissance'>Date de naissance : </label><input id='date_naissance' name='date_naissance' value='" . $row["date_naissance"] . "' /><br />";
-        echo "<label for='date_deces'>Date de décès : </label><input id='date_deces' name='date_deces' value='" . $row["date_deces"] . "' /><br />";
-        echo "<label for='conjoint'>Conjoint : </label><input id='conjoint' name='conjoint' value='" . $row["conjoint"] . "' /><br />";
-        echo "<label for='type_gisant'>Type de gisant : </label><input id='type_gisant' name='type_gisant' value='" . $row["type_gisant"] . "' /><br />";
-        echo "<label for='date_depot_gisant'>Date de dépôt de gisant : </label><input id='date_depot_gisant' name='date_depot_gisant' value='" . $row["date_depot_gisant"] . "' /><br />";
+        echo "<label class='label_formulaire' for='nom'>Nom : </label><input id='nom' name='nom'  value='" . $row["nom"] . "' /><br />";
+        echo "<label class='label_formulaire' for='fonction'>Fonction : </label><input id='fonction' name='fonction' value='" . $row["fonction"] . "' /><br />";
+        echo "<label class='label_formulaire' for='date_naissance'>Date de naissance : </label><input id='date_naissance' name='date_naissance' value='" . $row["date_naissance"] . "' /><br />";
+        echo "<label class='label_formulaire' for='date_deces'>Date de décès : </label><input id='date_deces' name='date_deces' value='" . $row["date_deces"] . "' /><br />";
+        echo "<label class='label_formulaire' for='conjoint'>Conjoint : </label><input id='conjoint' name='conjoint' value='" . $row["conjoint"] . "' /><br />";
+        echo "<label class='label_formulaire' for='type_gisant'>Type de gisant : </label><input id='type_gisant' name='type_gisant' value='" . $row["type_gisant"] . "' /><br />";
+        echo "<label class='label_formulaire' for='date_depot_gisant'>Date de dépôt de gisant : </label><input id='date_depot_gisant' name='date_depot_gisant' value='" . $row["date_depot_gisant"] . "' /><br />";
         echo "<input type='submit' value='Modifier' />";
         echo "</form>";
   }

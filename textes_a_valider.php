@@ -22,6 +22,9 @@ while ($row = $stmt->fetch()) {
         echo "<input type='radio' name='id_texte' value='".$row["id"]."' />";
         echo "Titre : " . $row["titre"] . "<br />";
         echo "Texte : " . $row["texte"] . "<br />";
+        echo "mot-clé 1 : " . $row["mot_cle1"] . "<br />";
+        echo "mot-clé 2 : " . $row["mot_cle2"] . "<br />";
+        echo "mot-clé 3 : " . $row["mot_cle3"] . "<br />";
         echo "<br /><br /><br />";
     }
 }

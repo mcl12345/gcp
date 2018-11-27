@@ -10,11 +10,14 @@ function formulaire_upload() {
     echo "<form method='post' action='upload_image.php' enctype='multipart/form-data'>
               <label for='description'>Description : </label><input id='description' name='description' type='text' required /><br />
               <input type='file' name='the_image' /> <br />
+              <label for='titre'>Mots-clé : </label><input type='texte' placeholder='Taper vos mot_cles séparé par un espace ( max 3 )' style='width: 400px;' name ='mot_cle' required /><br /><br />
               <input type='submit' name='envoyer' value='Envoyer' />
     </form>";
 }
 
 if(isset($_FILES['the_image']['name'])) {
+  $mots_cle = explode(" ", $_POST["mot_cle"]);
+
   $dossier = "upload_images/";
   $fichier = basename($_FILES['the_image']['name']);
   $taille_maxi = 10000000; // 10 Mo
@@ -46,9 +49,13 @@ if(isset($_FILES['the_image']['name'])) {
            $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
 
            // set the PDO error mode to exception
-           $stmt = $pdo->prepare("INSERT INTO image (imageURL, description) VALUES (:imageURL, :description)");
+           $stmt = $pdo->prepare("INSERT INTO image (imageURL, description, mot_cle1, mot_cle2, mot_cle3) VALUES (:imageURL, :description, :mot_cle1, :mot_cle2, :mot_cle3)");
            $stmt->bindParam(':imageURL', $imageURL);
            $stmt->bindParam(':description', $_POST["description"]);
+           $stmt->bindParam(':mot_cle1', $mots_cle[0]);
+           $stmt->bindParam(':mot_cle2', $mots_cle[1]);
+           $stmt->bindParam(':mot_cle3', $mots_cle[2]);
+           
            $stmt->execute();
            $id_image = $pdo->lastInsertId();
 
