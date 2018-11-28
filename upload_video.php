@@ -12,7 +12,7 @@ function formulaire_upload() {
               <form method='post' action='upload_video.php' enctype='multipart/form-data'>
                   <label for='description'>description : </label><input id='description' name='description' type='text' required /><br />
                   <input type='file' name='the_music' /> <br />
-                  <label for='titre'>Mots-clé : </label><input type='texte' placeholder='Taper vos mot_cles séparé par un espace ( max 3 )' style='width: 400px;' name ='mot_cle' required /><br /><br />
+                  <label for='titre'>Mots-clé : </label><input type='texte' placeholder='Taper vos mot_cles séparé par un espace' style='width: 400px;' name ='mot_cle' required /><br /><br />
                   <input type='submit' name='envoyer' value='Envoyer' />
               </form>
           </div>
@@ -56,14 +56,18 @@ if(isset($_POST['description']) && isset($_FILES['the_music']['name'])) {
            $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
 
            // set the PDO error mode to exception
-           $stmt = $pdo->prepare("INSERT INTO video (videoURL, description, mot_cle1, mot_cle2, mot_cle3) VALUES (:videoURL, :description, :mot_cle1, :mot_cle2, :mot_cle3)");
+           $stmt = $pdo->prepare("INSERT INTO video (videoURL, description) VALUES (:videoURL, :description)");
            $stmt->bindParam(':videoURL', $videoURL);
            $stmt->bindParam(':description', $_POST["description"]);
-           $stmt->bindParam(':mot_cle1', $mots_cle[0]);
-           $stmt->bindParam(':mot_cle2', $mots_cle[1]);
-           $stmt->bindParam(':mot_cle3', $mots_cle[2]);
            $stmt->execute();
            $id_video = $pdo->lastInsertId();
+
+           for ($i=0; $i < sizeof($mots_cle); $i++) {
+              $stmt_ = $pdo->prepare("INSERT INTO motcle (id_video, contenu) VALUES (:id_video, :contenu)");
+              $stmt_->bindParam(':id_video', $id_video);
+              $stmt_->bindParam(':contenu', $mots_cle[$i]);
+              $stmt_->execute();
+           }
 
            $stmt = $pdo->prepare("INSERT INTO historique_video (id_video, id_user)  VALUES (:id_video, :id_user)");
            $stmt->bindParam(':id_video', $id_video);

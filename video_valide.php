@@ -19,18 +19,29 @@ if (isset($_POST["id_video"])) {
   $stmt = $pdo->prepare("SELECT * FROM video WHERE id = ?");
   $stmt->execute(array($_POST["id_video"]));
   while ($row = $stmt->fetch()) {
-  
-  
+
+
+    $motscle = "";
+    $motcle_empty = true;
     echo "<strong>Description : " . $row["description"] . " a été validé</strong><br /><br />";
     echo 'Vidéo : <video width="400" height="222" controls="controls">
-        <source src="'.$row["videoURL"].'" type="video/mp4" />
         <source src="'.$row["videoURL"].'" type="video/webm" />
-        <source src="'.$row["videoURL"].'" type="video/ogg" />
           Vous n\'avez pas de navigateur moderne, donc pas de balise video HTML5 !</video>';
+
+          // Affichage des mots-clé :
+          $stmt_ = $pdo->prepare("SELECT * FROM motcle WHERE id_video = ?");
+          $stmt_->execute(array($row["id"]));
+          while ($ligne = $stmt_->fetch()) {
+              $motcle_empty = false;
+              $motscle .= " " . $ligne["contenu"];
+          }
+          if(!$motcle_empty) {
+              echo "<strong>Les mots-clé : </strong>" . $motscle;
+          }
     echo "<br /><br /><br />";
   }
 
-  // Change la validité à 1
+  // Change de la validité à 1
   $stmt = $pdo->prepare("UPDATE video SET valide = 1 WHERE id = ?");
   $stmt->execute(array($_POST["id_video"]));
 

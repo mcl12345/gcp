@@ -19,15 +19,25 @@ echo '<form action="video_valide.php" method="post">';
 while ($row = $stmt->fetch()) {
     if($row["valide"] == 0) {
         $is_non_valide = true;
+        $motscle = "";
+        $motcle_empty = true;
         echo "<input type='radio' name='id_video' value='".$row["id"]."' />";
         echo "Description : " . $row["description"] . "<br />";
         // voir ogg
         echo 'Vidéo : <video width="400" height="222" controls="controls">
-        <source src="'.$row["videoURL"].'" type="video/webm" />        
+        <source src="'.$row["videoURL"].'" type="video/webm" />
           Vous n\'avez pas de navigateur moderne, donc pas de balise video HTML5 !</video>';
-        echo "mot-clé 1 : " . $row["mot_cle1"] . "<br />";
-        echo "mot-clé 2 : " . $row["mot_cle2"] . "<br />";
-        echo "mot-clé 3 : " . $row["mot_cle3"] . "<br />";
+
+        $stmt_ = $pdo->prepare("SELECT * FROM motcle WHERE id_video = ?");
+        $stmt_->execute(array($row["id"]));
+        while ($ligne = $stmt_->fetch()) {
+            $motcle_empty = false;
+            $motscle .= " " . $ligne["contenu"];
+        }
+        if(!$motcle_empty) {
+            echo "<strong>Les mots-clé : </strong>" . $motscle;
+        }
+
         echo "<br /><br /><br />";
     }
 }

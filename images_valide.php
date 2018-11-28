@@ -21,6 +21,19 @@ if (isset($_POST["id_image"])) {
   while ($row = $stmt->fetch()) {
     echo "<strong>Description : " . $row["description"] . " a été validé</strong><br /><br />";
     echo "Image : <a href='". $row["imageURL"] ."'><img width='250px' height='250px' src='" . $row["imageURL"] . "' /></a><br />";
+
+    $motscle = "";
+    $motcle_empty = true;
+    $stmt_ = $pdo->prepare("SELECT * FROM motcle WHERE id_image = ?");
+    $stmt_->execute(array($row["id"]));
+    while ($ligne = $stmt_->fetch()) {
+        $motcle_empty = false;
+        $motscle .= " " . $ligne["contenu"] ;
+    }
+    if(!$motcle_empty) {
+        echo "<strong>Les mots-clé : </strong>" . $motscle;
+    }
+
     echo "<br /><br /><br />";
   }
 

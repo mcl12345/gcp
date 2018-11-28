@@ -19,8 +19,22 @@ if (isset($_POST["id_texte"])) {
   $stmt = $pdo->prepare("SELECT * FROM texte WHERE id = ?");
   $stmt->execute(array($_POST["id_texte"]));
   while ($row = $stmt->fetch()) {
+
+    $motscle = "";
+    $motcle_empty = true;
     echo "<strong>Titre : " . $row["titre"] . " a été validé</strong><br /><br />";
     echo "Texte : " . $row["texte"] . "<br />";
+
+    $stmt_ = $pdo->prepare("SELECT * FROM motcle WHERE id_texte = ?");
+    $stmt_->execute(array($row["id"]));
+    while ($ligne = $stmt_->fetch()) {
+        $motcle_empty = false;
+        $motscle .= " " . $ligne["contenu"] ;
+    }
+    if(!$motcle_empty) {
+        echo "<strong>Les mots-clé : </strong>" . $motscle;
+    }
+
     echo "<br /><br /><br />";
   }
 

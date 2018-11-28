@@ -19,12 +19,22 @@ echo '<form action="textes_valide.php" method="post">';
 while ($row = $stmt->fetch()) {
     if($row["valide"] == 0) {
         $is_non_valide = true;
+        $motscle = "";
+        $motcle_empty = true;
         echo "<input type='radio' name='id_texte' value='".$row["id"]."' />";
         echo "Titre : " . $row["titre"] . "<br />";
         echo "Texte : " . $row["texte"] . "<br />";
-        echo "mot-clé 1 : " . $row["mot_cle1"] . "<br />";
-        echo "mot-clé 2 : " . $row["mot_cle2"] . "<br />";
-        echo "mot-clé 3 : " . $row["mot_cle3"] . "<br />";
+
+        $stmt_ = $pdo->prepare("SELECT * FROM motcle WHERE id_texte = ?");
+        $stmt_->execute(array($row["id"]));
+        while ($ligne = $stmt_->fetch()) {
+            $motcle_empty = false;
+            $motscle .= " " . $ligne["contenu"] ;
+        }
+        if(!$motcle_empty) {
+            echo "<strong>Les mots-clé : </strong>" . $motscle;
+        }
+
         echo "<br /><br /><br />";
     }
 }

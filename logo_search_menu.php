@@ -76,7 +76,7 @@ echo '
           echo '<a href="personnalites.php">Personnalités</a></li>';
         echo '</ul>
       </li>
-      ';       
+      ';
   } else {
 
       if(basename($_SERVER['PHP_SELF']) == "personnalites.php")  {
@@ -85,7 +85,7 @@ echo '
           echo '<li>';
       }
       echo '<a href="personnalites.php">Personnalités</a></li>';
-     
+
     }
 
     if($_COOKIE["the_username"]) {
@@ -124,20 +124,20 @@ echo '
       }
       echo '<a href="chapelles.php">Chapelles à découvrir</a></li>';
     }
-    
-    
+
+
   if($_COOKIE["the_username"]) {
     echo
         '<li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Galerie
           <span class="caret"></span></a>
           <ul class="dropdown-menu">';
-      if(basename($_SERVER['PHP_SELF']) == "galerie_a_valider.php")  {
+      if(basename($_SERVER['PHP_SELF']) == "image_a_valider.php")  {
           echo '<li class="active">';
       } else {
           echo '<li>';
       }
-      echo '<a href="galerie_a_valider.php">Galerie à valider</a></li>';
+      echo '<a href="image_a_valider.php">Images à valider</a></li>';
       if(basename($_SERVER['PHP_SELF']) == "galerie_a_visiter.php")  {
           echo '<li class="active">';
       } else {
@@ -208,7 +208,7 @@ echo '
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Vidéos
             <span class="caret"></span></a>
             <ul class="dropdown-menu">';
-            
+
       if(basename($_SERVER['PHP_SELF']) == "videos_a_valider.php")  {
         echo '<li class="active">';
       } else {

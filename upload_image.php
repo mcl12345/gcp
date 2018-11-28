@@ -10,7 +10,7 @@ function formulaire_upload() {
     echo "<form method='post' action='upload_image.php' enctype='multipart/form-data'>
               <label for='description'>Description : </label><input id='description' name='description' type='text' required /><br />
               <input type='file' name='the_image' /> <br />
-              <label for='titre'>Mots-clé : </label><input type='texte' placeholder='Taper vos mot_cles séparé par un espace ( max 3 )' style='width: 400px;' name ='mot_cle' required /><br /><br />
+              <label for='titre'>Mots-clé : </label><input type='texte' placeholder='Taper vos mot-clés séparé par un espace' style='width: 600px;' name ='mot_cle' required /><br /><br />
               <input type='submit' name='envoyer' value='Envoyer' />
     </form>";
 }
@@ -49,15 +49,18 @@ if(isset($_FILES['the_image']['name'])) {
            $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
 
            // set the PDO error mode to exception
-           $stmt = $pdo->prepare("INSERT INTO image (imageURL, description, mot_cle1, mot_cle2, mot_cle3) VALUES (:imageURL, :description, :mot_cle1, :mot_cle2, :mot_cle3)");
+           $stmt = $pdo->prepare("INSERT INTO image (imageURL, description) VALUES (:imageURL, :description)");
            $stmt->bindParam(':imageURL', $imageURL);
            $stmt->bindParam(':description', $_POST["description"]);
-           $stmt->bindParam(':mot_cle1', $mots_cle[0]);
-           $stmt->bindParam(':mot_cle2', $mots_cle[1]);
-           $stmt->bindParam(':mot_cle3', $mots_cle[2]);
-           
            $stmt->execute();
            $id_image = $pdo->lastInsertId();
+
+           for ($i=0; $i < sizeof($mots_cle); $i++) {
+              $stmt_ = $pdo->prepare("INSERT INTO motcle (id_image, contenu) VALUES (:id_image, :contenu)");
+              $stmt_->bindParam(':id_image', $id_image);
+              $stmt_->bindParam(':contenu', $mots_cle[$i]);
+              $stmt_->execute();
+           }
 
            $stmt = $pdo->prepare("INSERT INTO historique_image (id_image, id_user)  VALUES (:id_image, :id_user)");
            $stmt->bindParam(':id_image', $id_image);
@@ -68,7 +71,8 @@ if(isset($_FILES['the_image']['name'])) {
             echo "<div class='row'>
                  <div class='col-lg-4'></div>
                  <div class='col-lg-4'>";
-            echo 'Upload de l\'image effectué avec succès !';
+            echo 'Upload de l\'image effectué avec succès !<br />';
+            echo "<a href='image_a_valider.php'>Validation de votre contenu image ici !</a>";
             echo '</div></div><br /><br /><br />';
             echo footer();
             echo '</body>
