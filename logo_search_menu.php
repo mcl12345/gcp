@@ -12,6 +12,7 @@ echo '
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/text.css"> <!-- pour le footer-->
   <link rel="stylesheet" href="css/footer.css"><!-- pour le footer ?? -->';
   if(basename($_SERVER['PHP_SELF']) == "faq.php")  {
       echo '<link rel="stylesheet" href="css/reset.css"><!-- pour la FAQ -->
@@ -224,27 +225,74 @@ echo '
     echo '</ul>
         </li>';
     } else {
-      if(basename($_SERVER['PHP_SELF']) == "videos_a_visualiser.php.php")  {
+      if(basename($_SERVER['PHP_SELF']) == "videos_a_visualiser.php")  {
         echo '<li class="active">';
       } else {
         echo '<li>';
       }
       echo '<a href="videos_a_visualiser.php">Videos à lire</a></li>';
     }
-      if(basename($_SERVER['PHP_SELF']) == "faq.php")  {
-          echo '<li class="active">';
-      } else {
-          echo '<li>';
-      }
-      echo '<a href="faq.php">FAQ</a></li>';
-      if(basename($_SERVER['PHP_SELF']) == "about.php")  {
-          echo '<li class="active">';
-      } else {
-          echo '<li>';
-      }
-      echo '<a href="about.php">A propos de</a></li>';
+    if($_COOKIE["the_username"]) {
+    echo
+          '<li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Audios
+            <span class="caret"></span></a>
+            <ul class="dropdown-menu">';
 
-
+      if(basename($_SERVER['PHP_SELF']) == "audio_a_valider.php")  {
+        echo '<li class="active">';
+      } else {
+        echo '<li>';
+      }
+      echo '<a href="audio_a_valider.php">Audio à valider</a></li>';
+      if(basename($_SERVER['PHP_SELF']) == "audio_a_ecouter.php")  {
+        echo '<li class="active">';
+      } else {
+        echo '<li>';
+      }
+      echo '<a href="audio_a_ecouter.php">Audio à écouter</a></li>';
+    echo '</ul>
+        </li>';
+    } else {
+      if(basename($_SERVER['PHP_SELF']) == "audio_a_ecouter.php")  {
+        echo '<li class="active">';
+      } else {
+        echo '<li>';
+      }
+      echo '<a href="audio_a_ecouter.php">Audio à écouter</a></li>';
+    }
+    echo
+          '<li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">A propos de
+            <span class="caret"></span></a>
+            <ul class="dropdown-menu">';
+          if(basename($_SERVER['PHP_SELF']) == "faq.php")  {
+              echo '<li class="active">';
+          } else {
+              echo '<li>';
+          }
+          echo '<a href="faq.php">FAQ</a></li>';
+          if(basename($_SERVER['PHP_SELF']) == "about.php")  {
+              echo '<li class="active">';
+          } else {
+              echo '<li>';
+          }
+          echo '<a href="about.php">A propos de</a></li>';
+          if(basename($_SERVER['PHP_SELF']) == "api_description.php")  {
+              echo '<li class="active">';
+          } else {
+              echo '<li>';
+          }
+          echo '<a href="api_description.php">API</a></li>';
+      echo "</ul></li>";
+      if($_COOKIE["the_username"]) {
+          if(basename($_SERVER['PHP_SELF']) == "document.php")  {
+            echo '<li class="active">';
+          } else {
+            echo '<li>';
+          }
+          echo '<a href="document.php">Documents</a></li>';
+      }
 
     echo '</ul>
     <form class="navbar-form navbar-left" action="search.php">
@@ -277,6 +325,12 @@ echo '
               echo '<li>';
           }
           echo '<a href="upload_image.php">Téléversement d\'image</a></li>';
+          if(basename($_SERVER['PHP_SELF']) == "upload_audio.php")  {
+              echo '<li class="active">';
+          } else {
+              echo '<li>';
+          }
+          echo '<a href="upload_audio.php">Téléversement d\'audio</a></li>';
           if(basename($_SERVER['PHP_SELF']) == "upload_video.php")  {
               echo '<li class="active">';
           } else {

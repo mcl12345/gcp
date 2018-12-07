@@ -21,15 +21,16 @@ while ($row = $stmt->fetch()) {
         $is_non_valide = true;
         $motscle = "";
         $motcle_empty = true;
+        $type_media = 1;
         echo "<input type='radio' name='id_texte' value='".$row["id"]."' />";
         echo "Titre : " . $row["titre"] . "<br />";
         echo "Texte : " . $row["texte"] . "<br />";
 
-        $stmt_ = $pdo->prepare("SELECT * FROM motcle WHERE id_texte = ?");
+        $stmt_ = $pdo->prepare("SELECT * FROM motcle WHERE id_media = ? AND type_media=" . $type_media);
         $stmt_->execute(array($row["id"]));
         while ($ligne = $stmt_->fetch()) {
             $motcle_empty = false;
-            $motscle .= " " . $ligne["contenu"] ;
+            $motscle .= " " . $ligne["mots_cle"] ;
         }
         if(!$motcle_empty) {
             echo "<strong>Les mots-clé : </strong>" . $motscle;

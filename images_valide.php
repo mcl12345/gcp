@@ -19,16 +19,18 @@ if (isset($_POST["id_image"])) {
   $stmt = $pdo->prepare("SELECT * FROM image WHERE id = ?");
   $stmt->execute(array($_POST["id_image"]));
   while ($row = $stmt->fetch()) {
-    echo "<strong>Description : " . $row["description"] . " a été validé</strong><br /><br />";
+    echo "<strong>Titre : </strong>" . $row["titre"] . " a été validé</strong><br /><br />";
+    echo "<strong>Description : </strong>" . $row["description"] . "<br />";
     echo "Image : <a href='". $row["imageURL"] ."'><img width='250px' height='250px' src='" . $row["imageURL"] . "' /></a><br />";
 
     $motscle = "";
     $motcle_empty = true;
-    $stmt_ = $pdo->prepare("SELECT * FROM motcle WHERE id_image = ?");
+    $type_media = 2;
+    $stmt_ = $pdo->prepare("SELECT * FROM motcle WHERE id_media = ? AND type_media = " . $type_media);
     $stmt_->execute(array($row["id"]));
     while ($ligne = $stmt_->fetch()) {
         $motcle_empty = false;
-        $motscle .= " " . $ligne["contenu"] ;
+        $motscle .= " " . $ligne["mots_cle"] ;
     }
     if(!$motcle_empty) {
         echo "<strong>Les mots-clé : </strong>" . $motscle;

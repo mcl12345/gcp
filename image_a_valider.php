@@ -22,14 +22,15 @@ while ($row = $stmt->fetch()) {
         $motscle = "";
         $motcle_empty = true;
         echo "<input type='radio' name='id_image' value='".$row["id"]."' />";
+        echo "Titre : " . $row["titre"] . "<br />";
         echo "Description : " . $row["description"] . "<br />";
         echo "image : <a target='_blank' href='".$row["imageURL"]."'><img width='250px' height='250px' src='".$row["imageURL"] . "'/></a><br />";
 
-        $stmt_ = $pdo->prepare("SELECT * FROM motcle WHERE id_image = ?");
+        $stmt_ = $pdo->prepare("SELECT * FROM motcle WHERE id_media = ? AND type_media = 2");
         $stmt_->execute(array($row["id"]));
         while ($ligne = $stmt_->fetch()) {
             $motcle_empty = false;
-            $motscle .= " " . $ligne["contenu"];
+            $motscle .= " " . $ligne["mots_cle"];
         }
         if(!$motcle_empty) {
             echo "<strong>Les mots-clé : </strong>" . $motscle;

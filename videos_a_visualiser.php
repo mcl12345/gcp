@@ -14,7 +14,7 @@ $stmt = $pdo->prepare("SELECT * FROM video");
 $stmt->execute();
 
   echo "<div class='row'>
-        <div class='col-lg-2'></div>
+        <div class='col-lg-4'></div>
         <div class='col-lg-4'>
             <div class='container'>";
 
@@ -24,23 +24,25 @@ $stmt->execute();
       if($row["valide"] == 1) {
           $motscle = "";
           $motcle_empty = true;
-          echo "<strong>Description : </strong>" . $row["description"] . "<br /><br />";
+          echo "<strong>Titre : </strong>" . $row["titre"] . "<br /><br />";
+          echo "<strong>Description : </strong>" . $row["description"] . "<br />";
           echo '<strong>Vidéo : </strong><br /><video width="400" height="222" controls="controls">
                              <source src="'.$row["videoURL"].'" type="video/webm" />
-                             Vous n\'avez pas de navigateur moderne, donc pas de balise video HTML5 !</video>';
+                             <source src="'.$row["videoURL"].'" type="video/mp4" />
+                             <source src="'.$row["videoURL"].'" type="video/avi" />
+                             Vous n\'avez pas de navigateur moderne ou à jour, donc pas de balise video HTML5 !</video>';
          echo "<br /><br />";
 
          // Va chercher les mots-clé :
-         $stmt_ = $pdo->prepare("SELECT * FROM motcle WHERE id_video = ?");
+         $stmt_ = $pdo->prepare("SELECT * FROM motcle WHERE id_media = ? AND type_media = 4");
          $stmt_->execute(array($row["id"]));
          while ($ligne = $stmt_->fetch()) {
              $motcle_empty = false;
-             $motscle .= " " . $ligne["contenu"];
+             $motscle .= " " . $ligne["mots_cle"];
          }
          if(!$motcle_empty) {
              echo "<strong>Les mots-clé : </strong>" . $motscle;
          }
-
 
          echo "<br /><br /><br />";
       }

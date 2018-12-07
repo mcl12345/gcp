@@ -22,11 +22,11 @@ while ($row = $stmt->fetch()) {
       if($row["imageURL"] != null) {
         echo "<strong>image : </strong><a target='_blank' href='".$row["imageURL"]."'><img src='" . $row["imageURL"] . "' width='250px' height='250px' /></a><br />";
       }
-      $stmt_ = $pdo->prepare("SELECT * FROM motcle WHERE id_image = ?");
+      $stmt_ = $pdo->prepare("SELECT * FROM motcle WHERE id_media = ? AND type_media = 2");
       $stmt_->execute(array($row["id"]));
       while ($ligne = $stmt_->fetch()) {
           $motcle_empty = false;
-          $motscle .= " " . $ligne["contenu"] ;
+          $motscle .= " " . $ligne["mots_cle"] ;
       }
       if(!$motcle_empty) {
           echo "<strong>Les mots-clé : </strong>" . $motscle;

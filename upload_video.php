@@ -9,10 +9,12 @@ function formulaire_upload() {
         <div class='col-lg-4'></div>
         <div class='col-lg-4'>
           <div class='container'>
+              <h5>La taille maximum autorisé d'un fichier est de 100Mo. Les types autorisés sont .ogg, .webm, .mp4, et .avi</h5>
               <form method='post' action='upload_video.php' enctype='multipart/form-data'>
+                  <label for='titre'>Titre : </label><input id='titre' name='titre' type='text' required /><br />
                   <label for='description'>description : </label><input id='description' name='description' type='text' required /><br />
-                  <input type='file' name='the_music' /> <br />
-                  <label for='titre'>Mots-clé : </label><input type='texte' placeholder='Taper vos mot_cles séparé par un espace' style='width: 400px;' name ='mot_cle' required /><br /><br />
+                  <input type='file' name='the_video' /> <br />
+                  <label for='mot_cle'>Mots-clé : </label><input type='texte' placeholder='Taper vos mots-clé séparés par un espace' style='width: 400px;' id='mot_cle' name ='mot_cle' required /><br /><br />
                   <input type='submit' name='envoyer' value='Envoyer' />
               </form>
           </div>
@@ -20,19 +22,19 @@ function formulaire_upload() {
         </div>";
 }
 
-if(isset($_POST['description']) && isset($_FILES['the_music']['name'])) {
+if(isset($_POST['description']) && isset($_FILES['the_video']['name'])) {
   $mots_cle = explode(" ", $_POST["mot_cle"]);
 
   $dossier = "upload_videos/";
-  $fichier = basename($_FILES['the_music']['name']);
+  $fichier = basename($_FILES['the_video']['name']);
   $taille_maxi = 100000000; // 100 Mo
-  $taille = filesize($_FILES['the_music']['tmp_name']); // Le fichier temporaire
+  $taille = filesize($_FILES['the_video']['tmp_name']); // Le fichier temporaire
 
-  $extensions = array( '.ogg', '.wav', '.mp3', '.webm');
+  $extensions = array( '.ogg', '.wav', '.mp3', '.webm', '.mp4', '.avi');
 
-  $extension = strrchr($_FILES['the_music']['name'], '.');
+  $extension = strrchr($_FILES['the_video']['name'], '.');
 
-  $file_name = strstr($_FILES['the_music']['name'], '.', true);
+  $file_name = strstr($_FILES['the_video']['name'], '.', true);
   //Début des vérifications de sécurité...
   if(!in_array($extension, $extensions)) //Si l'extension n'est pas dans le tableau
   {
@@ -48,26 +50,28 @@ if(isset($_POST['description']) && isset($_FILES['the_music']['name'])) {
             'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ',
             'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
        $fichier = preg_replace('/([^.a-z0-9]+)/i', '-', $fichier);
-       if(move_uploaded_file($_FILES['the_music']['tmp_name'], $dossier . $fichier)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
+       if(move_uploaded_file($_FILES['the_video']['tmp_name'], $dossier . $fichier)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
        {
          $videoURL = "http://" . $_SERVER['SERVER_NAME'] . substr($_SERVER['REQUEST_URI'], 0, strpos($_SERVER['REQUEST_URI'], "/", 2)) ."/". $dossier . $fichier;
          try {
 
+           $type_media = 4;
+
            $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
 
            // set the PDO error mode to exception
-           $stmt = $pdo->prepare("INSERT INTO video (videoURL, description) VALUES (:videoURL, :description)");
-           $stmt->bindParam(':videoURL', $videoURL);
+           $stmt = $pdo->prepare("INSERT INTO video (titre, description, videoURL) VALUES (:titre, :description, :videoURL)");
+           $stmt->bindParam(':titre', $_POST["titre"]);
            $stmt->bindParam(':description', $_POST["description"]);
+           $stmt->bindParam(':videoURL', $videoURL);
            $stmt->execute();
            $id_video = $pdo->lastInsertId();
 
-           for ($i=0; $i < sizeof($mots_cle); $i++) {
-              $stmt_ = $pdo->prepare("INSERT INTO motcle (id_video, contenu) VALUES (:id_video, :contenu)");
-              $stmt_->bindParam(':id_video', $id_video);
-              $stmt_->bindParam(':contenu', $mots_cle[$i]);
-              $stmt_->execute();
-           }
+           $stmt_ = $pdo->prepare("INSERT INTO motcle (mots_cle, id_media, type_media) VALUES (:mots_cle, :id_media, :type_media)");
+           $stmt_->bindParam(':mots_cle', $mots_cle);
+           $stmt_->bindParam(':id_media', $id_media);
+           $stmt_->bindParam(':type_media', $type_media);
+           $stmt_->execute();
 
            $stmt = $pdo->prepare("INSERT INTO historique_video (id_video, id_user)  VALUES (:id_video, :id_user)");
            $stmt->bindParam(':id_video', $id_video);
@@ -78,7 +82,7 @@ if(isset($_POST['description']) && isset($_FILES['the_music']['name'])) {
             echo "<div class='row'>
                  <div class='col-lg-4'></div>
                  <div class='col-lg-4'>";
-            echo 'Upload de l\'image effectué avec succès !';
+            echo 'Upload de la vidéo effectué avec succès !';
             echo '</div></div><br /><br /><br />';
             echo footer();
             echo '</body>

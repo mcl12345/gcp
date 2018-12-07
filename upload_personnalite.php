@@ -62,7 +62,7 @@ if( isset($_POST["nom"]) && isset($_POST["fonction"]) && isset($_POST["date_nais
           try {
            $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
            // set the PDO error mode to exception
-           $stmt = $pdo->prepare("INSERT INTO personnalite (nom, fonction, date_naissance, date_deces, conjoint, type_gisant, date_depot_gisant, imageURL)  VALUES (:nom, :fonction, :date_naissance, :date_deces, :conjoint, :type_gisant, :date_depot_gisant, :imageURL)");
+           $stmt = $pdo->prepare("INSERT INTO patrimoine_basilique_personnalite (nom, fonction, date_naissance, date_deces, conjoint, type_gisant, date_depot_gisant, imageURL)  VALUES (:nom, :fonction, :date_naissance, :date_deces, :conjoint, :type_gisant, :date_depot_gisant, :imageURL)");
            $stmt->bindParam(':nom', $_POST["nom"]);
            $stmt->bindParam(':fonction', $_POST["fonction"]);
            $stmt->bindParam(':date_naissance', $_POST["date_naissance"]);

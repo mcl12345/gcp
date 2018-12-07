@@ -17,8 +17,6 @@ function formulaire_upload() {
 
 if(isset($_POST['titre']) && isset($_POST['texte_upload'])) {
 
-  $mots_cle = explode(" ", $_POST["mot_cle"]);
-
   $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
   // set the PDO error mode to exception ???
   $stmt = $pdo->prepare("INSERT INTO texte (titre, texte) VALUES (:titre, :texte)");
@@ -27,12 +25,13 @@ if(isset($_POST['titre']) && isset($_POST['texte_upload'])) {
   $stmt->execute();
   $id_texte = $pdo->lastInsertId();
 
-  for ($i=0; $i < sizeof($mots_cle); $i++) {
-     $stmt_ = $pdo->prepare("INSERT INTO motcle (id_texte, contenu) VALUES (:id_texte, :contenu)");
-     $stmt_->bindParam(':id_texte', $id_texte);
-     $stmt_->bindParam(':contenu', $mots_cle[$i]);
-     $stmt_->execute();
-  }
+  $type_media = 1;
+
+  $stmt_ = $pdo->prepare("INSERT INTO motcle (mots_cle, id_media, type_media) VALUES (:mot_cle, :id_media, :type_media)");
+  $stmt_->bindParam(':mots_cle', $_POST["mot_cle"];);
+  $stmt_->bindParam(':id_media', $id_texte);
+  $stmt_->bindParam(':type_media', $type_media);
+  $stmt_->execute();  
 
   $stmt = $pdo->prepare("INSERT INTO historique_texte (id_texte, id_user)  VALUES (:id_texte, :id_user)");
   $stmt->bindParam(':id_texte', $id_texte);

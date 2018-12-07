@@ -10,7 +10,7 @@ echo "<div class='row'>
           <div class='col-lg-4'>";
 
 $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
-$stmt = $pdo->prepare("SELECT * FROM personnalite");
+$stmt = $pdo->prepare("SELECT * FROM patrimoine_basilique_personnalite");
 $stmt->execute();
 
 

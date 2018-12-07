@@ -16,7 +16,7 @@ if (isset($_GET["id_personnalite"])) {
   $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
 
   // Va chercher la personnalité :
-  $stmt = $pdo->prepare("SELECT * FROM personnalite WHERE id = ?");
+  $stmt = $pdo->prepare("SELECT * FROM patrimoine_basilique_personnalite WHERE id = ?");
   $stmt->execute(array($_GET["id_personnalite"]));
   while ($row = $stmt->fetch()) {
         echo "<form action='personnalite_modification.php' method='post' >";
@@ -42,7 +42,7 @@ if (isset($_GET["id_personnalite"])) {
     $date_depot_gisant  = $_POST["date_depot_gisant"];
     // Mise à jour :
     $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
-    $stmt = $pdo->prepare("UPDATE personnalite SET nom ='$nom', fonction='$fonction', date_naissance='$date_naissance', date_deces='$date_deces', conjoint='$conjoint', type_gisant='$type_gisant', date_depot_gisant='$date_depot_gisant' WHERE id = ?");
+    $stmt = $pdo->prepare("UPDATE patrimoine_basilique_personnalite SET nom ='$nom', fonction='$fonction', date_naissance='$date_naissance', date_deces='$date_deces', conjoint='$conjoint', type_gisant='$type_gisant', date_depot_gisant='$date_depot_gisant' WHERE id = ?");
     $stmt->execute(array($_POST["id_personnalite"]));
 
     // Memorise l' utilisateur qui a validé la personnalité :

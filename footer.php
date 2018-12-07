@@ -2,7 +2,7 @@
 function footer() {
   echo '</div>';
   return '<!-- Footer -->
-  <footer class="page-footer font-small special-color-dark pt-4 bg-1", style="background-color: #303030; color: #ffffff;">
+  <footer class="footer-top page-footer font-small special-color-dark pt-4 bg-1", style="background-color: #303030; color: #ffffff;">
 
       <!-- Footer Elements -->
 
@@ -34,7 +34,7 @@ function footer() {
 
       <!-- Copyright -->
       <div class="footer-copyright text-center py-3">© 2018 Copyright:
-        <a href="http://www.saint-denis-basilique.fr/"> saint-denis-basilique.fr</a>
+        <a class="text-primary" href="http://www.saint-denis-basilique.fr/"> saint-denis-basilique.fr</a>
       </div>
       <!-- Copyright -->
 

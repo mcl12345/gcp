@@ -8,22 +8,24 @@ include('footer.php');
 
 function formulaire_upload() {
     echo "<form method='post' action='upload_image.php' enctype='multipart/form-data'>
+              <label for='titre'>Titre : </label><input id='titre' name='titre' type='text' required /><br />
               <label for='description'>Description : </label><input id='description' name='description' type='text' required /><br />
               <input type='file' name='the_image' /> <br />
-              <label for='titre'>Mots-clé : </label><input type='texte' placeholder='Taper vos mot-clés séparé par un espace' style='width: 600px;' name ='mot_cle' required /><br /><br />
+              <label for='titre'>Mots-clé : </label><input type='texte' placeholder='Taper vos mot-clés séparé par une virgule' style='width: 600px;' name ='mot_cle' required /><br /><br />
               <input type='submit' name='envoyer' value='Envoyer' />
     </form>";
 }
 
 if(isset($_FILES['the_image']['name'])) {
-  $mots_cle = explode(" ", $_POST["mot_cle"]);
+
+  $mots_cle = $_POST["mot_cle"];
 
   $dossier = "upload_images/";
   $fichier = basename($_FILES['the_image']['name']);
   $taille_maxi = 10000000; // 10 Mo
   $taille = filesize($_FILES['the_image']['tmp_name']); // Le fichier temporaire
 
-  $extensions = array( '.jpg', '.jpeg', 'png');
+  $extensions = array( '.jpg', '.jpeg', '.png');
 
   $extension = strrchr($_FILES['the_image']['name'], '.');
   //Début des vérifications de sécurité...
@@ -45,25 +47,26 @@ if(isset($_FILES['the_image']['name'])) {
        {
          $imageURL = "http://" . $_SERVER['SERVER_NAME'] . substr($_SERVER['REQUEST_URI'], 0, strpos($_SERVER['REQUEST_URI'], "/", 2)) ."/". $dossier . $fichier;
          try {
+           $type_media = 2; // texte 1, image : 2, audio : 3, video : 4
 
            $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
 
            // set the PDO error mode to exception
-           $stmt = $pdo->prepare("INSERT INTO image (imageURL, description) VALUES (:imageURL, :description)");
-           $stmt->bindParam(':imageURL', $imageURL);
+           $stmt = $pdo->prepare("INSERT INTO image (titre, description, imageURL) VALUES (:titre, :description, :imageURL)");
+           $stmt->bindParam(':titre', $_POST["titre"]);
            $stmt->bindParam(':description', $_POST["description"]);
+           $stmt->bindParam(':imageURL', $imageURL);
            $stmt->execute();
-           $id_image = $pdo->lastInsertId();
+           $id_media = $pdo->lastInsertId();
 
-           for ($i=0; $i < sizeof($mots_cle); $i++) {
-              $stmt_ = $pdo->prepare("INSERT INTO motcle (id_image, contenu) VALUES (:id_image, :contenu)");
-              $stmt_->bindParam(':id_image', $id_image);
-              $stmt_->bindParam(':contenu', $mots_cle[$i]);
-              $stmt_->execute();
-           }
+           $stmt_ = $pdo->prepare("INSERT INTO motcle (mots_cle, id_media, type_media) VALUES (:mots_cle, :id_media, :type_media)");
+           $stmt_->bindParam(':mots_cle', $mots_cle);
+           $stmt_->bindParam(':id_media', $id_media);
+           $stmt_->bindParam(':type_media', $type_media);
+           $stmt_->execute();
 
            $stmt = $pdo->prepare("INSERT INTO historique_image (id_image, id_user)  VALUES (:id_image, :id_user)");
-           $stmt->bindParam(':id_image', $id_image);
+           $stmt->bindParam(':id_image', $id_media);
            $stmt->bindParam(':id_user', $_COOKIE["the_id"]);
            $stmt->execute();
 

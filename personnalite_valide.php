@@ -16,7 +16,7 @@ if (isset($_POST["id_personnalite"])) {
   $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
 
   // Va chercher la personnalité :
-  $stmt = $pdo->prepare("SELECT * FROM personnalite WHERE id = ?");
+  $stmt = $pdo->prepare("SELECT * FROM patrimoine_basilique_personnalite WHERE id = ?");
   $stmt->execute(array($_POST["id_personnalite"]));
   while ($row = $stmt->fetch()) {
         echo "<strong>nom : " . $row["nom"] . " a été validé.</strong> <br />";
@@ -29,7 +29,7 @@ if (isset($_POST["id_personnalite"])) {
   }
 
   // Change la validité à 1
-  $stmt = $pdo->prepare("UPDATE personnalite SET valide = 1 WHERE id = ?");
+  $stmt = $pdo->prepare("UPDATE patrimoine_basilique_personnalite SET valide = 1 WHERE id = ?");
   $stmt->execute(array($_POST["id_personnalite"]));
 
   // Memorise l' utilisateur qui a validé les medias.

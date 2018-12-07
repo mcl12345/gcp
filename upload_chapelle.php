@@ -14,7 +14,7 @@ function formulaire_upload() {
 
       echo "<form action='upload_chapelle.php' method='post' enctype='multipart/form-data'>
         <label class='label_formulaire' for='nom'>Nom : </label><input type='text' id='nom' name='nom' required /><br />
-        <label class='label_formulaire' for='titre1'>Titre1 : </label><input type='text' id='titre1' name='titre1' /><br />
+        <br /><label class='label_formulaire' for='titre1'>Titre1 : </label><input type='text' id='titre1' name='titre1' /><br />
         <label class='label_formulaire' for='description1'>Description 1 : </label><input placeholder='Description 1' id='description1' name='description1' /><br />
         <label class='label_formulaire' for='date1'>Date 1 : </label><input type='text' id='date1' name='date1' /><br />
         <label class='label_formulaire' for='composition1'>Composition 1 : </label><input type='text' id='composition1' name='composition1' /><br /><br />
@@ -75,34 +75,58 @@ if( isset($_POST["nom"]) && isset($_POST["titre1"]) && isset($_POST["description
          $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
 
          // set the PDO error mode to exception
-         $stmt = $pdo->prepare("INSERT INTO chapelle (nom, titre1, description1, date1, composition1, titre2, description2, date2, composition2, titre3,
-           description3, date3, composition3, titre4, description4, date4, composition4, titre5, description5, date5, composition5, imageURL)
-           VALUES (:nom, :titre1, :description1, :date1, :composition1, :titre2, :description2, :date2, :composition2, :titre3,
-             :description3, :date3, :composition3, :titre4, :description4, :date4, :composition4, :titre5, :description5, :date5, :composition5, :imageURL)");
+         $stmt = $pdo->prepare("INSERT INTO patrimoine_basilique_chapelle (nom, imageURL) VALUES (:nom, :imageURL)");
          $stmt->bindParam(':nom', $_POST["nom"]);
-         $stmt->bindParam(':titre1', $_POST["titre1"]);
-         $stmt->bindParam(':description1', $_POST["description1"]);
-         $stmt->bindParam(':date1', $_POST["date1"]);
-         $stmt->bindParam(':composition1', $_POST["composition1"]);
-         $stmt->bindParam(':titre2', $_POST["titre2"]);
-         $stmt->bindParam(':description2', $_POST["description2"]);
-         $stmt->bindParam(':date2', $_POST["date2"]);
-         $stmt->bindParam(':composition2', $_POST["composition2"]);
-         $stmt->bindParam(':titre3', $_POST["titre3"]);
-         $stmt->bindParam(':description3', $_POST["description3"]);
-         $stmt->bindParam(':date3', $_POST["date3"]);
-         $stmt->bindParam(':composition3', $_POST["composition3"]);
-         $stmt->bindParam(':titre4', $_POST["titre4"]);
-         $stmt->bindParam(':description4', $_POST["description4"]);
-         $stmt->bindParam(':date4', $_POST["date4"]);
-         $stmt->bindParam(':composition4', $_POST["composition4"]);
-         $stmt->bindParam(':titre5', $_POST["titre5"]);
-         $stmt->bindParam(':description5', $_POST["description5"]);
-         $stmt->bindParam(':date5', $_POST["date5"]);
-         $stmt->bindParam(':composition5', $_POST["composition5"]);
          $stmt->bindParam(':imageURL', $imageURL);
          $stmt->execute();
          $id_chapelle = $pdo->lastInsertId();
+
+         if($_POST["titre1"] != "" && $_POST["description1"] != "" ) {
+             $stmt = $pdo->prepare("INSERT INTO patrimoine_basilique_chapelle_description (titre, description, date_description, composition, id_chapelle) VALUES (:titre, :description, :date_description, :composition, :id_chapelle)");
+             $stmt->bindParam(':titre', $_POST["titre1"]);
+             $stmt->bindParam(':description', $_POST["description1"]);
+             $stmt->bindParam(':date_description', $_POST["date1"]);
+             $stmt->bindParam(':composition', $_POST["composition1"]);
+             $stmt->bindParam(':id_chapelle', $id_chapelle);
+             $stmt->execute();
+         }
+         if(isset($_POST["titre2"]) && $_POST["titre2"] != "" && isset($_POST["description2"]) && $_POST["description2"] != "" ) {
+             $stmt = $pdo->prepare("INSERT INTO patrimoine_basilique_chapelle_description (titre, description, date_description, composition, id_chapelle) VALUES (:titre, :description, :date_description, :composition, :id_chapelle)");
+             $stmt->bindParam(':titre', $_POST["titre2"]);
+             $stmt->bindParam(':description', $_POST["description2"]);
+             $stmt->bindParam(':date_description', $_POST["date2"]);
+             $stmt->bindParam(':composition', $_POST["composition2"]);
+             $stmt->bindParam(':id_chapelle', $id_chapelle);
+             $stmt->execute();
+         }
+         if(isset($_POST["titre3"]) && $_POST["titre3"] != "" && isset($_POST["description3"]) && $_POST["description3"] != "" ) {
+             $stmt = $pdo->prepare("INSERT INTO patrimoine_basilique_chapelle_description (titre, description, date_description, composition, id_chapelle) VALUES (:titre, :description, :date_description, :composition, :id_chapelle)");
+             $stmt->bindParam(':titre', $_POST["titre3"]);
+             $stmt->bindParam(':description', $_POST["description3"]);
+             $stmt->bindParam(':date_description', $_POST["date3"]);
+             $stmt->bindParam(':composition', $_POST["composition3"]);
+             $stmt->bindParam(':id_chapelle', $id_chapelle);
+             $stmt->execute();
+         }
+         if(isset($_POST["titre4"]) && $_POST["titre4"] != "" && isset($_POST["description4"]) && $_POST["description4"] != "" ) {
+             $stmt = $pdo->prepare("INSERT INTO patrimoine_basilique_chapelle_description (titre, description, date_description, composition, id_chapelle) VALUES (:titre, :description, :date_description, :composition, :id_chapelle)");
+             $stmt->bindParam(':titre', $_POST["titre4"]);
+             $stmt->bindParam(':description', $_POST["description4"]);
+             $stmt->bindParam(':date_description', $_POST["date4"]);
+             $stmt->bindParam(':composition', $_POST["composition4"]);
+             $stmt->bindParam(':id_chapelle', $id_chapelle);
+             $stmt->execute();
+         }
+
+         if(isset($_POST["titre5"]) && $_POST["titre5"] != "" && isset($_POST["description5"]) && $_POST["description5"] != "" ) {
+             $stmt = $pdo->prepare("INSERT INTO patrimoine_basilique_chapelle_description (titre, description, date_description, composition, id_chapelle) VALUES (:titre, :description, :date_description, :composition, :id_chapelle)");
+             $stmt->bindParam(':titre', $_POST["titre5"]);
+             $stmt->bindParam(':description', $_POST["description5"]);
+             $stmt->bindParam(':date_description', $_POST["date5"]);
+             $stmt->bindParam(':composition', $_POST["composition5"]);
+             $stmt->bindParam(':id_chapelle', $id_chapelle);
+             $stmt->execute();
+         }
 
          $stmt = $pdo->prepare("INSERT INTO historique_chapelle (id_chapelle, id_user)  VALUES (:id_chapelle, :id_user)");
          $stmt->bindParam(':id_chapelle', $id_chapelle);

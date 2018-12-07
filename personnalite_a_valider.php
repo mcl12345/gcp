@@ -12,7 +12,7 @@ echo "<h3>Validation Personnalité : </h3>";
 
 $is_non_valide = false;
 $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
-$stmt = $pdo->prepare("SELECT * FROM personnalite");
+$stmt = $pdo->prepare("SELECT * FROM patrimoine_basilique_personnalite");
 $stmt->execute();
 
 echo '<form action="personnalite_valide.php" method="post">';
