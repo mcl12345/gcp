@@ -13,15 +13,17 @@ $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
 $stmt = $pdo->prepare("SELECT * FROM image");
 $stmt->execute();
 
-
 while ($row = $stmt->fetch()) {
   if($row['valide']) {
       $motscle = "";
       $motcle_empty = true;
+      echo "<strong>Titre : </strong>" . $row["titre"] . "<br />";
       echo "<strong>Description : </strong>" . $row["description"] . "<br />";
       if($row["imageURL"] != null) {
-        echo "<strong>image : </strong><a target='_blank' href='".$row["imageURL"]."'><img src='" . $row["imageURL"] . "' width='250px' height='250px' /></a><br />";
+          echo "<strong>image : </strong><a target='_blank' href='".$row["imageURL"]."'><img src='" . $row["imageURL"] . "' width='250px' height='250px' /></a><br />";
       }
+
+      // Les mots-clé :
       $stmt_ = $pdo->prepare("SELECT * FROM motcle WHERE id_media = ? AND type_media = 2");
       $stmt_->execute(array($row["id"]));
       while ($ligne = $stmt_->fetch()) {

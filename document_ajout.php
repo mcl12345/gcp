@@ -283,7 +283,7 @@ else {
     }
     echo "<br /><br /><br /><br />
         <form action='document.php' method='post'>
-          <label><strong>Modifier un document : </strong></label><br />
+          <label><strong>Modifier le document : </strong></label><br />
           <input type='hidden' name='id_document' value='".$_GET['id_document']."' />
           Média à selectionner : <select name='media'>
             <option value='texte'>texte</option>
@@ -291,7 +291,7 @@ else {
             <option value='audio'>audio</option>
             <option value='video'>video</option>
           </select><br />
-          <input type='submit' value='Sélectionner' />
+          <input type='submit' value='Ajouter' />
         </form>";
 }
 // --------------------------------------- fin VIDEO

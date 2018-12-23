@@ -23,7 +23,7 @@ function formulaire_upload() {
 }
 
 if(isset($_POST['description']) && isset($_FILES['the_audio']['name'])) {
-  $mots_cle = explode(" ", $_POST["mot_cle"]);
+  $mots_cle = $_POST["mot_cle"];
 
   $dossier = "upload_audio/";
   $fichier = basename($_FILES['the_audio']['name']);

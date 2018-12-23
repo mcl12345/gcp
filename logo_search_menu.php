@@ -12,8 +12,9 @@ echo '
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/index.css">
-  <link rel="stylesheet" href="css/text.css"> <!-- pour le footer-->
-  <link rel="stylesheet" href="css/footer.css"><!-- pour le footer ?? -->';
+  <link rel="stylesheet" href="css/text.css"> <!-- pour le footer ?? -->
+  <link rel="stylesheet" href="css/style_lire.css"> <!-- pour personnalite-->
+  <link rel="stylesheet" href="css/footer.css"><!-- pour le footer -->';
   if(basename($_SERVER['PHP_SELF']) == "faq.php")  {
       echo '<link rel="stylesheet" href="css/reset.css"><!-- pour la FAQ -->
       <link rel="stylesheet" href="css/style.css"><!-- pour la FAQ -->
@@ -31,9 +32,9 @@ echo '
 
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
-    <div class="navbar-header">
+    <!--<div class="navbar-header">
       <a class="navbar-brand" href="index.php">Plateforme sur la Basilique de Saint-Denis</a>
-    </div>
+    </div>-->
     <ul class="nav navbar-nav">';
     if(basename($_SERVER['PHP_SELF']) == "index.php")  {
         echo '<li class="active">';
@@ -41,7 +42,7 @@ echo '
         echo '<li>';
     }
     echo '
-      <a href="index.php">Accueil</a></li>';
+      <a href="index.php">Plateforme sur la Basilique de Saint-Denis</a></li>';
   if($_COOKIE["the_username"]) {
     echo
       '<li class="dropdown">
@@ -74,7 +75,31 @@ echo '
           } else {
               echo '<li>';
           }
-          echo '<a href="personnalites.php">Personnalités</a></li>';
+          echo '<a href="personnalites.php?page=1">Personnalités</a></li>';
+          if(basename($_SERVER['PHP_SELF']) == "upload_roi.php")  {
+              echo '<li class="active">';
+          } else {
+              echo '<li>';
+          }
+          echo '<a href="upload_roi.php">Ajouter un roi</a></li>';
+          if(basename($_SERVER['PHP_SELF']) == "select_roi_reseaux_sociaux.php")  {
+              echo '<li class="active">';
+          } else {
+              echo '<li>';
+          }
+          echo '<a href="select_roi_reseaux_sociaux.php">Ajouter un roi depuis les réseaux sociaux</a></li>';
+          if(basename($_SERVER['PHP_SELF']) == "select_roi_representation.php")  {
+              echo '<li class="active">';
+          } else {
+              echo '<li>';
+          }
+          echo '<a href="select_roi_representation.php">Ajouter à un roi des représentations</a></li>';
+          if(basename($_SERVER['PHP_SELF']) == "rois.php")  {
+              echo '<li class="active">';
+          } else {
+              echo '<li>';
+          }
+          echo '<a href="rois.php">Afficher tous les rois</a></li>';
         echo '</ul>
       </li>
       ';
@@ -85,7 +110,7 @@ echo '
       } else {
           echo '<li>';
       }
-      echo '<a href="personnalites.php">Personnalités</a></li>';
+      echo '<a href="personnalites.php?page=1">Personnalités</a></li>';
 
     }
 
@@ -126,6 +151,34 @@ echo '
       echo '<a href="chapelles.php">Chapelles à découvrir</a></li>';
     }
 
+    if($_COOKIE["the_username"]) {
+      echo
+            '<li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Textes
+              <span class="caret"></span></a>
+              <ul class="dropdown-menu">';
+        if(basename($_SERVER['PHP_SELF']) == "textes_a_valider.php")  {
+            echo '<li class="active">';
+        } else {
+            echo '<li>';
+        }
+        echo '<a href="textes_a_valider.php">Textes à valider</a></li>';
+        if(basename($_SERVER['PHP_SELF']) == "textes_a_lire.php")  {
+            echo '<li class="active">';
+        } else {
+            echo '<li>';
+        }
+        echo '<a href="textes_a_lire.php">Textes à lire</a></li>';
+      echo '</ul>
+      </li>';
+    } else {
+      if(basename($_SERVER['PHP_SELF']) == "textes_a_lire.php")  {
+          echo '<li class="active">';
+      } else {
+          echo '<li>';
+      }
+      echo '<a href="textes_a_lire.php">Textes à lire</a></li>';
+    }
 
   if($_COOKIE["the_username"]) {
     echo
@@ -175,34 +228,37 @@ echo '
     echo '</ul>
       </li>';
   }
+
   if($_COOKIE["the_username"]) {
-    echo
-          '<li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Textes
-            <span class="caret"></span></a>
-            <ul class="dropdown-menu">';
-      if(basename($_SERVER['PHP_SELF']) == "textes_a_valider.php")  {
-          echo '<li class="active">';
-      } else {
-          echo '<li>';
-      }
-      echo '<a href="textes_a_valider.php">Textes à valider</a></li>';
-      if(basename($_SERVER['PHP_SELF']) == "textes_a_lire.php")  {
-          echo '<li class="active">';
-      } else {
-          echo '<li>';
-      }
-      echo '<a href="textes_a_lire.php">Textes à lire</a></li>';
-  echo '</ul>
-    </li>';
-  } else {
-    if(basename($_SERVER['PHP_SELF']) == "textes_a_lire.php")  {
-        echo '<li class="active">';
+  echo
+        '<li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Audios
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">';
+
+    if(basename($_SERVER['PHP_SELF']) == "audio_a_valider.php")  {
+      echo '<li class="active">';
     } else {
-        echo '<li>';
+      echo '<li>';
     }
-    echo '<a href="textes_a_lire.php">Textes à lire</a></li>';
+    echo '<a href="audio_a_valider.php">Audio à valider</a></li>';
+    if(basename($_SERVER['PHP_SELF']) == "audio_a_ecouter.php")  {
+      echo '<li class="active">';
+    } else {
+      echo '<li>';
+    }
+    echo '<a href="audio_a_ecouter.php">Audio à écouter</a></li>';
+  echo '</ul>
+      </li>';
+  } else {
+    if(basename($_SERVER['PHP_SELF']) == "audio_a_ecouter.php")  {
+      echo '<li class="active">';
+    } else {
+      echo '<li>';
+    }
+    echo '<a href="audio_a_ecouter.php">Audio à écouter</a></li>';
   }
+
     if($_COOKIE["the_username"]) {
     echo
           '<li class="dropdown">
@@ -232,38 +288,10 @@ echo '
       }
       echo '<a href="videos_a_visualiser.php">Videos à lire</a></li>';
     }
-    if($_COOKIE["the_username"]) {
-    echo
-          '<li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Audios
-            <span class="caret"></span></a>
-            <ul class="dropdown-menu">';
 
-      if(basename($_SERVER['PHP_SELF']) == "audio_a_valider.php")  {
-        echo '<li class="active">';
-      } else {
-        echo '<li>';
-      }
-      echo '<a href="audio_a_valider.php">Audio à valider</a></li>';
-      if(basename($_SERVER['PHP_SELF']) == "audio_a_ecouter.php")  {
-        echo '<li class="active">';
-      } else {
-        echo '<li>';
-      }
-      echo '<a href="audio_a_ecouter.php">Audio à écouter</a></li>';
-    echo '</ul>
-        </li>';
-    } else {
-      if(basename($_SERVER['PHP_SELF']) == "audio_a_ecouter.php")  {
-        echo '<li class="active">';
-      } else {
-        echo '<li>';
-      }
-      echo '<a href="audio_a_ecouter.php">Audio à écouter</a></li>';
-    }
     echo
           '<li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">A propos de
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">A propos de nous
             <span class="caret"></span></a>
             <ul class="dropdown-menu">';
           if(basename($_SERVER['PHP_SELF']) == "faq.php")  {
@@ -277,13 +305,13 @@ echo '
           } else {
               echo '<li>';
           }
-          echo '<a href="about.php">A propos de</a></li>';
+          echo '<a href="about.php">A propos de nous</a></li>';
           if(basename($_SERVER['PHP_SELF']) == "api_description.php")  {
               echo '<li class="active">';
           } else {
               echo '<li>';
           }
-          echo '<a href="api_description.php">API</a></li>';
+          echo '<a href="api_description.php">A propos de l\'API</a></li>';
       echo "</ul></li>";
       if($_COOKIE["the_username"]) {
           if(basename($_SERVER['PHP_SELF']) == "document.php")  {
@@ -295,9 +323,9 @@ echo '
       }
 
     echo '</ul>
-    <form class="navbar-form navbar-left" action="search.php">
+    <form class="navbar-form navbar-left" action="search.php" method="get">
       <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search" name="search">
+        <input type="text" class="form-control" placeholder="Recherche" id="recherche" name="recherche" />
         <div class="input-group-btn">
           <button class="btn btn-default" type="submit">
             <i class="glyphicon glyphicon-search"></i>
@@ -339,8 +367,26 @@ echo '
           echo '<a href="upload_video.php">Téléversement de videos</a></li>';
 
       echo "</ul></li>";
+      echo
+              '<li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Paramètres
+                <span class="caret"></span></a>
+                <ul class="dropdown-menu">';
 
-          echo '<li><a href="logout.php"><span class="glyphicon glyphicon-log-in"></span> Déconnexion</a></li>';
+          if(basename($_SERVER['PHP_SELF']) == "profil.php")  {
+              echo '<li class="active">';
+          } else {
+              echo '<li>';
+          }
+          echo '<a href="profil.php"><span class="glyphicon glyphicon-user"></span> Profil</a></li>';
+
+          if(basename($_SERVER['PHP_SELF']) == "logout.php")  {
+                echo '<li class="active">';
+            } else {
+                echo '<li>';
+            }
+            echo '<a href="logout.php"><span class="glyphicon glyphicon-log-in"></span> Déconnexion</a></li>';
+      echo "</ul></li>";
 
     } else {
           echo '
@@ -351,7 +397,7 @@ echo '
     echo '</ul>
   </div>
 </nav>
-<div class="container"><img src="img/logo-basilique-st-denis-250.png"</div>';
+<div class="container"><img src="img/logo-basilique-st-denis-250.png" /></div>';
 }
 
 ?>

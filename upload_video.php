@@ -23,7 +23,7 @@ function formulaire_upload() {
 }
 
 if(isset($_POST['description']) && isset($_FILES['the_video']['name'])) {
-  $mots_cle = explode(" ", $_POST["mot_cle"]);
+  $mots_cle = $_POST["mot_cle"];
 
   $dossier = "upload_videos/";
   $fichier = basename($_FILES['the_video']['name']);
@@ -65,7 +65,7 @@ if(isset($_POST['description']) && isset($_FILES['the_video']['name'])) {
            $stmt->bindParam(':description', $_POST["description"]);
            $stmt->bindParam(':videoURL', $videoURL);
            $stmt->execute();
-           $id_video = $pdo->lastInsertId();
+           $id_media = $pdo->lastInsertId();
 
            $stmt_ = $pdo->prepare("INSERT INTO motcle (mots_cle, id_media, type_media) VALUES (:mots_cle, :id_media, :type_media)");
            $stmt_->bindParam(':mots_cle', $mots_cle);
@@ -74,7 +74,7 @@ if(isset($_POST['description']) && isset($_FILES['the_video']['name'])) {
            $stmt_->execute();
 
            $stmt = $pdo->prepare("INSERT INTO historique_video (id_video, id_user)  VALUES (:id_video, :id_user)");
-           $stmt->bindParam(':id_video', $id_video);
+           $stmt->bindParam(':id_video', $id_media);
            $stmt->bindParam(':id_user', $_COOKIE["the_id"]);
            $stmt->execute();
 

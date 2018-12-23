@@ -12,36 +12,33 @@ $stmt->execute();
 echo "<div class='container'>
 			<div class='row'>
 				<div class='col-md-4 col-md-offset-4'>";
-					while($row = $stmt->fetch()) {
+while($row = $stmt->fetch()) {
+		if($row["valide"] == 1) {
+				$motscle = "";
+				$motcle_empty = true;
+				$type_media = 1;
+				echo "<strong>Titre : </strong>" . $row["titre"] . "<br />";
+				//TODO CUT LE TEXT
 
-						if($row["valide"] == 1) {
-							$motscle = "";
-							$motcle_empty = true;
-							$type_media;
-							echo "<strong>Titre : </strong>" . $row["titre"] . "<br />";
-							//TODO CUT LE TEXT
+				echo "<strong>texte : </strong>" . $row["texte"] . "<br /><br /><br />";
+				//echo mb_strimwidth($row["texte"], 0, 10, '...');
 
-							echo "<strong>texte : </strong>" . $row["texte"] . "<br /><br /><br />";
-							//echo mb_strimwidth($row["texte"], 0, 10, '...');
 
-							// -------------------------------
-							// Affichage des mots-clé
-							// -------------------------------
-							$stmt_ = $pdo->prepare("SELECT * FROM motcle WHERE id_media = ? AND type_media = ".$type_media);
-							$stmt_->execute(array($row["id"]));
-							while ($ligne = $stmt_->fetch()) {
-								$motcle_empty = false;
-								$motscle .= " " . $ligne["mots_cle"];
-							}
-							if(!$motcle_empty) {
-									echo "<strong>Les mots-clé : </strong>" . $motscle;
-							}
-							// -------------------------------
-							// fin d'affichage des mots-clé
-							// -------------------------------
-						}
-
-					}
+				// Affichage des mots-clé
+				// -------------------------------
+				$stmt_ = $pdo->prepare("SELECT * FROM motcle WHERE id_media = ? AND type_media = ".$type_media);
+				$stmt_->execute(array($row["id"]));
+				while ($ligne = $stmt_->fetch()) {
+						$motcle_empty = false;
+						$motscle .= " " . $ligne["mots_cle"];
+				}
+				if(!$motcle_empty) {
+						echo "<strong>Les mots-clé : </strong>" . $motscle;
+				}
+				// -------------------------------
+				// fin d'affichage des mots-clé
+		}
+}
 echo "</div></div></div>";
 
 

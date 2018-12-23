@@ -1,9 +1,10 @@
-/****text_lire*****/
+/****text_lire****
 .i-am-centered {
     margin: auto;
-    /*max-width: 1024px;*/
-    width:80%;
+    max-width: 1024px;
+    width:90%;
 }
 .row-centered{
     text-align: center;
 }
+*/

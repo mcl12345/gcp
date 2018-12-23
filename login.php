@@ -60,7 +60,8 @@ if( !empty($_POST["username"]) &&
           setcookie("the_password_encoded", $my_password_encoded);
           setcookie("the_role", $my_role);
 
-          print_LOGO_FORMSEARCH_MENU();
+          header('Location: login.php');
+          /*print_LOGO_FORMSEARCH_MENU();
           echo "<div class='row'>
                     <div class='col-lg-4'></div>
                     <div class='col-lg-4'>";
@@ -68,7 +69,7 @@ if( !empty($_POST["username"]) &&
           echo '</div></div></div><br /><br />';
           echo footer();
           echo '</body>
-          </html>';
+          </html>';*/
       } else {
         print_LOGO_FORMSEARCH_MENU();
         echo "<div class='row'>

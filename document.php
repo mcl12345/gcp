@@ -20,7 +20,7 @@ function formulaire_selection($db_host, $db_name, $db_user, $db_password) {
         echo "<input type='radio' name='id_document' value='".$row["id"]."' />";
         echo "<span>".$row["titre"]."</span><br />";
     }
-    echo "<input type='submit' value='Envoyer' />
+    echo "<input type='submit' value='Sélectionner' />
     </form>";
 
     echo "<br /><br /><br /><br />";
@@ -34,7 +34,7 @@ function formulaire_selection($db_host, $db_name, $db_user, $db_password) {
     				<option value='audio'>audio</option>
     				<option value='video'>video</option>
     			</select><br />
-    			<input type='submit' value='Sélectionner' />
+    			<input type='submit' value='Créer' />
     		</form>";
 }
 

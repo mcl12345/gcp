@@ -70,6 +70,135 @@ if(isset($_GET['id_chapelle']))  {
     }
 }
 
+//------------------------------------------------------------ Groupe ?
+if(isset($_GET['roi']))  {
+    $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
+    $stmt = $pdo->prepare("SELECT * FROM roi");
+    $stmt->execute();
+    $rois = array();
+    $merged_tab = array();
+    while ($row = $stmt->fetch()) {
+        for($i = 0 ; $i<sizeof($row); $i++) {
+            unset($row[$i]);
+        }
+
+        $stmt_ = $pdo->prepare("SELECT * FROM reseauxsociauxroi WHERE idRoi = ?");
+        $stmt_->execute(array($row["idRoi"]));
+        while ($ligne = $stmt_->fetch()) {
+            for($i = 0 ; $i<sizeof($row); $i++) {
+                unset($ligne[$i]);
+            }
+            $merged_tab = array_merge($row, $ligne);
+        }
+
+        $rois[] = $merged_tab;
+    }
+    $rois_ = array("rois" => $rois);
+    echo json_encode($rois_, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK);
+}
+
+if(isset($_GET['id_roi']))  {
+    $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
+    $stmt = $pdo->prepare("SELECT * FROM roi WHERE idRoi = ?");
+    $stmt->execute(array($_GET["id_roi"]));
+    while ($row = $stmt->fetch()) {
+        for($i = 0 ; $i<sizeof($row); $i++) {
+            unset($row[$i]);
+        }
+        $stmt = $pdo->prepare("SELECT * FROM reseauxsociauxroi WHERE idRoi = ?");
+        $stmt->execute(array($_GET["id_roi"]));
+        while ($ligne = $stmt->fetch()) {
+            for($i = 0 ; $i<sizeof($row); $i++) {
+                unset($ligne[$i]);
+            }
+            $merged_tab = array_merge($row, $ligne);
+            echo json_encode($merged_tab, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK);
+        }
+    }
+}
+
+if(isset($_GET['commentaire']))  {
+    $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
+    $stmt = $pdo->prepare("SELECT * FROM commentaires");
+    $stmt->execute();
+    $commentaires = array();
+    while ($row = $stmt->fetch()) {
+        for($i = 0 ; $i<sizeof($row); $i++) {
+            unset($row[$i]);
+        }
+        $commentaires[] = $row;
+    }
+    $commentaires_ = array("commentaires" => $commentaires);
+    echo json_encode($commentaires_, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK);
+}
+
+if(isset($_GET['id_commentaire']))  {
+    $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
+    $stmt = $pdo->prepare("SELECT * FROM commentaires WHERE idCommentaire = ?");
+    $stmt->execute(array($_GET["id_commentaire"]));
+    while ($row = $stmt->fetch()) {
+        for($i = 0 ; $i<sizeof($row); $i++) {
+            unset($row[$i]);
+        }
+        echo json_encode($row, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK);
+    }
+}
+
+if(isset($_GET['representation']))  {
+    $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
+    $stmt = $pdo->prepare("SELECT * FROM representationsroi");
+    $stmt->execute();
+    $representations = array();
+    while ($row = $stmt->fetch()) {
+        for($i = 0 ; $i<sizeof($row); $i++) {
+            unset($row[$i]);
+        }
+        $representations[] = $row;
+    }
+    $representations_ = array("representations" => $representations);
+    echo json_encode($representations_, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK);
+}
+
+if(isset($_GET['id_representation']))  {
+    $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
+    $stmt = $pdo->prepare("SELECT * FROM representationsroi WHERE idRepresentationsRoi = ?");
+    $stmt->execute(array($_GET["id_representation"]));
+    while ($row = $stmt->fetch()) {
+        for($i = 0 ; $i<sizeof($row); $i++) {
+            unset($row[$i]);
+        }
+        echo json_encode($row, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK);
+    }
+}
+
+if(isset($_GET['associationrr']))  {
+    $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
+    $stmt = $pdo->prepare("SELECT * FROM associationrr");
+    $stmt->execute();
+    $associationrr = array();
+    while ($row = $stmt->fetch()) {
+        for($i = 0 ; $i<sizeof($row); $i++) {
+            unset($row[$i]);
+        }
+        $associationrr[] = $row;
+    }
+    $associationrr_ = array("associationrr" => $associationrr);
+    echo json_encode($associationrr_, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK);
+}
+
+if(isset($_GET['id_associationrr']))  {
+    $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
+    $stmt = $pdo->prepare("SELECT * FROM associationrr WHERE id = ?");
+    $stmt->execute(array($_GET["id_associationrr"]));
+    while ($row = $stmt->fetch()) {
+        for($i = 0 ; $i<sizeof($row); $i++) {
+            unset($row[$i]);
+        }
+        echo json_encode($row, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK);
+    }
+}
+//------------------------------------------------------------ Groupe ?
+
 if(isset($_GET['texte']))  {
     $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
     $stmt = $pdo->prepare("SELECT * FROM texte");
