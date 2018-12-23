@@ -12,30 +12,16 @@ echo "<h3>Validation Texte : </h3>";
 
 $is_non_valide = false;
 $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
-$stmt = $pdo->prepare("SELECT * FROM texte");
+$stmt = $pdo->prepare("SELECT * FROM document_texte");
 $stmt->execute();
 
 echo '<form action="textes_valide.php" method="post">';
 while ($row = $stmt->fetch()) {
     if($row["valide"] == 0) {
         $is_non_valide = true;
-        $motscle = "";
-        $motcle_empty = true;
-        $type_media = 1;
-        echo "<input type='radio' name='id_texte' value='".$row["id"]."' />";
-        echo "Titre : " . $row["titre"] . "<br />";
-        echo "Texte : " . $row["texte"] . "<br />";
-
-        $stmt_ = $pdo->prepare("SELECT * FROM motcle WHERE id_media = ? AND type_media=" . $type_media);
-        $stmt_->execute(array($row["id"]));
-        while ($ligne = $stmt_->fetch()) {
-            $motcle_empty = false;
-            $motscle .= " " . $ligne["mots_cle"] ;
-        }
-        if(!$motcle_empty) {
-            echo "<strong>Les mots-clé : </strong>" . $motscle;
-        }
-
+        echo "<input type='radio' name='id_texte' value='".$row["id"]."' /><br />";
+        echo "<strong>Titre : </strong><a target='_blank' href='un_texte_a_lire.php?id=".$row["id"]."'>" . $row["titre"] . "</a><br />";
+        echo "<strong>Texte : </strong>" . substr($row["texte"], 0, 200) . "<br />";
         echo "<br /><br /><br />";
     }
 }
@@ -45,7 +31,7 @@ if($is_non_valide) {
 } else {
   echo "La liste est vide !";
 }
-echo '</div></div></div>';
+echo '</div></div>';
 
 echo '<br /><br />';
 echo footer();

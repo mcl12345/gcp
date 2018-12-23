@@ -13,6 +13,7 @@ au
 plus
 vos
 contre
+selon
 quot
 com
 dont
@@ -24,6 +25,7 @@ transform
 serions
 puisse
 mis
+selon
 aucun
 aucuns
 aussi
