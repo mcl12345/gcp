@@ -8,7 +8,7 @@ print_LOGO_FORMSEARCH_MENU();
 
 echo "<div class='row'>
           <div class='col-lg-4'></div>
-          <div class='col-lg-6'>";
+          <div class='col-lg-5'>";
 
 function formulaire_selection($db_host, $db_name, $db_user, $db_password) {
     $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
@@ -55,30 +55,16 @@ if( isset($_POST["media"]) ) {
 
 		$is_non_valide = true;
     $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
-		$stmt = $pdo->prepare("SELECT * FROM texte");
+		$stmt = $pdo->prepare("SELECT * FROM document_texte");
 		$stmt->execute();
 
 		echo '<form action="document_ajout.php?id_document='.$id_document.'" method="post">';
 		while ($row = $stmt->fetch()) {
 		    if($row["valide"] == 1) {
 		        $is_non_valide = false;
-		        $motscle = "";
-		        $motcle_empty = true;
-		        $type_media = 1;
 		        echo "<input type='radio' name='id_texte' value='".$row["id"]."' />";
-		        echo "Titre : " . $row["titre"] . "<br />";
-		        echo "Texte : " . $row["texte"] . "<br />";
-
-		        $stmt_ = $pdo->prepare("SELECT * FROM motcle WHERE id_media = ? AND type_media=" . $type_media);
-		        $stmt_->execute(array($row["id"]));
-		        while ($ligne = $stmt_->fetch()) {
-		            $motcle_empty = false;
-		            $motscle .= " " . $ligne["mots_cle"] ;
-		        }
-		        if(!$motcle_empty) {
-		            echo "<strong>Les mots-clé : </strong>" . $motscle;
-		        }
-
+		        echo "<a target='_blank' href='un_texte_a_lire.php?id=".$row["id"]."'> Titre : " . $row["titre"] . "</a><br />";
+		        echo "Texte : " . substr($row["texte"], 0, 200) . "<br />";
 		        echo "<br /><br /><br />";
 		    }
 		}
@@ -199,11 +185,11 @@ if( isset($_POST["media"]) ) {
               $motscle = "";
               $motcle_empty = true;
               $type_media = 4;
-              echo "<input type='radio' name='id_video' value='".$row["id"]."' />";
-              echo "Titre : " . $row["titre"] . "<br />";
-              echo "Description : " . $row["description"] . "<br />";
+              echo "<input type='radio' name='id_video' value='".$row["id"]."' /><br />";
+              echo "<strong>Titre : </strong>" . $row["titre"] . "<br />";
+              echo "<strong>Description : </strong>" . $row["description"] . "<br />";
               // voir ogg
-              echo 'Vidéo : <video width="400" height="222" controls="controls">
+              echo '<strong>Vidéo : </strong><video width="400" height="222" controls="controls">
               <source src="'.$row["videoURL"].'" type="video/webm" />
                 Vous n\'avez pas de navigateur moderne, donc pas de balise video HTML5 !</video>';
 
@@ -214,7 +200,7 @@ if( isset($_POST["media"]) ) {
                   $motscle .= " " . $ligne["mots_cle"];
               }
               if(!$motcle_empty) {
-                  echo "<strong>Les mots-clé : </strong>" . $motscle;
+                  echo "<br /><br /><strong>Les mots-clé : </strong>" . $motscle;
               }
 
               echo "<br /><br /><br />";

@@ -21,7 +21,7 @@ if (isset($_POST["id_texte"])) {
     $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
 
     // Va chercher l'élément :
-    $stmt = $pdo->prepare("SELECT * FROM texte WHERE id = ?");
+    $stmt = $pdo->prepare("SELECT * FROM document_texte WHERE id = ?");
     $stmt->execute(array($_POST["id_texte"]));
     while ($row = $stmt->fetch()) {
 
@@ -30,18 +30,7 @@ if (isset($_POST["id_texte"])) {
 
         $type_media = 1;
         echo "<strong>Description : " . $row["titre"] . " a été selectionné</strong><br /><br />";
-        echo "Texte : " . $row["texte"] . "<br />";
-
-        // Affichage des mots-clé :
-        $stmt_ = $pdo->prepare("SELECT * FROM motcle WHERE id_media = ? AND type_media = ".$type_media);
-        $stmt_->execute(array($row["id"]));
-        while ($ligne = $stmt_->fetch()) {
-            $motcle_empty = false;
-            $motscle .= " " . $ligne["mots_cle"];
-        }
-        if(!$motcle_empty) {
-            echo "<strong>Les mots-clé : </strong>" . $motscle;
-        }
+        echo "Texte : " . substr($row["texte"], 0, 200) . "<br />";
         echo "<br /><br /><br />";
     }
 
@@ -165,7 +154,7 @@ if (isset($_POST["id_video"])) {
           $motscle .= " " . $ligne["mots_cle"];
       }
       if(!$motcle_empty) {
-          echo "<strong>Les mots-clé : </strong>" . $motscle;
+          echo "<br /><br /><strong>Les mots-clé : </strong>" . $motscle;
       }
       echo "<br /><br /><br />";
     }
@@ -190,12 +179,12 @@ else {
         // Tous les médias :
         while($ligne = $stmt_->fetch()) {
             if($ligne["type_media"] == 1) {
-                $_stmt_ = $pdo->prepare("SELECT * FROM texte WHERE id = " . $ligne["id_media"]);
+                $_stmt_ = $pdo->prepare("SELECT * FROM document_texte WHERE id = " . $ligne["id_media"]);
                 $_stmt_->execute();
                 while($ligne_ = $_stmt_->fetch()) {
                     echo "<br /><br />";
-                    echo "<strong>Titre : </strong>" , $ligne_["titre"];
-                    echo "<br /><strong>Texte : </strong>" , $ligne_["texte"];
+                    echo "<a target='_blank' href='un_texte_a_lire.php?id=".$ligne_["id"]."'><strong>Titre : </strong>" , $ligne_["titre"] . "</a>";
+                    echo "<br /><strong>Texte : </strong>" , substr($ligne_["texte"], 0, 200) . "...";
                 }
             }
             if($ligne["type_media"] == 2) {

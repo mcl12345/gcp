@@ -14,10 +14,10 @@ function formulaire_upload() {
     if(isset($_COOKIE["the_id"])) {
 
       echo "<form action='upload_roi.php' method='post' enctype='multipart/form-data'>
-              <label class='label_formulaire' for='nom'>Nom : </label><input type='text' id='nom' name='nom' required /><br />
-              <label class='label_formulaire' for='duree_reigne'>Durée du reigne : </label><input type='text' id='duree_reigne' name='duree_reigne' required /><br />
-              <label class='label_formulaire' for='dynastie'>Dynastie : </label><input type='text' id='dynastie' name='dynastie' required /><br />
-              <label class='label_formulaire' for='description'>Description : </label><input type='text' id='description' name='description' required /><br />
+              <label class='label_formulaire' for='nom'>Nom : </label><input type='text' id='nom' name='nom' placeholder='Louis XIV' required /><br />
+              <label class='label_formulaire' for='duree_reigne'>Durée du reigne : </label><input type='text' id='duree_reigne' placeholder='40' name='duree_reigne' required /><br />
+              <label class='label_formulaire' for='dynastie'>Dynastie : </label><input type='text' id='dynastie' name='dynastie' placeholder='Valois' required /><br />
+              <label class='label_formulaire' for='description'>Description : </label><input type='text' id='description' name='description' placeholder='roi de France' required /><br />
               <label class='label_formulaire' for='the_image'>Image : </label><input type='file' id='the_image' name='the_image' /> <br />
               <input type='submit' value='Envoyer' />
             </form>";

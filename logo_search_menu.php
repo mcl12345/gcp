@@ -87,7 +87,7 @@ echo '
           } else {
               echo '<li>';
           }
-          echo '<a href="select_roi_reseaux_sociaux.php">Ajouter un roi depuis les réseaux sociaux</a></li>';
+          echo '<a href="select_roi_reseaux_sociaux.php">Ajouter à un roi des réseaux sociaux</a></li>';
           if(basename($_SERVER['PHP_SELF']) == "select_roi_representation.php")  {
               echo '<li class="active">';
           } else {
