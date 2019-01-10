@@ -21,7 +21,7 @@ $maxi_afficher = 8;
 
 
 //while ($row = $stmt->fetch()) {
-	
+
 	//gauche
 	if($count_pagination>1){
 		//$row = $stmt->fetch();
@@ -44,11 +44,11 @@ $maxi_afficher = 8;
 					  echo "<strong>type de gisant : </strong>" . $row["type_gisant"] . "<br />";
 					  echo "<strong>date du dépôt du gisant : </strong>" . $row["date_depot_gisant"] . "<br />";
 					  if($row["imageURL"] != null) {
-						echo "<strong>image : </strong><a target='_blank' href='".$row["imageURL"]."'><img src='" . $row["imageURL"] . "' width='250px' height='250px' /></a><br />";
+								echo "<strong>image : </strong><a target='_blank' href='".$row["imageURL"]."'><img src='" . $row["imageURL"] . "' width='250px' height='250px' /></a><br />";
 					  }
 					  echo "<br /><br /><br />";
 				  }
-				echo "</div>";		
+				echo "</div>";
 				$row = $stmt->fetch();
 			}//for
 		}else{
@@ -74,11 +74,11 @@ $maxi_afficher = 8;
 					  }
 					  echo "<br /><br /><br />";
 				  }
-				echo "</div>";	
+				echo "</div>";
 				$stmt_id = $pdo->prepare("SELECT * FROM patrimoine_basilique_personnalite WHERE id=$i+1");
-				$stmt_id->execute();				
+				$stmt_id->execute();
 				$row = $stmt_id->fetch();
-				
+
 			}//for
 		}/*else{
 			//dernier page (8)
@@ -102,15 +102,15 @@ $maxi_afficher = 8;
 					  }
 					  echo "<br /><br /><br />";
 				  }
-				echo "</div>";	
+				echo "</div>";
 				$stmt_id = $pdo->prepare("SELECT * FROM patrimoine_basilique_personnalite WHERE id=$i+1");
-				$stmt_id->execute();				
+				$stmt_id->execute();
 				$row = $stmt_id->fetch();
-				
+
 			}//for
 		}*/
-			
-		
+
+
 	}
 	if($count_pagination==1){
 		while ($row = $stmt->fetch()) {
@@ -131,7 +131,7 @@ $maxi_afficher = 8;
 			 echo "</div>";
 		}//while
 	}
-			
+
 /*}*/
 
 echo "<br />";
@@ -148,7 +148,7 @@ if($count_pagination>1){
 		}else{
 			echo '<li><a href="personnalites.php?page='.$i.'&search='.$search.'">'.$i. '</a></li>';
 		}
-	}	
+	}
 	echo "</ul>";
 	echo "</div>";
 }

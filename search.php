@@ -34,6 +34,24 @@ if( isset($_GET["recherche"])) {
       }
   }
 
+$pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
+$stmt = $pdo->prepare("SELECT * FROM patrimoine_basilique_personnalite WHERE nom = ?");
+$stmt->execute(array($_GET["recherche"]));
+while ($row = $stmt->fetch()) {
+    $is_resultat = true;
+    echo "<strong><a target='_blank' href='personnalites.php?page=1'>Nom : " . $row["nom"]."</a></strong><br />";
+    echo "<strong>fonction : </strong>" . $row["fonction"] . "<br />";
+    echo "<strong>date de naissance : </strong>" . $row["date_naissance"] . "<br />";
+    echo "<strong>date de décès : </strong>" . $row["date_deces"] . "<br />";
+    echo "<strong>conjoint : </strong>" . $row["conjoint"] . "<br />";
+    echo "<strong>type de gisant : </strong>" . $row["type_gisant"] . "<br />";
+    echo "<strong>date du dépôt du gisant : </strong>" . $row["date_depot_gisant"] . "<br />";
+    if($row["imageURL"] != null) {
+        echo "<strong>image : </strong><a target='_blank' href='".$row["imageURL"]."'><img src='" . $row["imageURL"] . "' width='250px' height='250px' /></a><br />";
+    }
+    echo "<br /><br /><br />";
+}
+
   // Récupère la liste de tous les mots-clé qui sont séparés par des virgules.
   //------------------------------------------------------------------------------
 	$pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);

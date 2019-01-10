@@ -41,8 +41,7 @@ echo '
     } else {
         echo '<li>';
     }
-    echo '
-      <a href="index.php">Plateforme sur la Basilique de Saint-Denis</a></li>';
+    echo '<a href="index.php">Plateforme sur la Basilique de Saint-Denis</a></li>';
   if($_COOKIE["the_username"]) {
     echo
       '<li class="dropdown">

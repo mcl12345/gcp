@@ -20,14 +20,6 @@ echo '<header>
 	<div class="cd-faq-items">
 		<ul id="basics" class="cd-faq-group">
 			<li class="cd-faq-title"><h2>Basics</h2></li>
-			<li>
-				<a class="cd-faq-trigger" href="#0">Comment puis-je changer de mot de passe ?</a>
-				<div class="cd-faq-content">
-					<p>Accédez à votre compte. Pour cela, vous devrez peut-être vous connecter.
-Sous "Connexion et sécurité", sélectionnez « Se connecter ». Ensuite, sélectionnez « mot de passe ».
-Saisissez votre nouveau mot de passe puis, sélectionnez « Modifier le mot de passe ».</p>
-				</div> <!-- cd-faq-content -->
-			</li>
 
 			<li>
 				<a class="cd-faq-trigger" href="#0">Comment puis-je m’inscrire ?</a>
@@ -46,7 +38,28 @@ Saisissez votre nouveau mot de passe puis, sélectionnez « Modifier le mot d
 			<li>
 				<a class="cd-faq-trigger" href="#0">Comment fonctionnent les avis ?</a>
 				<div class="cd-faq-content">
-					<p>Pour donner votre avis sur le site et sur le contenu qui s’y trouve, vous avez à votre disposition un système de notation par étoiles. Il vous suffit de cliquer sur le nombre d’étoiles qui vous convient. Le nombre maximum d’étoiles est de 5, plus vous en choisissez, plus la note est élevée. Vous pouvez également laisser un commentaire dans l’endroit prévu à cet effet.</p>
+					<p>Vous pouvez laisser un commentaire dans l’endroit prévu à cet effet sur les rois uniquement, en cochant le bouton "radio" et en faisant "Explorer".</p>
+				</div> <!-- cd-faq-content -->
+			</li>
+
+			<li>
+				<a class="cd-faq-trigger" href="#0">Comment uploader un texte, une image , de l\'audio ou de la vidéo sur la plateforme ?</a>
+				<div class="cd-faq-content">
+					<p>Il suffit d\'aller sur "Téléversement" du média en question en haut à droite, puis après il faut le valider pour qu\'il soit à la vue de tous. S\'il n\'y a pas de validation du média, alors il est considéré comme invisible, à l\'exception de l\'upload de la catégorie "les rois".</p>
+				</div> <!-- cd-faq-content -->
+			</li>
+
+			<li>
+				<a class="cd-faq-trigger" href="#0">Comment lire un texte, une image , de l\'audio ou de la vidéo sur la plateforme </a>
+				<div class="cd-faq-content">
+					<p>Il suffit d\'aller sur les onglets de visionnage du média en question en haut à gauche de l\'écran et au milieu.</p>
+				</div> <!-- cd-faq-content -->
+			</li>
+
+			<li>
+				<a class="cd-faq-trigger" href="#0">Comment puis-je faire un document multimédia ? </a>
+				<div class="cd-faq-content">
+					<p>Il suffit d\'aller sur l\'onglet "Documents", créer un document et ajouter des textes validés, des images validées, de l\'audio validé ou de la vidéo validée ou d\'aller sur un document dejà existant.</p>
 				</div> <!-- cd-faq-content -->
 			</li>
 		</ul> <!-- cd-faq-group -->

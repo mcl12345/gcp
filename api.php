@@ -72,26 +72,36 @@ if(isset($_GET['id_chapelle']))  {
 
 //------------------------------------------------------------ Groupe ?
 if(isset($_GET['roi']))  {
+
+    $rois = array();
+    $merged_tab = array();
     $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
     $stmt = $pdo->prepare("SELECT * FROM roi");
     $stmt->execute();
-    $rois = array();
-    $merged_tab = array();
     while ($row = $stmt->fetch()) {
+        $has_social_network = false;
         for($i = 0 ; $i<sizeof($row); $i++) {
             unset($row[$i]);
         }
 
-        $stmt_ = $pdo->prepare("SELECT * FROM reseauxsociauxroi WHERE idRoi = ?");
+        // Va chercher le media concernant ce roi :
+        $pdo_ = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
+        $stmt_ = $pdo_->prepare("SELECT * FROM reseauxsociauxroi WHERE idRoi = ?");
         $stmt_->execute(array($row["idRoi"]));
         while ($ligne = $stmt_->fetch()) {
-            for($i = 0 ; $i<sizeof($row); $i++) {
-                unset($ligne[$i]);
+            $has_social_network = true;
+            for($j = 0 ; $j<sizeof($row); $j++) {
+                unset($ligne[$j]);
             }
             $merged_tab = array_merge($row, $ligne);
         }
 
-        $rois[] = $merged_tab;
+        if(!$has_social_network) {
+            $rois[] = $row;
+        } else if ($has_social_network) {
+            $rois[] = $merged_tab;
+        }
+
     }
     $rois_ = array("rois" => $rois);
     echo json_encode($rois_, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK);
@@ -101,21 +111,36 @@ if(isset($_GET['id_roi']))  {
     $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
     $stmt = $pdo->prepare("SELECT * FROM roi WHERE idRoi = ?");
     $stmt->execute(array($_GET["id_roi"]));
+    $merged_tab = array();
+    $rois = array();
     while ($row = $stmt->fetch()) {
+        $has_social_network = false;
         for($i = 0 ; $i<sizeof($row); $i++) {
             unset($row[$i]);
         }
+
+        // Va chercher le media concernant ce roi :
         $stmt = $pdo->prepare("SELECT * FROM reseauxsociauxroi WHERE idRoi = ?");
         $stmt->execute(array($_GET["id_roi"]));
         while ($ligne = $stmt->fetch()) {
+            $has_social_network = true;
             for($i = 0 ; $i<sizeof($row); $i++) {
                 unset($ligne[$i]);
             }
             $merged_tab = array_merge($row, $ligne);
-            echo json_encode($merged_tab, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK);
+        }
+
+        if(!$has_social_network) {
+            $rois[] = $row;
+        } else if ($has_social_network) {
+            $rois[] = $merged_tab;
         }
     }
+
+    echo json_encode($rois, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK);
 }
+
+
 
 if(isset($_GET['commentaire']))  {
     $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
