@@ -53,6 +53,8 @@ Pour Android :
        }
        null -> { toast("Pas de réseau ") }
     }
+    
+    
     // Code venant de ce site :
     // FROM http://tutorielandroid.francoiscolin.fr/recupjson.php
     inner class DownloadTask : AsyncTask<URL, Void, JSONArray >() {
