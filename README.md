@@ -8,7 +8,8 @@ On peut ajouter des commentaires aux rois depuis l'onglet "Personnalités" > "Af
 
 Après il est possible d'avoir accès à l'API via http://213.32.90.43/basilique-saint-denis/api.php<br />
 Pour les commentaires : http://213.32.90.43/basilique-saint-denis/api.php?commentaire=true<br />
-Pour l'associationRR : http://213.32.90.43/basilique-saint-denis/api.php?association=true<br />
+Pour l'associationRR : http://213.32.90.43/basilique-saint-denis/api.php?associationrr=true<br />
+Pour la représentation : http://213.32.90.43/basilique-saint-denis/api.php?representation=true<br />
 Pour les rois : http://213.32.90.43/basilique-saint-denis/api.php?roi=true<br /><br />
 
 Comment récupérer des images ( vidéos, textes, fichiers audio, des rois, des chapelles, des personnalités royales ) <br />en PHP à partir du code JSON suivant avec l'URL suivante : "http://213.32.90.43/basilique-saint-denis/api.php?image=true"
