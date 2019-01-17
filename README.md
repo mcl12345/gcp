@@ -46,14 +46,14 @@ En PHP :
 ---------------
 Pour Android :
 
-            val connMgr = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-            when (connMgr.activeNetworkInfo?.type) {
-                ConnectivityManager.TYPE_WIFI, ConnectivityManager.TYPE_MOBILE -> {                    
-                    DownloadTask().execute(URL("http://213.32.90.43/basilique-saint-denis/api.php?image=true"))
-                }
-                null -> { toast("Pas de réseau ") }
-            }
-   // Code venant de ce site :
+    val connMgr = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    when (connMgr.activeNetworkInfo?.type) {
+       ConnectivityManager.TYPE_WIFI, ConnectivityManager.TYPE_MOBILE -> {                    
+           DownloadTask().execute(URL("http://213.32.90.43/basilique-saint-denis/api.php?image=true"))
+       }
+       null -> { toast("Pas de réseau ") }
+    }
+    // Code venant de ce site :
     // FROM http://tutorielandroid.francoiscolin.fr/recupjson.php
     inner class DownloadTask : AsyncTask<URL, Void, JSONArray >() {
         override fun doInBackground(vararg params: URL): JSONArray?  {
