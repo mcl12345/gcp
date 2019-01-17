@@ -27,7 +27,7 @@ JSON structure :
       etc...
 
 ------------------
-
+En PHP :
     <?php
 
     // http://php.net/manual/fr/filesystem.configuration.php#ini.allow-url-fopen
@@ -43,5 +43,70 @@ JSON structure :
     }
     ?>
 
+---------------
+Pour Android :
 
+            val connMgr = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            when (connMgr.activeNetworkInfo?.type) {
+                ConnectivityManager.TYPE_WIFI, ConnectivityManager.TYPE_MOBILE -> {                    
+                    DownloadTask().execute(URL("http://213.32.90.43/basilique-saint-denis/api.php?image=true"))
+                }
+                null -> { toast("Pas de réseau ") }
+            }
+   // Code venant de ce site :
+    // FROM http://tutorielandroid.francoiscolin.fr/recupjson.php
+    inner class DownloadTask : AsyncTask<URL, Void, JSONArray >() {
+        override fun doInBackground(vararg params: URL): JSONArray?  {
+            try {
+                val conn = params[0].openConnection() as HttpURLConnection
+                conn.connect()
+                if(conn.responseCode != HttpURLConnection.HTTP_OK) {
+                    return null
+                } else {
+                    val inputStream = conn.getInputStream()
 
+                    /*
+                    * InputStreamOperations est une classe complémentaire:
+                    * Elle contient une méthode InputStreamToString.
+                    */
+                    val result = InputStreamOperations.InputStreamToString(inputStream)
+                    // On récupère le JSON complet
+                    val jsonObject = JSONObject(result)
+                    // On récupère l'élément qui nous concernent
+                    return JSONArray(jsonObject.getString("produits"))
+                }
+            } catch (e : FileNotFoundException) {
+                return null
+            } catch (e : UnknownHostException) {
+                return null
+            } catch (e : ConnectException) {
+                return null
+            } catch (e : IOException) {
+                return null
+            } catch (e : org.json.JSONException) {
+                return null
+            }
+        }
+
+        override fun onPostExecute(result: JSONArray?) {
+            super.onPostExecute(result)
+            // Pour tous les objets on récupère les infos
+            if (result == null ) {
+                Log.e("AFFICHER", "null")
+            } else {
+                Log.e("AFFICHER", result.length().toString())
+
+                for(i in 0..(result.length() - 1)) {
+                    // On récupère un objet JSON du tableau
+                    var obj = JSONObject(result.getString(i))
+                    Log.e("AFFICHER", obj.getString("titre"))
+                    var titre = obj.getString("titre")
+                    var imageURL = obj.getString("imageURL")
+                    var description = obj.getString("description")
+                    var validite = obj.getInt("valide")                    
+
+                    saveToDB(titre, imageURL, description, validite)
+                }
+            }
+        }
+    }
