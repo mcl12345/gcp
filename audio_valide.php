@@ -38,7 +38,7 @@ if (isset($_POST["id_audio"])) {
                 $motscle .= " " . $ligne["mots_cle"];
             }
             if(!$motcle_empty) {
-                echo "<strong>Les mots-clé : </strong>" . $motscle;
+                echo "<br /><br /><strong>Les mots-clé : </strong>" . $motscle;
             }
       echo "<br /><br /><br />";
     }

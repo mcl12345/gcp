@@ -6,9 +6,10 @@ include('footer.php');
 
 
 function formulaire_login_HTML() {
+	echo "<br><br><br>";
     echo "<form method='post' action='login.php'>
-                  <label for='username'>Username : </label><input id='username' name='username' type='text' required /><br />
-                  <label for='plain_password'>Password : </label><input id='plain_password' name='plain_password' id='plain_password' type='password' required /><br />
+                  <label class='label_formulaire' for='username'>Nom d'utilisateur : </label><input id='username' name='username' type='text' required /><br />
+                  <label class='label_formulaire' for='plain_password'>Mot de passe : </label><input id='plain_password' name='plain_password' id='plain_password' type='password' required /><br />
                   <input type='submit' value='Connexion' />
               </form>";
 }
@@ -85,10 +86,13 @@ if( !empty($_POST["username"]) &&
 }
 else if (isset($_COOKIE['the_username'])) {
     print_LOGO_FORMSEARCH_MENU();
+	echo "<br><br><br>";
     echo "<div class='row'>
             <div class='col-lg-4'></div>
             <div class='col-lg-4'>";
+	echo "<h3>";
     echo "Bienvenue " . $_COOKIE["the_username"] . " !";
+	echo "</h3>";
     echo '</div></div></div><br /><br />';
     echo footer();
     echo '</body>

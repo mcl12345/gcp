@@ -5,16 +5,17 @@ include("logo_search_menu.php");
 include('footer.php');
 
 function formulaire_upload() {
+	echo "<br><br><br>";
     echo "<div class='row'>
         <div class='col-lg-4'></div>
         <div class='col-lg-4'>
           <div class='container'>
               <h5>La taille maximum autorisé d'un fichier est de 100Mo. Les types autorisés sont .ogg, .wav, et .mp3</h5>
               <form method='post' action='upload_audio.php' enctype='multipart/form-data'>
-                  <label for='titre'>Titre : </label><input id='titre' name='titre' type='text' required /><br />
-                  <label for='description'>description : </label><input id='description' name='description' type='text' required /><br />
+                  <label class='label_formulaire' for='titre'>Titre : </label><input id='titre' name='titre' type='text' required /><br />
+                  <label class='label_formulaire' for='description'>description : </label><input id='description' name='description' type='text' required /><br />
                   <input type='file' name='the_audio' /> <br />
-                  <label for='titre'>Mots-clé : </label><input type='texte' placeholder='Taper vos mots-clé séparés par un espace' style='width: 400px;' name ='mot_cle' required /><br /><br />
+                  <label class='label_formulaire' for='titre'>Mots-clé : </label><input type='texte' placeholder='Taper vos mots-clé séparés par un espace' style='width: 400px;' name ='mot_cle' required /><br /><br />
                   <input type='submit' name='envoyer' value='Envoyer' />
               </form>
           </div>
@@ -116,11 +117,9 @@ if(isset($_POST['description']) && isset($_FILES['the_audio']['name'])) {
   }
 } else {
     print_LOGO_FORMSEARCH_MENU($db_host, $db_name, $db_user, $db_password);
-      echo "<div class='row'>
-           <div class='col-lg-4'></div>
-            <div class='col-lg-4'>";
+
     formulaire_upload($db_host, $db_name, $db_user, $db_password);
-     echo '</div></div><br /><br /><br />';
+     echo '<br /><br /><br />';
             echo footer();
             echo '</body>
             </html>';

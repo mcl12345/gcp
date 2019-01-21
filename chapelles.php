@@ -11,14 +11,15 @@ $stmt = $pdo->prepare("SELECT * FROM patrimoine_basilique_chapelle");
 $stmt->execute();
 echo "<div class='row'>
         <div class='col-lg-2'></div>
-        <div class='col-lg-4'>
-            <div class='container'>";
+        <div class='container'>
+        <div class='col-lg-6'>
+            <!--<div class='container-set-chapelles'>-->";
 while ($row = $stmt->fetch()) {
       $stmt_ = $pdo->prepare("SELECT * FROM patrimoine_basilique_chapelle_description WHERE id_chapelle = ?");
       $stmt_->execute(array($row["id"]));
       if($row["valide"] == 1) {
           $i = 0;
-          echo "<strong>nom : </strong>" . $row["nom"] . "<br />";
+          echo "<h2><strong>Nom : </strong>" . $row["nom"] . "</h2><br />";
           while ($ligne = $stmt_->fetch()) {
               $i++;
               echo "<strong>titre".$i." : </strong>" . $ligne["titre"] . "<br />";
@@ -30,7 +31,8 @@ while ($row = $stmt->fetch()) {
           echo "<br /><br /><br />";
       }
 }
-echo "</div></div></div>";
+echo "</div></div>
+</div>";
 
 
 echo footer();

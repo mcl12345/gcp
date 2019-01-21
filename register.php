@@ -7,9 +7,9 @@ include('footer.php');
 function formulaire_register_HTML() {
     echo "<br />
                 <form method='post' action='register.php'>
-                      <label class='label_formulaire' for='username'>Username : </label><input id='username' name='username' type='text' required /><br />                      
-                      <label class='label_formulaire' for='plain_password'>Password : </label><input id='plain_password' name='plain_password' id='plain_password' type='password' required /><br />
-                      <label class='label_formulaire' for='confirm_plain_password'>Confirm the password : </label><input id='confirm_plain_password' name='confirm_plain_password' type='password' required /><br />
+                      <label class='label_formulaire' for='username'>Nom d'utilisateur : </label><input id='username' name='username' type='text' required /><br />
+                      <label class='label_formulaire' for='plain_password'>Mot de passe : </label><input id='plain_password' name='plain_password' id='plain_password' type='password' required /><br />
+                      <label class='label_formulaire' for='confirm_plain_password'>Confirmer le mot de passe : </label><input id='confirm_plain_password' name='confirm_plain_password' type='password' required /><br />
                       <label class='label_formulaire' for='role'>Rôle : </label><select name ='role'>
                               <option value='administrateur'>Administrateur</option>
                               <option value='utilisateur' selected>Utilisateur</option>

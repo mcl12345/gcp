@@ -8,5 +8,14 @@
 }
 
 .rois {
-    margin-left : 50px;
+    margin-top: 20px;
+    margin-left: -20px;
+}
+
+.decalage-rois {
+    margin-left: 300px;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+	color: #FFFFFF;
 }

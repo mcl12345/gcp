@@ -34,10 +34,10 @@ if (isset($_POST["id_video"])) {
           $stmt_->execute(array($row["id"]));
           while ($ligne = $stmt_->fetch()) {
               $motcle_empty = false;
-              $motscle .= " " . $ligne["contenu"];
+              $motscle .= " " . $ligne["mots_cle"];
           }
           if(!$motcle_empty) {
-              echo "<strong>Les mots-clé : </strong>" . $motscle;
+              echo "<br /><br /><strong>Les mots-clé : </strong>" . $motscle;
           }
     echo "<br /><br /><br />";
   }

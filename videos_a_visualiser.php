@@ -19,11 +19,14 @@ $stmt->execute();
             <div class='container'>";
 
    while ($row = $stmt->fetch()) {
-     $is_video = true;
-
       if($row["valide"] == 1) {
+          $is_video = true;
           $motscle = "";
           $motcle_empty = true;
+          if($_COOKIE["the_role"] == "administrateur") {
+              echo "<form action='videos_a_visualiser.php' method='get'>";
+              echo "Cocher pour supprimer : <input type='radio' name='id_video' value='".$row["id"]."' /><br />";
+          }
           echo "<strong>Titre : </strong>" . $row["titre"] . "<br /><br />";
           echo "<strong>Description : </strong>" . $row["description"] . "<br />";
           echo '<strong>Vidéo : </strong><br /><video width="400" height="222" controls="controls">
@@ -48,16 +51,39 @@ $stmt->execute();
       }
     }
 
-    echo "</div></div></div>";
+
 
 if(!$is_video) {
-      echo "<div class='row'>
-        <div class='col-lg-4'></div>
-        <div class='col-lg-4'>
-            <div class='container'>";
             echo "Il n'existe pas encore de vidéos";
-            echo "</div></div></div><br /><br />";
 }
+
+if($_COOKIE["the_role"] == "administrateur" && $is_video) {
+    echo "<input type='submit' value='Supprimer' />
+    </form>";
+}
+
+// Suppression
+if(isset($_GET["id_video"])) {
+    // Suppression du fichier video
+    $stmt_ = $pdo->prepare("SELECT * FROM video WHERE id = ?");
+    $stmt_->execute(array($_GET["id_video"]));
+    while($row = $stmt_->fetch()) {
+        $position = stripos($row["videoURL"], "upload_videos/");
+        $delete_video = substr($row["videoURL"], $position, strlen($row["videoURL"])-$position);
+        unlink($delete_video);
+    }
+
+    // Suppression de la table
+    $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
+    $stmt_ = $pdo->prepare("DELETE FROM video WHERE id = ?");
+    $stmt_->execute(array($_GET["id_video"]));
+
+    // Suppression des mots-cle
+    $_stmt_ = $pdo->prepare("DELETE FROM motcle WHERE id_media = ? AND type_media = 4");
+    $_stmt_->execute(array($_GET["id_video"]));
+}
+
+echo "</div></div></div>";
 
 echo footer();
 

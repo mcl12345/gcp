@@ -5,6 +5,7 @@ include('logo_search_menu.php');
 include('footer.php');
 
 function formulaire_upload() {
+	echo "<br><br><br>";
     echo "<form method='post' action='upload_texte.php'>
               <label for='titre'>Titre : </label><input id='titre' placeholder='Tapez le titre ici' name='titre' type='text' required /><br />
               <label for='texte_upload'>Texte : </label><input type='texte' placeholder='Tapez votre texte ici' id='texte_upload' name ='texte_upload' required /><br /><br />
@@ -44,7 +45,7 @@ else {
             <div class='col-lg-4'>";
     formulaire_upload();
     echo '</div></div></div>';
-    echo '<br /><br />';
+    echo '<br /><br /><br/>';
     echo footer();
     echo '</body>
     </html>';

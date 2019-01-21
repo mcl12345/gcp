@@ -8,3 +8,52 @@
     /*width: auto;*/
 
 }
+.container-set-texts{
+    width: 1150px;
+    height: auto;
+    float: right;
+    /*background-color: red;*/
+}
+/* personnalites */
+.container-set-personnalites{
+    width: 1140px;
+    height: auto;
+    float:left;
+    margin-left: 70px;
+}
+/*chapelles a decouvrir*/
+.container-set-chapelles{
+    width: 1150px;
+    height: auto;
+    float:right;
+    /*background-color: red;*/
+}
+.container-set-textes-a-lire{
+    width: 1150px;
+    height: auto;
+    float:right;
+}
+.container-set-index{
+    width: 1150px;
+    height: auto;
+    margin-left: 150px;
+}
+/*logo*/
+.container-set-logo{
+    /* background-color: cyan; */
+    width: 160px;
+    float: left;
+}
+
+.container-set-logo-image{
+    width: 160px;
+    height: auto;
+}
+/*contact nous*/
+.contact-nous{
+    margin-left: 500px;
+}
+.container-set-contact-nous-text{
+    margin-top: 400px;
+    margin-left: 500px;
+}

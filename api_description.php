@@ -27,7 +27,9 @@ on a la chapelle par son id<br /><br />
 
 L'API est aussi disponible pour les textes, les images, les sons, et les vidéos.<br /><br />
 
-A utiliser avec Firefox qui permet de présenter les données JSON de façon indenté.<br />";
+A utiliser avec Firefox qui permet de présenter les données JSON de façon indenté.<br /><br />
+
+Voir pour plus d'informations : https://github.com/mcl12345/gcp/blob/master/README.md<br />";
 echo "</div></div></div>";
 echo footer();
 echo "</body></html>";

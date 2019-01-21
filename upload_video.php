@@ -5,16 +5,17 @@ include("logo_search_menu.php");
 include('footer.php');
 
 function formulaire_upload() {
+	echo "<br><br><br>";
     echo "<div class='row'>
         <div class='col-lg-4'></div>
         <div class='col-lg-4'>
           <div class='container'>
-              <h5>La taille maximum autorisé d'un fichier est de 100Mo. Les types autorisés sont .ogg, .webm, .mp4, et .avi</h5>
+              <h5>La taille maximum autorisé d'un fichier est de 100Mo. Les types autorisés sont .ogg, .webm, .mp4, et .avi</h5><br />
               <form method='post' action='upload_video.php' enctype='multipart/form-data'>
-                  <label for='titre'>Titre : </label><input id='titre' name='titre' type='text' required /><br />
-                  <label for='description'>description : </label><input id='description' name='description' type='text' required /><br />
+                  <label class='label_formulaire' for='titre'>Titre : </label><input id='titre' name='titre' type='text' required /><br />
+                  <label class='label_formulaire' for='description'>description : </label><input id='description' name='description' type='text' required /><br />
                   <input type='file' name='the_video' /> <br />
-                  <label for='mot_cle'>Mots-clé : </label><input type='texte' placeholder='Taper vos mots-clé séparés par un espace' style='width: 400px;' id='mot_cle' name ='mot_cle' required /><br /><br />
+                  <label class='label_formulaire' for='mot_cle'>Mots-clé : </label><input type='texte' placeholder='Taper vos mots-clé séparés par un espace' style='width: 400px;' id='mot_cle' name ='mot_cle' required /><br /><br />
                   <input type='submit' name='envoyer' value='Envoyer' />
               </form>
           </div>
@@ -38,7 +39,7 @@ if(isset($_POST['description']) && isset($_FILES['the_video']['name'])) {
   //Début des vérifications de sécurité...
   if(!in_array($extension, $extensions)) //Si l'extension n'est pas dans le tableau
   {
-       $erreur = 'Vous devez uploader un fichier de type .wav, .mp3 ou .webm';
+       $erreur = 'Vous devez uploader un fichier de type .webm';
   }
   if($taille > $taille_maxi) {
        $erreur = 'Le fichier est trop gros...';
@@ -94,12 +95,9 @@ if(isset($_POST['description']) && isset($_FILES['the_video']['name'])) {
        else //Sinon (la fonction renvoie FALSE).
        {
             print_LOGO_FORMSEARCH_MENU($db_host, $db_name, $db_user, $db_password);
-              echo "<div class='row'>
-                 <div class='col-lg-4'></div>
-                 <div class='col-lg-4'>";
             echo 'Echec de l\'upload !';
             formulaire_upload($db_host, $db_name, $db_user, $db_password);
-             echo '</div></div><br /><br /><br />';
+             echo '<br /><br /><br />';
             echo footer();
             echo '</body>
             </html>';
@@ -117,11 +115,9 @@ if(isset($_POST['description']) && isset($_FILES['the_video']['name'])) {
   }
 } else {
     print_LOGO_FORMSEARCH_MENU($db_host, $db_name, $db_user, $db_password);
-      echo "<div class='row'>
-           <div class='col-lg-4'></div>
-            <div class='col-lg-4'>";
+
     formulaire_upload($db_host, $db_name, $db_user, $db_password);
-     echo '</div></div><br /><br /><br />';
+     echo '<br /><br /><br />';
             echo footer();
             echo '</body>
             </html>';

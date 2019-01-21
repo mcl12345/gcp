@@ -22,9 +22,9 @@ while ($row = $stmt->fetch()) {
         $motscle = "";
         $motcle_empty = true;
         $type_media = 4;
-        echo "<input type='radio' name='id_video' value='".$row["id"]."' />";
-        echo "Titre : " . $row["titre"] . "<br />";
-        echo "Description : " . $row["description"] . "<br />";
+        echo "Cochez pour sélectionner : <input type='radio' name='id_video' value='".$row["id"]."' /><br />";
+        echo "<strong>Titre : </strong>" . $row["titre"] . "<br />";
+        echo "<strong>Description : </strong>" . $row["description"] . "<br />";
         // voir ogg
         echo 'Vidéo : <video width="400" height="222" controls="controls">
                         <source src="'.$row["videoURL"].'" type="video/webm" />
@@ -39,7 +39,7 @@ while ($row = $stmt->fetch()) {
             $motscle .= " " . $ligne["mots_cle"];
         }
         if(!$motcle_empty) {
-            echo "<strong>Les mots-clé : </strong>" . $motscle;
+            echo "<br /><br /><strong>Les mots-clé : </strong>" . $motscle;
         }
 
         echo "<br /><br /><br />";

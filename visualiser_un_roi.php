@@ -57,6 +57,8 @@ while ($row = $stmt->fetch()) {
                 echo $ligne["contenu"] . "<br />";
             }
         }
+
+        echo "<br /><br /><br /><a href='moderation.php?id_roi=".$_GET['id_roi']."'>Modérer les commentaires</a>";
         // fin affichage des commentaires
 }
 if($is_roi) {

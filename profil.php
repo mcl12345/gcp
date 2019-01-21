@@ -5,6 +5,7 @@ include('logo_search_menu.php');
 include('footer.php');
 
 print_LOGO_FORMSEARCH_MENU();
+echo "<br><br><br>";
 echo "<div class='row'>
           <div class='col-lg-4'></div>
           <div class='col-lg-5'>";

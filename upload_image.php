@@ -7,11 +7,12 @@ include('footer.php');
 
 
 function formulaire_upload() {
+	echo "<br><br><br>";
     echo "<form method='post' action='upload_image.php' enctype='multipart/form-data'>
-              <label for='titre'>Titre : </label><input id='titre' name='titre' type='text' required /><br />
-              <label for='description'>Description : </label><input id='description' name='description' type='text' required /><br />
+              <label class='label_formulaire' for='titre'>Titre : </label><input id='titre' name='titre' type='text' required /><br />
+              <label class='label_formulaire' for='description'>Description : </label><input id='description' name='description' type='text' required /><br />
               <input type='file' name='the_image' /> <br />
-              <label for='titre'>Mots-clé : </label><input type='texte' placeholder='Taper vos mot-clés séparé par une virgule' style='width: 600px;' name ='mot_cle' required /><br /><br />
+              <label class='label_formulaire' for='titre'>Mots-clé : </label><input type='texte' placeholder='Taper vos mot-clés séparé par une virgule' style='width: 600px;' name ='mot_cle' required /><br /><br />
               <input type='submit' name='envoyer' value='Envoyer' />
     </form>";
 }

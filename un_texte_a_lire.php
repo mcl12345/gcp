@@ -18,6 +18,11 @@ while ($row = $stmt->fetch()) {
     echo "<strong>Titre : </strong>" . $row["titre"] . "<br />";
     echo "<strong>Texte : </strong>" . $row["texte"] . "<br />";
     echo "<br /><br /><br />";
+    echo "<form action='pdf.php' method='post'>
+      <input type='hidden' name='titre' value='" . $row["titre"] . "' />
+      <input type='hidden' name='texte' value='" . $row["texte"] . "' />
+      <input type='submit' value='Télécharger en PDF' />
+    </form>";
 }
 echo '</div></div>';
 

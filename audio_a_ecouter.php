@@ -13,17 +13,22 @@ $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
 $stmt = $pdo->prepare("SELECT * FROM audio");
 $stmt->execute();
 
+  echo "<br><br><br>";
   echo "<div class='row'>
         <div class='col-lg-4'></div>
         <div class='col-lg-4'>
             <div class='container'>";
 
-   while ($row = $stmt->fetch()) {
-     $is_audio = true;
+while ($row = $stmt->fetch()) {
 
-      if($row["valide"] == 1) {
+    if($row["valide"] == 1) {
+          $is_audio = true;
           $motscle = "";
           $motcle_empty = true;
+          if($_COOKIE["the_role"] == "administrateur") {
+              echo "<form action='audio_a_ecouter.php' method='get'>";
+              echo "Cocher pour supprimer : <input type='radio' name='id_audio' value='".$row["id"]."' /><br />";
+          }
           echo "<strong>Titre : </strong>" . $row["titre"] . "<br /><br />";
           echo "<strong>Description : </strong>" . $row["description"] . "<br />";
           echo '<strong>Audio : </strong><br /><audio width="400" height="222" controls="controls">
@@ -45,19 +50,38 @@ $stmt->execute();
          }
 
          echo "<br /><br /><br />";
-      }
     }
-
-    echo "</div></div></div>";
+}
 
 if(!$is_audio) {
-      echo "<div class='row'>
-        <div class='col-lg-4'></div>
-        <div class='col-lg-4'>
-            <div class='container'>";
-            echo "Il n'existe pas encore d'audio";
-            echo "</div></div></div><br /><br />";
+    echo "Il n'existe pas encore de fichier audio";
 }
+
+if($_COOKIE["the_role"] == "administrateur" && $is_audio) {
+    echo "<input type='submit' value='Supprimer' />
+    </form>";
+}
+if(isset($_GET["id_audio"])) {
+    // Suppression du fichier audio
+    $stmt_ = $pdo->prepare("SELECT * FROM audio WHERE id = ?");
+    $stmt_->execute(array($_GET["id_audio"]));
+    while($row = $stmt_->fetch()) {
+        $position = stripos($row["audioURL"], "upload_audio/");
+        $delete_audio = substr($row["audioURL"], $position, strlen($row["audioURL"])-$position);
+        unlink($delete_audio);
+    }
+
+    // Suppression du fichier audio de la bdd
+    $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
+    $stmt_ = $pdo->prepare("DELETE FROM audio WHERE id = ?");
+    $stmt_->execute(array($_GET["id_audio"]));
+
+    // Suppression des motscle
+    $_stmt_ = $pdo->prepare("DELETE FROM motcle WHERE id_media = ? AND type_media = 3");
+    $_stmt_->execute(array($_GET["id_audio"]));
+}
+
+echo "</div></div></div>";
 
 echo footer();
 

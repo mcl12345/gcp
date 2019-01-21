@@ -24,6 +24,13 @@ echo '
       <script src="js/main.js"></script><!-- pour la FAQ -->
       <script src="js/modernizr.js"></script><!-- pour la FAQ -->';
   }
+  if(basename($_SERVER['PHP_SELF']) == "contact_nous.php")  {
+	  echo "
+	  <link href='//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css' rel='stylesheet' id='bootstrap-css'>
+	  <script src='//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'></script>
+	  <script src='//code.jquery.com/jquery-1.11.1.min.js'></script>";
+  }
+
 echo '
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -35,7 +42,7 @@ echo '
     <!--<div class="navbar-header">
       <a class="navbar-brand" href="index.php">Plateforme sur la Basilique de Saint-Denis</a>
     </div>-->
-    <ul class="nav navbar-nav">';
+    <ul class="nav navbar-nav mycolor">';
     if(basename($_SERVER['PHP_SELF']) == "index.php")  {
         echo '<li class="active">';
     } else {
@@ -103,7 +110,11 @@ echo '
       </li>
       ';
   } else {
-
+    echo
+      '<li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Personnalités
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">';
       if(basename($_SERVER['PHP_SELF']) == "personnalites.php")  {
           echo '<li class="active">';
       } else {
@@ -111,6 +122,14 @@ echo '
       }
       echo '<a href="personnalites.php?page=1">Personnalités</a></li>';
 
+      if(basename($_SERVER['PHP_SELF']) == "rois.php")  {
+          echo '<li class="active">';
+      } else {
+          echo '<li>';
+      }
+      echo '<a href="rois.php">Rois</a></li>';
+      echo '</ul>
+      </li>';
     }
 
     if($_COOKIE["the_username"]) {
@@ -288,6 +307,15 @@ echo '
       echo '<a href="videos_a_visualiser.php">Videos à lire</a></li>';
     }
 
+    if($_COOKIE["the_username"]) {
+        if(basename($_SERVER['PHP_SELF']) == "document.php")  {
+          echo '<li class="active">';
+        } else {
+          echo '<li>';
+        }
+        echo '<a href="document.php">Documents</a></li>';
+    }
+
     echo
           '<li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">A propos de nous
@@ -299,6 +327,12 @@ echo '
               echo '<li>';
           }
           echo '<a href="faq.php">FAQ</a></li>';
+          if(basename($_SERVER['PHP_SELF']) == "contact_nous.php")  {
+              echo '<li class="active">';
+          } else {
+              echo '<li>';
+          }
+          echo '<a href="contact_nous.php">Contact Nous</a></li>';
           if(basename($_SERVER['PHP_SELF']) == "about.php")  {
               echo '<li class="active">';
           } else {
@@ -312,14 +346,6 @@ echo '
           }
           echo '<a href="api_description.php">A propos de l\'API</a></li>';
       echo "</ul></li>";
-      if($_COOKIE["the_username"]) {
-          if(basename($_SERVER['PHP_SELF']) == "document.php")  {
-            echo '<li class="active">';
-          } else {
-            echo '<li>';
-          }
-          echo '<a href="document.php">Documents</a></li>';
-      }
 
     echo '</ul>
     <form class="navbar-form navbar-left" action="search.php" method="get">
@@ -381,10 +407,19 @@ echo '
 
           if(basename($_SERVER['PHP_SELF']) == "logout.php")  {
                 echo '<li class="active">';
-            } else {
+          } else {
+              echo '<li>';
+          }
+          echo '<a href="logout.php"><span class="glyphicon glyphicon-log-in"></span> Déconnexion</a></li>';
+          if($_COOKIE["the_role"] == "administrateur") {
+              if(basename($_SERVER['PHP_SELF']) == "contact_message.php")  {
+                echo '<li class="active">';
+              } else {
                 echo '<li>';
-            }
-            echo '<a href="logout.php"><span class="glyphicon glyphicon-log-in"></span> Déconnexion</a></li>';
+              }
+              echo '<a href="contact_message.php">Contacts messages</a></li>';
+          }
+
       echo "</ul></li>";
 
     } else {
@@ -396,7 +431,7 @@ echo '
     echo '</ul>
   </div>
 </nav>
-<div class="container"><img src="img/logo-basilique-st-denis-250.png" /></div>';
+<div class="container-set-logo"><img class="container-set-logo-image" src="img/logo-basilique-st-denis-250.png" /></div>';
 }
 
 ?>

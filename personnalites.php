@@ -5,7 +5,6 @@ include('logo_search_menu.php');
 include('footer.php');
 
 print_LOGO_FORMSEARCH_MENU();
-echo "<div class='row'>";
 
 $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
 $stmt = $pdo->prepare("SELECT * FROM patrimoine_basilique_personnalite");
@@ -20,6 +19,8 @@ $maxi_afficher = 8;
 
 
 
+echo "<div class='row'>";
+echo "<div class='container-set-personnalites'>";
 //while ($row = $stmt->fetch()) {
 
 	//gauche
@@ -34,7 +35,7 @@ $maxi_afficher = 8;
 			$search = $maxi_afficher*$page;
 			$row = $stmt->fetch();
 			for($i=1; $i<=$maxi_afficher; $i++){
-				 echo "<br /><br /><div class='col-lg-6 container-left'>";
+				 echo "<div class='col-lg-6 container-left'>";
 				  if($row['valide']) {
 					  echo "<strong>nom : </strong>" . $row["nom"] . "<br />";
 					  echo "<strong>fonction : </strong>" . $row["fonction"] . "<br />";
@@ -60,7 +61,7 @@ $maxi_afficher = 8;
 			$search = $maxi_afficher*$page;
 			$row = $stmt_id->fetch();
 			for($i=$cid; $i<=$maxi_afficher*$page; $i++){
-				 echo "<br /><br /><div class='col-lg-6 container-left'>";
+				 echo "<div class='col-lg-6 container-left'>";
 				  if($row['valide']) {
 					  echo "<strong>nom : </strong>" . $row["nom"] . "<br />";
 					  echo "<strong>fonction : </strong>" . $row["fonction"] . "<br />";
@@ -135,7 +136,7 @@ $maxi_afficher = 8;
 /*}*/
 
 echo "<br />";
-echo '</div>';
+echo '</div></div>';
 
 //affiche pagination
 

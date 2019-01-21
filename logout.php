@@ -16,10 +16,11 @@ if (isset($_COOKIE["the_username"]) || isset($_COOKIE["the_id"])) {
     setcookie("the_password_encoded", "", time()-3600);
 
     print_LOGO_FORMSEARCH_MENU();
+	echo "<br><br><br>";
     echo "<div class='row'>
             <div class='col-lg-4'></div>
             <div class='col-lg-4'>";
-    echo "Vous vous êtes déconnecté !";
+    echo "<h3>Vous vous êtes déconnecté !</h3>";
     echo '</div></div></div><br /><br/>';
 
     echo footer();
@@ -28,10 +29,13 @@ if (isset($_COOKIE["the_username"]) || isset($_COOKIE["the_id"])) {
     </html>';
 } else {
   print_LOGO_FORMSEARCH_MENU();
+  echo "<br><br><br>";
   echo "<div class='row'>
           <div class='col-lg-4'></div>
           <div class='col-lg-4'>";
+	echo "<h3>";
     echo "Vous êtes déconnecté ! " . $_COOKIE['the_username'];
+	echo "</h3>";
     echo '</div></div></div><br /><br/>';
 
     echo footer();
