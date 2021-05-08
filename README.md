@@ -1,5 +1,7 @@
 # gcp : Gestion et Conduite de Projets
 
+# Plateforme sur la basilique de Saint-Denis :
+
 Il est possible de s'inscrire sur la plateforme http://213.32.90.43/basilique-saint-denis/login.php ou http://213.32.90.43/basilique-saint-denis/register.php<br />
 On peut ajouter des rois depuis l'onglet "Personnalités" > "Ajouter un roi"<br />
 On peut ajouter des réseaux sociaux aux rois depuis l'onglet "Personnalités" > "Ajouter un roi depuis les réseaux sociaux".<br />
