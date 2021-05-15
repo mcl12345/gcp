@@ -39,8 +39,8 @@ while ($row = $stmt->fetch()) {
         echo "<strong>Durée du reigne : </strong>" . $row["dureeReigne"] . "<br />";
         echo "<strong>Dynastie : </strong>" . $row["dynastie"] . "<br />";
         echo "<strong>Description : </strong>" . $row["description"] . "<br />";
-		echo "<strong>Photo : </strong><a target='_blank' href='".$row["photo"]."'><br/>";
-        echo "<img src='" . $row["photo"] . "' width='250' height='250' /></a><br /><br /><br /><br />";
+		echo "<strong>Photo : </strong><a target='_blank' href='https://basiliquesaintdenis.ovh/basilique-saint-denis".$row["photo"]."'><br/>";
+        echo "<img src='https://basiliquesaintdenis.ovh/basilique-saint-denis" . $row["photo"] . "' width='250' height='250' /></a><br /><br /><br /><br />";
 
         echo "</div></div>";
 

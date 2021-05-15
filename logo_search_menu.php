@@ -555,7 +555,7 @@ echo '
                   <li><a class="dropdown-item" href="personnalite_a_valider.php">Personnalité à valider</a></li>
                   <li><a class="dropdown-item" href="personnalite_a_modifier.php">Personnalité à modifier</a></li>
                   <li><a class="dropdown-item" href="personnalites.php?page=1">Personnalités</a></li>
-                  <li><a class="dropdown-item" href="upload_roi.php">Ajouter à un roi des réseaux sociaux</a></li>
+                  <li><a class="dropdown-item" href="upload_roi.php">Ajouter un roi</a></li>
                   <li><a class="dropdown-item" href="select_roi_representation.php">Ajouter à un roi des représentations</a></li>
                   <li><a class="dropdown-item" href="rois.php">Rois</a></li>';
            } else { 
