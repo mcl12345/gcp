@@ -8,8 +8,8 @@ print_LOGO_FORMSEARCH_MENU();
 echo "<div class='row'>
           <div class='col-lg-4'></div>
           <div class='col-lg-4 rois'>";
-echo "<h2>Tous les rois : </h2>";
-echo '</div></div></div>';
+echo "<h2>Les rois : </h2>";
+echo '</div></div>';
 echo '<br><br>';
 
 $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
@@ -36,7 +36,7 @@ while ($row = $stmt->fetch()) {
            echo "Cocher pour explorer : <input type='radio' id='id_roi' name='id_roi' value='".$row["idRoi"]."' /><br />";
         }
         echo "<strong>Nom : </strong>" . $row["nomRoi"] . "<br />";
-        echo "<strong>Durée du reigne : </strong>" . $row["dureeReigne"] . "<br />";
+        echo "<strong>Durée du reigne : </strong>" . $row["dureeReigne"] . " an(s)<br />";
         echo "<strong>Dynastie : </strong>" . $row["dynastie"] . "<br />";
         echo "<strong>Description : </strong>" . $row["description"] . "<br />";
 		echo "<strong>Photo : </strong><a target='_blank' href='https://basiliquesaintdenis.ovh/basilique-saint-denis".$row["photo"]."'><br/>";
