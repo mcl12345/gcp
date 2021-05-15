@@ -5,7 +5,8 @@
 }
 .container-pagination{
     text-align: center;
-    /*width: auto;*/
+    margin-left: 45%;
+}
 
 }
 .container-set-texts{
@@ -56,4 +57,18 @@
 .container-set-contact-nous-text{
     margin-top: 400px;
     margin-left: 500px;
+}
+.container-footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+
+}
+/*auto a ecouter*/
+.container-set-auto{
+    width: 1140px;
+    height: auto;
+    float:left;
+    /*text-align: center;*/
+    margin-left: 400px;
 }
