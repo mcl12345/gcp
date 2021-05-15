@@ -8,7 +8,7 @@ echo '
   <title>Plateforme sur la Basilique de Saint-Denis</title>
   <meta charset="utf-8">
   <meta name="description" content="Plateforme sur la Basilique de Saint-Denis">
-  <meta name="keywords" content="cathédrale, jésus, Christ, basilique, stalle, Vierge-Marie, vitraux, cercueil, vitrail, nef, choeur">
+  <meta name="keywords" content="cathédrale, Jésus, Christ, basilique, stalle, Vierge-Marie, vitraux, cercueil, vitrail, nef, choeur">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/index.css">
@@ -431,6 +431,7 @@ echo '
 </nav>-->
 <link href="bootstrap5.css" rel="stylesheet" crossorigin="anonymous">
 <script src="bootstrap5.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="css/index.css">
 
 <style type="text/css">
 
@@ -529,13 +530,13 @@ echo '
 
 </head>
 <body>
-
+<div id="mybody">
 <div class="container">
 
 <!-- ============= COMPONENT ============== -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
  <div class="container-fluid">
- 	 <a class="navbar-brand" href="#">&nbsp;&nbsp;&nbsp;Site sur la Basilique de Saint-Denis</a>
+ 	 <a class="navbar-brand titre" href="https://basiliquesaintdenis.ovh/basilique-saint-denis/">&nbsp;&nbsp;&nbsp;Site sur la Basilique de Saint-Denis</a>
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"  aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
