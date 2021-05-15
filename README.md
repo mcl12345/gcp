@@ -10,8 +10,8 @@ On peut ajouter des commentaires aux rois depuis l'onglet "Personnalités" > "Af
 
 Après il est possible d'avoir accès à l'API via https://basiliquesaintdenis.ovh/basilique-saint-denis/api.php<br />
 Pour les commentaires : https://basiliquesaintdenis.ovh/basilique-saint-denis/api.php?commentaire=true<br />
-Pour l'association de Représentations de Rois dans le monde : https://basiliquesaintdenis.ovh/basilique-saint-denis/api.php?associationrr=true<br />
-Pour la représentation : https://basiliquesaintdenis.ovh/basilique-saint-denis/api.php?representation=true<br />
+Pour l'association de représentations de rois dans le monde : https://basiliquesaintdenis.ovh/basilique-saint-denis/api.php?associationrr=true<br />
+Pour la représentation de rois dans le monde : https://basiliquesaintdenis.ovh/basilique-saint-denis/api.php?representation=true<br />
 Pour les rois : https://basiliquesaintdenis.ovh/basilique-saint-denis/api.php?roi=true<br /><br />
 
 Comment récupérer des images ( vidéos, textes, fichiers audio, des rois, des chapelles, des personnalités royales ) <br />en PHP à partir du code JSON suivant avec l'URL suivante : "https://basiliquesaintdenis.ovh/basilique-saint-denis/api.php?image=true"
