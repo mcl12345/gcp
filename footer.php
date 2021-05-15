@@ -1,7 +1,10 @@
 <?php
 function footer() {
 
-  return '<!-- Footer -->
+  return '
+  </div>
+  <div id="footer" style="height: 500px;"></div>
+  <!-- Footer -->
   <footer class="footer-top page-footer font-small special-color-dark pt-4 bg-1" style="background-color: #303030; color: #ffffff;">
 
       <!-- Footer Elements -->
@@ -32,13 +35,22 @@ function footer() {
       </div>
       <!-- Footer Elements -->
 
-      <!-- Copyright -->
-      <div class="footer-copyright text-center py-3">© 2018 Copyright:
-        <a class="text-primary" target="_blank" href="http://www.saint-denis-basilique.fr/"> saint-denis-basilique.fr</a>
+      <!-- copyleft -->
+      <div class="footer-copyright text-center py-3">open-source : <a href="https://github.com/mcl12345/gcp" target="blank_" >https://github.com/mcl12345/gcp</a> '. date("Y").' - Official website : <a class="text-primary" target="_blank" href="http://www.saint-denis-basilique.fr/"> saint-denis-basilique.fr</a>
       </div>
       <!-- Copyright -->
 
     </footer>
+    <script>
+    if(document.getElementById("mybody").offsetHeight > 600) {
+      $( "#footer" ).height( ($( window ).height()-document.getElementById("mybody").offsetHeight) );
+    } else {
+      $( "#footer" ).height( 500);
+    }
+    $( window ).resize(function() {
+      $( "#footer" ).height( ($( window ).height()) );
+    });
+    </script>
   <!-- Footer -->';
 }
 ?>
