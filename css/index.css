@@ -16,6 +16,21 @@
     margin-left: 300px;
 }
 
+.decalage_images {
+    width: 300px;
+    margin-left: 200px;
+}
+
+@media (min-width:1200px){
+    .decalage_images {
+        width: 200px;
+        margin-left: 100px;
+    }
+}
 .navbar-inverse .navbar-nav>li>a {
 	color: #FFFFFF;
+}
+
+.titre {
+    margin-top: 15px;   
 }
