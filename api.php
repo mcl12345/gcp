@@ -285,24 +285,29 @@ if(isset($_GET['image']))  {
     $stmt->execute();
     $images = array();
     while ($row = $stmt->fetch()) {
-      for($i = 0 ; $i<sizeof($row); $i++) {
-        unset($row[$i]);
-      }
+        for($i = 0 ; $i<sizeof($row); $i++) {
+            unset($row[$i]);
+        }
 
-      $motcle_empty = true;
-      $stmt_ = $pdo->prepare("SELECT * FROM motcle WHERE id_media = ? AND type_media = 2");
-      $stmt_->execute(array($row["id"]));
-      while ($ligne = $stmt_->fetch()) {
-          $motcle_empty = false;
-          $motscle .= " " . $ligne["mots_cle"];
-      }
-      if(!$motcle_empty) {
-          $row["mots_cle"] = $motscle;
-      }
+        $motcle_empty = true;
+        $stmt_ = $pdo->prepare("SELECT * FROM motcle WHERE id_media = ? AND type_media = 2");
+        $stmt_->execute(array($row["id"]));
+        while ($ligne = $stmt_->fetch()) {
+            $motcle_empty = false;
+            $motscle .= " " . $ligne["mots_cle"];
+        }
+        if(!$motcle_empty) {
+            $row["mots_cle"] = $motscle;
+        }
+        foreach($row as $key => $value) {
+            if($key === "imageURL") {
+                $row[$key] = "https://basiliquesaintdenis.ovh/basilique-saint-denis" . $row[$key];
+            }
+        }
+        if($row["valide"] == 1) {
+            $images[] = $row;
+        }
 
-      if($row["valide"] == 1) {
-          $images[] = $row;
-       }
     }
     $images_ = array("images" => $images);
     echo json_encode($images_, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK);
