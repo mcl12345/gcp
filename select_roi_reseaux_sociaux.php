@@ -22,7 +22,7 @@ while ($row = $stmt->fetch()) {
         echo "<strong>Durée du reigne : </strong>" . $row["dureeReigne"] . "<br />";
         echo "<strong>Dynastie : </strong>" . $row["dynastie"] . "<br />";
         echo "<strong>Description : </strong>" . $row["date_deces"] . "<br />";
-        echo "<strong>photo : </strong><img src='" . $row["photo"] . "' width='250' height='250' /><br /><br /><br /><br />";
+        echo "<strong>photo : </strong><img src='https://basiliquesaintdenis.ovh/basilique-saint-denis/" . $row["photo"] . "' width='250' height='250' /><br /><br /><br /><br />";
 }
 if($is_roi) {
   echo "<input value='Valider' type='submit' />";
