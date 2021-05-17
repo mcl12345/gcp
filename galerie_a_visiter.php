@@ -24,7 +24,7 @@ while ($row = $stmt->fetch()) {
       echo "<strong>Titre : </strong>" . $row["titre"] . "<br />";
       echo "<strong>Description : </strong>" . $row["description"] . "<br />";
       if($row["imageURL"] != null) {
-          echo "<strong>image : </strong><a target='_blank' href='".$row["imageURL"]."'><img src='" . $row["imageURL"] . "' width='250px' height='250px' /></a><br />";
+          echo "<strong>image : </strong><a target='_blank' href='https://basiliquesaintdenis.ovh/basilique-saint-denis".$row["imageURL"]."'><img src='https://basiliquesaintdenis.ovh/basilique-saint-denis" . $row["imageURL"] . "' width='250px' height='250px' /></a><br />";
       }
 
 
