@@ -25,7 +25,7 @@ on a toutes les chapelles.<br /><br />
 si on tape <a target='_blank' href='https://basiliquesaintdenis.ovh/basilique-saint-denis/api.php?id_chapelle=5'>https://basiliquesaintdenis.ovh/basilique-saint-denis/api.php?id_chapelle=5</a><br />
 on a la chapelle par son id<br /><br />
 
-L'API est aussi disponible pour les textes, les images, les sons, et les vidéos.<br /><br />
+L'API est aussi disponible pour les textes (api.php?texte=true) , les images (api.php?image=true), les sons (api.php?audio=true), et les vidéos (api.php?video=true).<br /><br />
 
 A utiliser avec Firefox qui permet de présenter les données JSON de façon indenté.<br /><br />
 
