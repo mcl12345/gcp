@@ -1,3 +1,5 @@
+
+
 .container-left{
     text-align: center;
     height: 450px;
@@ -42,8 +44,8 @@
 /*logo*/
 .container-set-logo{
     /* background-color: cyan; */
-    width: 160px;
-    float: left;
+    /*width: 160px;
+    float: left;*/
 }
 
 .container-set-logo-image{

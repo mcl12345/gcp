@@ -34,3 +34,7 @@
 .titre {
     margin-top: 15px;   
 }
+
+.container {
+    width: 100%;
+}

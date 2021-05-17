@@ -2,7 +2,9 @@
 include('logo_search_menu.php');
 include('footer.php');
 print_LOGO_FORMSEARCH_MENU();
-echo '<div class="container">
+echo '
+<br /><br />
+<div class="container">
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
