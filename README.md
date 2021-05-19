@@ -14,6 +14,8 @@ Pour l'association de représentations de rois dans le monde : https://basilique
 Pour la représentation de rois dans le monde : https://basiliquesaintdenis.ovh/basilique-saint-denis/api.php?representation=true<br />
 Pour les rois : https://basiliquesaintdenis.ovh/basilique-saint-denis/api.php?roi=true<br /><br />
 
+L'API est aussi disponible pour les textes (api.php?texte=true) , les images (api.php?image=true), les sons (api.php?audio=true), et les vidéos (api.php?video=true).
+
 Comment récupérer des images ( vidéos, textes, fichiers audio, des rois, des chapelles, des personnalités royales ) <br />en PHP à partir du code JSON suivant avec l'URL suivante : "https://basiliquesaintdenis.ovh/basilique-saint-denis/api.php?image=true"
 <br />
 JSON structure :
