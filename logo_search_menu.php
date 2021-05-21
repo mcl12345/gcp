@@ -236,6 +236,7 @@ echo '
        echo '
       </ul></li>'; 
     echo '
+    <li><a class="dropdown-item" href="faq.php">FAQ</a></li>
 		    </ul>
 		</li>
 	</ul>

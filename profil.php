@@ -26,12 +26,17 @@ echo "<div class='row'>
             <label class='label_formulaire' for='prenom'>Prénom : </label><input id='prenom' name='prenom' value='".$prenom."' type='text' /><br />
             <label class='label_formulaire' for='email'>Email : </label><input id='email' name='email' value='".$email."' size='30' type='text' /><br />
             <input value='Confirmer' type='submit' />
-    </form><br />";
+    </form><br /><br />
+    <form method='post' action='delete_account.php'>
+    <input id='nom' name='nom' value='".$nom."' type='hidden' /><br />
+            <input id='prenom' name='prenom' value='".$prenom."' type='hidden' /><br />
+            <input id='email' name='email' value='".$email."' size='30' type='hidden' /><br />
+    <button type='submit'>Supprimer mon compte</button></form>";
 
 if (isset($_POST["nom"]) && isset($_POST["prenom"]) && isset($_POST["email"])) {
   $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
 
-  // Va chercher la personnalité :
+  // Va chercher l'utilisateur' :
   $stmt = $pdo->prepare("INSERT INTO profil ( nom, prenom, email, id_user) VALUES (:nom, :prenom, :email, :id_user)");
   $stmt->bindParam(':nom', $_POST['nom']);
   $stmt->bindParam(':prenom', $_POST['prenom']);

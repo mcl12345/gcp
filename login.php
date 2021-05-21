@@ -17,41 +17,43 @@ function formulaire_login_HTML() {
 
 
 // Ici on vérifie si l'utilisateur s'est correctement connecté
+$bool_wrong_user = true;
 if( !empty($_POST["username"]) &&
     !empty($_POST["plain_password"])) {
 
-      // On sauvegarde dans des variables :
-      $my_username = $_POST['username'];
-      $my_password_encoded = md5($_POST['plain_password']);
-      $my_email = "";
-      $my_role = "";
+        // On sauvegarde dans des variables :
+        $my_username = $_POST['username'];
+        $my_password_encoded = md5($_POST['plain_password']);
+        $my_email = "";
+        $my_role = "";
 
-      // Verification du bon password selon l'username donné
-      $bool_verification_password = false;
-      try {
-          $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
-          $stmt = $pdo->prepare("SELECT * FROM user where username = ?");
-          if ($stmt->execute(array($my_username))) {
-            while ($row = $stmt->fetch()) {
-              if($row['password_encoded'] == $my_password_encoded) {
-                  $bool_verification_password = true;
-                  $my_id = $row['id'];
-                  $my_email = $row['email'];
-                  $my_role = $row['role'];
-              }
+        // Verification du bon password selon l'username donné
+        $bool_verification_password = false;
+        try {
+            $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
+            $stmt = $pdo->prepare("SELECT * FROM user where username = ?");
+            if ($stmt->execute(array($my_username))) {
+                while ($row = $stmt->fetch()) {
+                    $bool_wrong_user = false;
+                    if($row['password_encoded'] == $my_password_encoded) {
+                        $bool_verification_password = true;
+                        $my_id = $row['id'];
+                        $my_email = $row['email'];
+                        $my_role = $row['role'];
+                    }
+                }
             }
-          }
-      } catch(PDOException $e) {
-        print_LOGO_FORMSEARCH_MENU();
-        echo "<div class='row'>
+        } catch(PDOException $e) {
+            print_LOGO_FORMSEARCH_MENU();
+            echo "<div class='row'>
                   <div class='col-lg-4'></div>
                   <div class='col-lg-4'>";
-          echo $sql . "<br>" . $e->getMessage();
-          echo '</div></div></div>';
-          echo footer();
-          echo '</body>
+            echo $sql . "</ br>a" . $e->getMessage();
+            echo '</div></div></div>';
+            echo footer();
+            echo '</body>
           </html>';
-      }
+        }
 
       if( $bool_verification_password) {
           // Insertion COOKIES
@@ -71,12 +73,23 @@ if( !empty($_POST["username"]) &&
           echo footer();
           echo '</body>
           </html>';*/
-      } else {
+      } else if (!$bool_wrong_user) {
         print_LOGO_FORMSEARCH_MENU();
         echo "<div class='row'>
                 <div class='col-lg-4'></div>
                 <div class='col-lg-4'>";
             echo "Mauvais password<br />";
+            formulaire_login_HTML();
+            echo '</div></div></div><br /><br />';
+            echo footer();
+            echo '</body>
+            </html>';
+      } else {
+        print_LOGO_FORMSEARCH_MENU();
+        echo "<div class='row'>
+                <div class='col-lg-4'></div>
+                <div class='col-lg-4'>";
+            echo "Utilisateur inconnu<br />";
             formulaire_login_HTML();
             echo '</div></div></div><br /><br />';
             echo footer();

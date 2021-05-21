@@ -13,7 +13,6 @@ echo '<header>
 		<li><a class="selected" href="#basics">Basics</a></li>
 		<li><a href="#mobile">Mobile</a></li>
 		<li><a href="#account">Account</a></li>
-		<li><a href="#privacy">Privacy</a></li>
 
 	</ul> <!-- cd-faq-categories -->
 
@@ -24,21 +23,7 @@ echo '<header>
 			<li>
 				<a class="cd-faq-trigger" href="#0">Comment puis-je m’inscrire ?</a>
 				<div class="cd-faq-content">
-					<p>Cliquez sur l’onglet « connexion » en haut à droite du site. Vous aurez ensuite le choix entre deux options.  « J’ai déjà un compte » et « nouvel utilisateur ». Sélectionnez « nouvel utilisateur ». Remplissez le formulaire qui apparaitra sur votre écran et suivez les étapes.</p>
-				</div> <!-- cd-faq-content -->
-			</li>
-
-			<li>
-				<a class="cd-faq-trigger" href="#0">Puis-je supprimer un post ?</a>
-				<div class="cd-faq-content">
-					<p>Pour supprimer un post, vous devez cliquer sur l’onglet « supprimer » à droite de votre post. Après quoi une fenêtre apparaîtra vous indiquant que votre demande de suppression a été envoyée à l’administrateur du site. Votre post sera supprimé dans les 24H maximum après votre demande.</p>
-				</div> <!-- cd-faq-content -->
-			</li>
-
-			<li>
-				<a class="cd-faq-trigger" href="#0">Comment fonctionnent les avis ?</a>
-				<div class="cd-faq-content">
-					<p>Vous pouvez laisser un commentaire dans l’endroit prévu à cet effet sur les rois uniquement, en cochant le bouton "radio" et en faisant "Explorer".</p>
+					<p>Cliquez sur le lien « Enregistrement » en haut à droite du site.</p>
 				</div> <!-- cd-faq-content -->
 			</li>
 
@@ -52,7 +37,7 @@ echo '<header>
 			<li>
 				<a class="cd-faq-trigger" href="#0">Comment lire un texte, une image , de l\'audio ou de la vidéo sur la plateforme </a>
 				<div class="cd-faq-content">
-					<p>Il suffit d\'aller sur les onglets de visionnage du média en question en haut à gauche de l\'écran et au milieu.</p>
+					<p>Il suffit d\'aller sur les onglets de visionnage du média en question en haut à gauche de l\'écran.</p>
 				</div> <!-- cd-faq-content -->
 			</li>
 
@@ -70,7 +55,7 @@ echo '<header>
 			<li>
 				<a class="cd-faq-trigger" href="#0">Comment télécharger des fichiers depuis mon téléphone ou ma tablette ?</a>
 				<div class="cd-faq-content">
-					<p>Notre site étant responsive, vous pouvez directement télécharger vos fichiers via votre tablette ou votre smartphone ( en format ogg ou webm ). Il vous suffit de cliquer sur le bouton « télécharger ». </p>
+					<p>Notre site étant responsive, vous pouvez directement télécharger vos fichiers via votre tablette ou votre smartphone ( en format ogg ( pour l\'audio ) ou webm ( pour les vidéos ) ou jpg ( pour les images ) ). Il vous suffit de cliquer sur le bouton « télécharger ». </p>
 				</div> <!-- cd-faq-content -->
 			</li>
 		</ul> <!-- cd-faq-group -->
@@ -80,36 +65,25 @@ echo '<header>
 			<li>
 				<a class="cd-faq-trigger" href="#0">Comment puis-je supprimer mon compte ?</a>
 				<div class="cd-faq-content">
-					<p>Connectez-vous à votre compte puis, cliquez sur l’onglet « paramètres ». Ensuite, cliquez sur « sécurité » et « supprimer mon compte ». Suivez les étapes.</p>
+					<p>Connectez-vous à votre compte puis, cliquez sur l’onglet « profil ». Ensuite, cliquez sur « Supprimer mon compte ».</p>
 				</div> <!-- cd-faq-content -->
 			</li>
 
 			<li>
 				<a class="cd-faq-trigger" href="#0">Comment modifier les paramètres de mon compte ?</a>
 				<div class="cd-faq-content">
-					<p>Connectez-vous à votre compte et cliquez sur « paramètres personnels ». Vous pourrez ainsi modifier toutes vos informations personnelles et autres. </p>
+					<p>Connectez-vous à votre compte et cliquez sur « profil ». Vous pourrez ainsi modifier toutes vos informations personnelles. </p>
 				</div> <!-- cd-faq-content -->
 			</li>
 
 			<li>
 				<a class="cd-faq-trigger" href="#0">J’ai oublié mon mot de passe. Comment puis-je accéder à mon compte ?</a>
 				<div class="cd-faq-content">
-					<p>Accédez à la page de connexion et cliquez sur « je n’arrive pas à me connecter ».<br />
-					Entrez votre adresse email et cliquez sur « suivant ». Sélectionnez ensuite un mode de vérification et cliquez sur « suivant ».<br />
-					Laissez-vous guider.</p>
+					<p>Il vous faut recréer un compte.</p>
 				</div> <!-- cd-faq-content -->
 			</li>
 		</ul> <!-- cd-faq-group -->
 
-		<ul id="privacy" class="cd-faq-group">
-			<li class="cd-faq-title"><h2>Privacy</h2></li>
-			<li>
-				<a class="cd-faq-trigger" href="#0">Comment puis-je accéder aux données de mon compte ?</a>
-				<div class="cd-faq-content">
-					<p>Vous pouvez accéder aux données de votre compte à tout moment et nous assurons la sécurité de celles-ci. Aucune de vos informations personnelles ne seront réutilisées à des fins commerciales, personnelles ou autres.</p>
-				</div> <!-- cd-faq-content -->
-			</li>
-		</ul> <!-- cd-faq-group -->
 
 		<ul id="delivery" class="cd-faq-group">
 		</ul> <!-- cd-faq-group -->
