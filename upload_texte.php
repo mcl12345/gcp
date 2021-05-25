@@ -24,7 +24,7 @@ if(isset($_POST['titre']) && isset($_POST['texte_upload'])) {
 
   $stmt = $pdo->prepare("INSERT INTO historique_texte (id_texte, id_user)  VALUES (:id_texte, :id_user)");
   $stmt->bindParam(':id_texte', $id_texte);
-  $stmt->bindParam(':id_user', $_COOKIE["the_id"]);
+  $stmt->bindParam(':id_user', $_SESSION["the_id"]);
   $stmt->execute();
 
   print_LOGO_FORMSEARCH_MENU();

@@ -11,7 +11,7 @@ function formulaire_upload() {
             <div class='col-lg-4'>
                 <div class='container'>";
 
-    if(isset($_COOKIE["the_id"])) {
+    if(isset($_SESSION["the_id"])) {
 
       echo "<form action='upload_roi.php' method='post' enctype='multipart/form-data'>
               <label class='label_formulaire' for='nom'>Nom : </label><input type='text' id='nom' name='nom' placeholder='Louis XIV' required /><br />
@@ -70,7 +70,6 @@ if( isset($_POST["nom"]) && isset($_POST["description"]) && isset($_POST["duree_
            $id_roi = $pdo->lastInsertId();
 
            echo "id roi : " . $id_roi;
-
 
            print_LOGO_FORMSEARCH_MENU();
            echo "<div class='row'>

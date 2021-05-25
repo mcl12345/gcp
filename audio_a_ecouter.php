@@ -25,7 +25,7 @@ while ($row = $stmt->fetch()) {
           $is_audio = true;
           $motscle = "";
           $motcle_empty = true;
-          if($_COOKIE["the_role"] == "administrateur") {
+          if($_SESSION["the_role"] == "administrateur") {
               echo "<form action='audio_a_ecouter.php' method='get'>";
               echo "Cocher pour supprimer : <input type='radio' name='id_audio' value='".$row["id"]."' /><br />";
           }
@@ -57,7 +57,7 @@ if(!$is_audio) {
     echo "Il n'existe pas encore de fichier audio";
 }
 
-if($_COOKIE["the_role"] == "administrateur" && $is_audio) {
+if($_SESSION["the_role"] == "administrateur" && $is_audio) {
     echo "<input type='submit' value='Supprimer' />
     </form>";
 }

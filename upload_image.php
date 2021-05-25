@@ -68,7 +68,7 @@ if(isset($_FILES['the_image']['name'])) {
 
            $stmt = $pdo->prepare("INSERT INTO historique_image (id_image, id_user)  VALUES (:id_image, :id_user)");
            $stmt->bindParam(':id_image', $id_media);
-           $stmt->bindParam(':id_user', $_COOKIE["the_id"]);
+           $stmt->bindParam(':id_user', $_SESSION["the_id"]);
            $stmt->execute();
 
             print_LOGO_FORMSEARCH_MENU();

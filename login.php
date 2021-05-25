@@ -4,7 +4,6 @@ include("connection_bdd.php");
 include('logo_search_menu.php');
 include('footer.php');
 
-
 function formulaire_login_HTML() {
 	echo "<br><br><br>";
     echo "<form method='post' action='login.php'>
@@ -57,11 +56,16 @@ if( !empty($_POST["username"]) &&
 
       if( $bool_verification_password) {
           // Insertion COOKIES
-          setcookie("the_id", $my_id);
-          setcookie("the_username", $my_username);
-          setcookie("the_email", $my_email);
-          setcookie("the_password_encoded", $my_password_encoded);
-          setcookie("the_role", $my_role);
+          //setcookie("the_id", $my_id);
+          //setcookie("the_username", $my_username);
+          //setcookie("the_email", $my_email);
+          //setcookie("the_password_encoded", $my_password_encoded);
+          //setcookie("the_role", $my_role);
+          $_SESSION["the_id"] = $my_id;
+          $_SESSION["the_username"] = $my_username;
+          $_SESSION["the_email"] = $my_email;
+          $_SESSION["the_password_encoded"] = $my_password_encoded;
+          $_SESSION["the_role"] = $my_role;
 
           header('Location: login.php');
           /*print_LOGO_FORMSEARCH_MENU();
@@ -97,14 +101,14 @@ if( !empty($_POST["username"]) &&
             </html>';
       }
 }
-else if (isset($_COOKIE['the_username'])) {
+else if (isset($_SESSION['the_username'])) {
     print_LOGO_FORMSEARCH_MENU();
 	echo "<br><br><br>";
     echo "<div class='row'>
             <div class='col-lg-4'></div>
             <div class='col-lg-4'>";
 	echo "<h3>";
-    echo "Bienvenue " . $_COOKIE["the_username"] . " !";
+    echo "Bienvenue " . $_SESSION["the_username"] . " !";
 	echo "</h3>";
     echo '</div></div></div><br /><br />';
     echo footer();

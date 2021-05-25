@@ -17,7 +17,7 @@ echo "<div class='row'>
           <div class='col-lg-4'>";
 
 $has_contact_message = false;
-if($_COOKIE["the_role"] == "administrateur") {
+if($_SESSION["the_role"] == "administrateur") {
     $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
     $stmt = $pdo->prepare("SELECT * FROM contact_nous");
     $stmt->execute();

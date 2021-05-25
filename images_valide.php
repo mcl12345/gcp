@@ -45,7 +45,7 @@ if (isset($_POST["id_image"])) {
 
   // Memorise l' utilisateur qui a validé les medias.
   $stmt = $pdo->prepare("INSERT INTO historique_validation_image (id_user, id_image) VALUES (:id_user, :id_image) ");
-  $stmt->bindParam(':id_user', $_COOKIE["the_id"]);
+  $stmt->bindParam(':id_user', $_SESSION["the_id"]);
   $stmt->bindParam(':id_image', $_POST["id_image"]);
   $stmt->execute();
 }

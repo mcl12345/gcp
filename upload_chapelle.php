@@ -10,7 +10,7 @@ function formulaire_upload() {
         <div class='col-lg-4'>
             <div class='container'>";
 
-    if(isset($_COOKIE["the_id"])) {
+    if(isset($_SESSION["the_id"])) {
 
       echo "<form action='upload_chapelle.php' method='post' enctype='multipart/form-data'>
         <label class='label_formulaire' for='nom'>Nom : </label><input type='text' id='nom' name='nom' required /><br />
@@ -130,7 +130,7 @@ if( isset($_POST["nom"]) && isset($_POST["titre1"]) && isset($_POST["description
 
          $stmt = $pdo->prepare("INSERT INTO historique_chapelle (id_chapelle, id_user)  VALUES (:id_chapelle, :id_user)");
          $stmt->bindParam(':id_chapelle', $id_chapelle);
-         $stmt->bindParam(':id_user', $_COOKIE["the_id"]);
+         $stmt->bindParam(':id_user', $_SESSION["the_id"]);
          $stmt->execute();
 
          print_LOGO_FORMSEARCH_MENU();

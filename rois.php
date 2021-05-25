@@ -32,7 +32,7 @@ while ($row = $stmt->fetch()) {
         <div class='container'>";
 
         $is_roi = true;
-        if($_COOKIE["the_id"]) {
+        if($_SESSION["the_id"]) {
            echo "Cocher pour explorer : <input type='radio' id='id_roi' name='id_roi' value='".$row["idRoi"]."' /><br />";
         }
         echo "<strong>Nom : </strong>" . $row["nomRoi"] . "<br />";
@@ -51,7 +51,7 @@ while ($row = $stmt->fetch()) {
         $i++;
 }
 if($is_roi) {
-  if($_COOKIE["the_id"]) {
+  if($_SESSION["the_id"]) {
     echo "<div class='row'>
           <div class='col-lg-4'></div>
           <div class='col-lg-4'>

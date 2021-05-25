@@ -75,7 +75,7 @@ if(isset($_POST['description']) && isset($_FILES['the_audio']['name'])) {
 
            $stmt = $pdo->prepare("INSERT INTO historique_audio (id_audio, id_user)  VALUES (:id_audio, :id_user)");
            $stmt->bindParam(':id_audio', $id_media);
-           $stmt->bindParam(':id_user', $_COOKIE["the_id"]);
+           $stmt->bindParam(':id_user', $_SESSION["the_id"]);
            $stmt->execute();
 
             print_LOGO_FORMSEARCH_MENU();

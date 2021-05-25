@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 function print_LOGO_FORMSEARCH_MENU() {
 echo '
 <!DOCTYPE html>
@@ -8,7 +10,7 @@ echo '
   <title>Plateforme sur la Basilique de Saint-Denis</title>
   <meta charset="utf-8">
   <meta name="description" content="Plateforme sur la Basilique de Saint-Denis">
-  <meta name="keywords" content="cathédrale, Jésus, Christ, basilique, stalle, Vierge-Marie, vitraux, cercueil, vitrail, nef, choeur">
+  <meta name="keywords" content="cathédrale, basilique, stalle, Saint-Denis, vitraux, cercueil, vitrail, nef, choeur">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/index.css">
@@ -154,7 +156,7 @@ echo '
 			  <li><a class="dropdown-item" href="#">Personnalités »</a>
           <ul class="submenu dropdown-menu">';
            
-           if($_COOKIE["the_username"]) {
+           if($_SESSION["the_username"]) {
              echo '<li><a class="dropdown-item" href="upload_personnalite.php">Upload de personnalité</a></li>
                   <li><a class="dropdown-item" href="personnalite_a_valider.php">Personnalité à valider</a></li>
                   <li><a class="dropdown-item" href="personnalite_a_modifier.php">Personnalité à modifier</a></li>
@@ -171,7 +173,7 @@ echo '
 			      <li><a class="dropdown-item" href="#">Chapelles »</a>
 			  	  <ul class="submenu dropdown-menu">';
            
-          if($_COOKIE["the_username"]) {      
+          if($_SESSION["the_username"]) {      
             echo '<li><a class="dropdown-item" href="upload_chapelle.php">Upload de chapelles</a></li>
                   <li><a class="dropdown-item" href="chapelle_a_valider.php">Chapelles à valider</a></li>
                   <li><a class="dropdown-item" href="chapelles.php">Chapelles</a></li>';
@@ -185,7 +187,7 @@ echo '
 			  	 <ul class="submenu dropdown-menu">
            ';
            
-          if($_COOKIE["the_username"]) {      
+          if($_SESSION["the_username"]) {      
             echo '<li><a class="dropdown-item" href="textes_a_valider.php">Textes à valider</a></li>
                   <li><a class="dropdown-item" href="textes_a_lire.php">Textes à lire</a></li>';
           } else { 
@@ -198,7 +200,7 @@ echo '
           <ul class="submenu dropdown-menu">
           ';
            
-          if($_COOKIE["the_username"]) {      
+          if($_SESSION["the_username"]) {      
             echo '<li><a class="dropdown-item" href="galerie_a_visiter.php">Galerie à visiter</a></li>
             <li><a class="dropdown-item" href="galerie_360.php">Galerie à 360°</a></li>
             <li><a class="dropdown-item" href="image_a_valider.php">Images à valider</a></li>';
@@ -214,7 +216,7 @@ echo '
           <ul class="submenu dropdown-menu">
           ';
           
-            if($_COOKIE["the_username"]) {      
+            if($_SESSION["the_username"]) {      
               echo  '<li><a class="dropdown-item" href="audio_a_valider.php">Audio à valider</a></li>
                       <li><a class="dropdown-item" href="audio_a_ecouter.php">Audio à écouter</a></li>';
             } else { 
@@ -227,7 +229,7 @@ echo '
         <ul class="submenu dropdown-menu">
         ';
         
-       if($_COOKIE["the_username"]) {      
+       if($_SESSION["the_username"]) {      
          echo '<li><a class="dropdown-item" href="videos_a_valider.php">Videos à valider</a></li>
          <li><a class="dropdown-item" href="videos_a_visualiser.php">Videos à lire</a></li>';
        } else { 
@@ -255,7 +257,7 @@ echo '
 	<ul class="navbar-nav ms-auto">
 		<li class="nav-item dropdown">
     ';
-    if($_COOKIE["the_username"]) {      
+    if($_SESSION["the_username"]) {      
       echo '<a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown"> Téléversement</a>
 		    <ul class="dropdown-menu dropdown-menu-right">
           <li><a class="dropdown-item" href="upload_texte.php">Téléversement de texte</a></li>
@@ -269,7 +271,7 @@ echo '
 		    <ul class="dropdown-menu dropdown-menu-right">      
               <li><a class="dropdown-item" href="profil.php"><span class="glyphicon glyphicon-user"></span> Profil</a></li>
               <li><a class="dropdown-item" href="logout.php"><span class="glyphicon glyphicon-log-in"></span> Déconnexion</a></li>';
-              if($_COOKIE["administrateur"]) {      
+              if($_SESSION["administrateur"]) {      
                 echo '<li><a class="dropdown-item" href="contact_message.php">Contacts messages</a></li>';
               }
         echo '

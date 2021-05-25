@@ -11,7 +11,6 @@ echo '<header>
 <section class="cd-faq">
 	<ul class="cd-faq-categories">
 		<li><a class="selected" href="#basics">Basics</a></li>
-		<li><a href="#mobile">Mobile</a></li>
 		<li><a href="#account">Account</a></li>
 
 	</ul> <!-- cd-faq-categories -->
@@ -45,17 +44,6 @@ echo '<header>
 				<a class="cd-faq-trigger" href="#0">Comment puis-je faire un document multimédia ? </a>
 				<div class="cd-faq-content">
 					<p>Il suffit d\'aller sur l\'onglet "Documents", créer un document et ajouter des textes validés, des images validées, de l\'audio validé ou de la vidéo validée ou d\'aller sur un document dejà existant.</p>
-				</div> <!-- cd-faq-content -->
-			</li>
-		</ul> <!-- cd-faq-group -->
-
-		<ul id="mobile" class="cd-faq-group">
-			<li class="cd-faq-title"><h2>Mobile</h2></li>
-
-			<li>
-				<a class="cd-faq-trigger" href="#0">Comment télécharger des fichiers depuis mon téléphone ou ma tablette ?</a>
-				<div class="cd-faq-content">
-					<p>Notre site étant responsive, vous pouvez directement télécharger vos fichiers via votre tablette ou votre smartphone ( en format ogg ( pour l\'audio ) ou webm ( pour les vidéos ) ou jpg ( pour les images ) ). Il vous suffit de cliquer sur le bouton « télécharger ». </p>
 				</div> <!-- cd-faq-content -->
 			</li>
 		</ul> <!-- cd-faq-group -->

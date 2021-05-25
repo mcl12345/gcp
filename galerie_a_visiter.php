@@ -17,7 +17,7 @@ while ($row = $stmt->fetch()) {
   if($row['valide']) {
       $motscle = "";
       $motcle_empty = true;
-      if($_COOKIE["the_role"] == "administrateur") {
+      if($_SESSION["the_role"] == "administrateur") {
           echo "<form action='galerie_a_visiter.php' method='get'>";
           echo "Cocher pour supprimer : <input type='radio' name='id_image' value='".$row["id"]."' /><br />";
       }
@@ -43,7 +43,7 @@ while ($row = $stmt->fetch()) {
 }
 
 echo "<br />";
-if($_COOKIE["the_role"] == "administrateur") {
+if($_SESSION["the_role"] == "administrateur") {
     echo "<input type='submit' value='Supprimer' />
     </form>";
 }

@@ -47,7 +47,7 @@ if (isset($_GET["id_personnalite"])) {
 
     // Memorise l' utilisateur qui a validé la personnalité :
     $stmt = $pdo->prepare("INSERT INTO historique_validation_personnalite (id_user, id_personnalite) VALUES (:id_user, :id_personnalite) ");
-    $stmt->bindParam(':id_user', $_COOKIE["the_id"]);
+    $stmt->bindParam(':id_user', $_SESSION["the_id"]);
     $stmt->bindParam(':id_personnalite', $_POST["id_personnalite"]);
     $stmt->execute();
 

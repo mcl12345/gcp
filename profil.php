@@ -15,7 +15,7 @@ echo "<div class='row'>
 
   // Va chercher la personnalité :
   $stmt = $pdo->prepare("SELECT * FROM profil WHERE id_user = ?");
-  $stmt->execute(array($_COOKIE["the_id"]));
+  $stmt->execute(array($_SESSION["the_id"]));
   while ($row = $stmt->fetch()) {
       $nom = $row["nom"];
       $prenom = $row["prenom"];
@@ -41,7 +41,7 @@ if (isset($_POST["nom"]) && isset($_POST["prenom"]) && isset($_POST["email"])) {
   $stmt->bindParam(':nom', $_POST['nom']);
   $stmt->bindParam(':prenom', $_POST['prenom']);
   $stmt->bindParam(':email', $_POST['email']);
-  $stmt->bindParam(':id_user', $_COOKIE["the_id"]);
+  $stmt->bindParam(':id_user', $_SESSION["the_id"]);
   $stmt->execute();
 
   echo "Le profil de " . $_POST['nom'] . " a été correctement mis-à-jour";

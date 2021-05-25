@@ -28,7 +28,7 @@ while ($row = $stmt->fetch()) {
             //echo "<input type='radio' id='id_roi' name='id_roi' value='".$row["idRoi"]."' />";
             echo "<label for='contenu'>Commentaire : </label><input type='text' id='contenu' name='contenu' /><br />";
             //echo "<label for='date_commentaire'>Date : </label><input type='text' id='date_commentaire' name='date_commentaire' />";
-            echo "<input type='hidden' id='id_user' name='id_user' value='".$_COOKIE["the_id"]."' />";
+            echo "<input type='hidden' id='id_user' name='id_user' value='".$_SESSION["the_id"]."' />";
             echo "<input type='submit' value='Envoyer' />";
         echo '</form><br /><br />';
 
@@ -38,7 +38,7 @@ while ($row = $stmt->fetch()) {
             $_stmt_ = $pdo->prepare("INSERT INTO commentaires (contenu, dateCommentaire, idUtilisateur, idRoi) VALUES (:contenu, :dateCommentaire, :idUtilisateur, :idRoi)");
             $_stmt_->bindParam(':contenu', $_POST["contenu"]);
             $_stmt_->bindParam(':dateCommentaire', $la_date);
-            $_stmt_->bindParam(':idUtilisateur', $_COOKIE["the_id"]);
+            $_stmt_->bindParam(':idUtilisateur', $_SESSION["the_id"]);
             $_stmt_->bindParam(':idRoi', $_GET["id_roi"]);
             $_stmt_->execute();
         }

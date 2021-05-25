@@ -49,7 +49,7 @@ if (isset($_POST["id_audio"])) {
 
     // Memorise l' utilisateur qui a validé les medias.
     $stmt = $pdo->prepare("INSERT INTO historique_validation_audio (id_user, id_audio) VALUES (:id_user, :id_audio) ");
-    $stmt->bindParam(':id_user', $_COOKIE["the_id"]);
+    $stmt->bindParam(':id_user', $_SESSION["the_id"]);
     $stmt->bindParam(':id_audio', $_POST["id_audio"]);
     $stmt->execute();
 }

@@ -54,7 +54,7 @@ if (isset($_POST["id_texte"])) {
 
   // Memorise l' utilisateur qui a validé les medias.
   $stmt = $pdo->prepare("INSERT INTO historique_validation_texte (id_user, id_texte) VALUES (:id_user, :id_texte) ");
-  $stmt->bindParam(':id_user', $_COOKIE["the_id"]);
+  $stmt->bindParam(':id_user', $_SESSION["the_id"]);
   $stmt->bindParam(':id_texte', $_POST["id_texte"]);
   $stmt->execute();
 }

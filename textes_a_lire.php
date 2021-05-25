@@ -16,7 +16,7 @@ $is_texte = false;
 while($row = $stmt->fetch()) {
 		if($row["valide"] == 1) {
 				$is_texte = true;
-				if($_COOKIE["the_role"] == "administrateur") {          
+				if($_SESSION["the_role"] == "administrateur") {          
               		echo "<form action='textes_a_lire.php' method='get'>";
               		echo "Cocher pour supprimer : <input type='radio' name='id_document_texte' value='".$row["id"]."' /><br />";
           		}
@@ -29,7 +29,7 @@ if(!$is_texte) {
 	echo "Aucun texte validé pour le moment.";
 }
 
-if($_COOKIE["the_role"] == "administrateur" && $is_texte) {
+if($_SESSION["the_role"] == "administrateur" && $is_texte) {
     echo "<input type='submit' value='Supprimer' />
     </form>";
 }

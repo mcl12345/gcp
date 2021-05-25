@@ -76,7 +76,7 @@ if(isset($_POST['description']) && isset($_FILES['the_video']['name'])) {
 
            $stmt = $pdo->prepare("INSERT INTO historique_video (id_video, id_user)  VALUES (:id_video, :id_user)");
            $stmt->bindParam(':id_video', $id_media);
-           $stmt->bindParam(':id_user', $_COOKIE["the_id"]);
+           $stmt->bindParam(':id_user', $_SESSION["the_id"]);
            $stmt->execute();
 
             print_LOGO_FORMSEARCH_MENU();

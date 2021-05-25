@@ -23,7 +23,7 @@ $stmt->execute();
           $is_video = true;
           $motscle = "";
           $motcle_empty = true;
-          if($_COOKIE["the_role"] == "administrateur") {
+          if($_SESSION["the_role"] == "administrateur") {
               echo "<form action='videos_a_visualiser.php' method='get'>";
               echo "Cocher pour supprimer : <input type='radio' name='id_video' value='".$row["id"]."' /><br />";
           }
@@ -57,7 +57,7 @@ if(!$is_video) {
             echo "Il n'existe pas encore de vidéos";
 }
 
-if($_COOKIE["the_role"] == "administrateur" && $is_video) {
+if($_SESSION["the_role"] == "administrateur" && $is_video) {
     echo "<input type='submit' value='Supprimer' />
     </form>";
 }
