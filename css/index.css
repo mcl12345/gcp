@@ -12,10 +12,6 @@
     margin-left: -20px;
 }
 
-.decalage-rois {
-    margin-left: 300px;
-}
-
 .decalage_images {
     width: 300px;
     margin-left: 200px;
@@ -25,6 +21,11 @@
     .decalage_images {
         width: 200px;
         margin-left: 100px;
+    }
+}
+@media (min-width:800px){
+    .decalage-rois {
+        margin-left: 300px;
     }
 }
 .navbar-inverse .navbar-nav>li>a {
